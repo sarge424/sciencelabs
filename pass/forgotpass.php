@@ -8,17 +8,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_REQUEST['email'];
 
     $sql = 'select * from teacher where teacher_name="' . $name . '";';
-
-    $message = 'Please go to the link provided below: /n/n
-                localhost/sciencelabs/pass/change.php';
+    $id = $conn->query($sql)->fetch_assoc()['id'];
 
     if ($email == $conn->query($sql)->fetch_assoc()['email']) {
-        mail($email, "Change Your Physics Lab Password", $message);
+        //Adding PHPMailer
+        require '..\PHPMailer\third_party\phpmailer\PHPMailerAutoload.php';
+
+        $mail = new PHPMailer(true);
+
+        $mail->IsSMTP(); // telling the class to use SMTP
+        $mail->SMTPAuth = true; // enable SMTP authentication
+        $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+        $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+        $mail->Port = 465; // set the SMTP port for the GMAIL server
+        $mail->Username = "asrivatsa6@gmail.com"; // GMAIL username
+        $mail->Password = "Asrivatsa2001"; // GMAIL password
+
+        //Senders information
+        $email_from = "asrivatsa6@gmail.com";
+        $name_from = "Abhinav Srivatsa";
+
+        //Typical mail data
+        $mail->AddAddress($email, $name);
+        $mail->SetFrom($email_from, $name_from);
+        $mail->Subject = "Change Science Labs Password";
+        $mail->Body = "To change your password click <html> <a href='localhost/sciencelabs/pass/changepass.php?id=".$id."'>here</a>.";
+        $mail->IsHTML(true);
+
+        try {
+            $mail->Send();
+            echo "<script>alert('Mail sent successfully!');document.location.href='../'</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Something went wrong. Try again later.');document.location.href='../'</script>";
+        }
     } else {
-        echo '<script>alert("Username and Email Do Not Match);<script>';
+        echo '<script>alert("Username and Email Do Not Match");</script>';
     }
 }
-
 ?>
 
 <html>
