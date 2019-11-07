@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($pass == $conf) {
             $sql = "update teacher set teacher_pass='" . $pass . "' where id=" . $uid . ";";
             $conn->query($sql);
-            echo "<script>alert('Passwords updated successfully!');</script>";
+            echo "<script>alert('Password updated successfully!');document.location.href='../';</script>";
         } else {
             echo "<script>alert('Passwords do not match!');</script>";
         }
