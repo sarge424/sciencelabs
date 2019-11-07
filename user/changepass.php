@@ -1,4 +1,5 @@
 <?php require_once '../db.php'; ?>
+<?php include '../navbar.php'; ?>
 <html>
 
 <head>
@@ -29,7 +30,7 @@
 						if (strcmp($name, $dbname) == 0) {
 							$sql = 'update teacher set teacher_pass="' . $newpass . '" where teacher_name="' . $name . '";';
 							$conn->query($sql);
-							echo '<script>alert("Password Successfully Changed");document.location.href="../index.php";</script>';
+							echo '<script>alert("Password Successfully Changed");document.location.href="../home";</script>';
 						}
 					} else {
 						echo '<script>alert("Old Passwords Do Not Match");</script>';
@@ -47,7 +48,7 @@
 
 	<script>
 		function back() {
-			document.location.href = '../index.php';
+			document.location.href = '../home';
 		}
 	</script>
 

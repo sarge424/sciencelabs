@@ -55,6 +55,8 @@ if ($lev == 0) {
 				<?php echo $level . $uname; ?>
 			</span>
 			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/user/changepass.php">Change Password</a>
+			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs">Logout</a>
 		</ul>
 	</div>
