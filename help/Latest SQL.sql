@@ -7,6 +7,7 @@ create table teacher(
 	teacher_name varchar(50) not null unique,
 	teacher_pass varchar(70) not null,
 	levels varchar(20) not null,
+	email varchar(30) default "<-- no email provided -->",
 	primary key(id)
 );
 

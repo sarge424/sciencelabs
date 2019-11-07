@@ -12,8 +12,8 @@
 	}
 	?>
 	<script>
-		function changepass() {
-			document.location.href = 'user/changepass.php';
+		function forgotpass() {
+			document.location.href = 'pass/forgotpass.php';
 		}
 	</script>
 
@@ -47,7 +47,7 @@
 									<button class="btn btn-success btn-block" type="submit">Login</button>
 							<tr>
 								<td colspan="2">
-									<button class="btn btn-warning btn-block" onclick="changepass()">Change Password</button>
+									<button class="btn btn-warning btn-block" onclick="forgotpass()">Forgot Password?</button>
 						</table>
 					</div>
 				</form>

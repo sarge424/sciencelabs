@@ -47,6 +47,8 @@ if ($result->num_rows > 0) {
 			echo '<script>invite("Anonymous", "none");</script>';
 		}
 	}
+} else {
+	echo '<script>invite("Anonymous", "none");</script>';
 }
 ?>
 
