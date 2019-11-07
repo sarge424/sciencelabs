@@ -1,6 +1,28 @@
 <?php require_once '../db.php'; ?>
 <html>
 
+<style>
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 40% !important;
+		top: 20% !important;
+		width: 20% !important;
+		height: 23% !important;
+		overflow: auto;
+		box-shadow: 5px 10px 8px 1000px rgba(0, 0, 0, 0.5);
+	}
+
+	.modal-content {
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+</style>
+
 <head>
 	<title>Stock - PhyLab</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -15,12 +37,25 @@
 	</script>
 
 	<script>
+		let item;
+
 		function editItem(itemid) {
 			document.location.href = 'viewitems.php?item_id=' + itemid;
 		}
 
 		function delItem(itemid) {
-			document.location.href = 'deleteitem.php?item_id=' + itemid;
+			item = itemid;
+			let modal = document.getElementById("confirm");
+			modal.style.display = "block";
+		}
+
+		function del() {
+			document.location.href = 'deleteitem.php?item_id=' + item;
+		}
+
+		function back() {
+			let modal = document.getElementById("confirm");
+			modal.style.display = "none";
 		}
 
 		function sort(orderby) {
@@ -30,6 +65,21 @@
 
 	<br>
 	<br>
+
+	<div id="confirm" class="modal">
+		<div class="modal-content">
+			<table class="table">
+				<tr>
+					<td colspan="2">
+						<b>Are you sure you want to delete this item?</b>
+				<tr>
+					<td>
+						<button class="btn btn-danger" onclick="del()">Yes</button>
+					<td>
+						<button class="btn btn-success float-right" onclick="back()">No</button>
+			</table>
+		</div>
+	</div>
 
 	<div class="container">
 		<h1 class="text-center">View Stock</h1>

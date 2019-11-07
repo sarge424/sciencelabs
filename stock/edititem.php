@@ -9,10 +9,10 @@ $item_loc = $_POST['itemloc'];
 $item_specs = $_POST['itemspecs'];
 
 $sql = 'UPDATE item' .
-	' SET item_name="' . $item_name . '", stock="' . $item_stock . '", lab_location="' . $item_loc . '", specs="' . $item_specs . '"' .
+	' SET item_name="' . $item_name . '", quantity="' . $item_stock . '", lab_location="' . $item_loc . '", specs="' . $item_specs . '"' .
 	' WHERE id=' . $item_id . ';';
 
-echo '<script>console.log("' . $sql . '");</script>';
+echo "<script>alert('" . $sql . "');</script>";
 
 $conn->query($sql);
 
