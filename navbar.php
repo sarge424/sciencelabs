@@ -24,6 +24,8 @@ if ($lev == 0) {
 }
 ?>
 
+<script src="../js/popper.min.js"></script>
+
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
 	<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 		<ul class="navbar-nav mr-auto">
@@ -56,8 +58,17 @@ if ($lev == 0) {
 			</span>
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/user/changepass.php">Change Password</a>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs">Logout</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="#my-target">
+					Dropdown
+				</a>
+				<div id="my-target" class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</li>
 		</ul>
 	</div>
 </nav>

@@ -32,7 +32,7 @@ create table item(
 	item_name varchar(50) not null,
 	lab_location int not null,
 	specs varchar(100),
-	quantity int,
+	quantity int default 0,
 	primary key(id)
 );
 

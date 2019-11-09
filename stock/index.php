@@ -23,6 +23,21 @@
 	}
 </style>
 
+<div id="confirm" class="modal">
+	<div class="modal-content">
+		<table class="table">
+			<tr>
+				<td colspan="2">
+					<b>Are you sure you want to delete this item?</b>
+			<tr>
+				<td>
+					<button class="btn btn-danger" onclick="del()">Yes</button>
+				<td>
+					<button class="btn btn-success float-right" onclick="back()">No</button>
+		</table>
+	</div>
+</div>
+
 <head>
 	<title>Stock - PhyLab</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -66,27 +81,12 @@
 	<br>
 	<br>
 
-	<div id="confirm" class="modal">
-		<div class="modal-content">
-			<table class="table">
-				<tr>
-					<td colspan="2">
-						<b>Are you sure you want to delete this item?</b>
-				<tr>
-					<td>
-						<button class="btn btn-danger" onclick="del()">Yes</button>
-					<td>
-						<button class="btn btn-success float-right" onclick="back()">No</button>
-			</table>
-		</div>
-	</div>
-
 	<div class="container">
 		<h1 class="text-center">View Stock</h1>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
-					<th onclick="sort('id')">ID</th>
+					<th onclick="sort('id')">DBID</th>
 					<th onclick="sort('item_name')">Name</th>
 					<th onclick="sort('stock')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf No.</th>
