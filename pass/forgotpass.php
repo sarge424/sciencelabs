@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
         $mail->Port = 465; // set the SMTP port for the GMAIL server
         $mail->Username = "asrivatsa6@gmail.com"; // GMAIL username
-        $mail->Password = "Asrivatsa2001"; // GMAIL password
+        $mail->Password = "password"; // GMAIL password
 
         //Senders information
         $email_from = "asrivatsa6@gmail.com";
