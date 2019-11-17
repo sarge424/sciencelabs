@@ -56,8 +56,13 @@ if ($lev == 0) {
 			<span class="navbar-text text-white">
 				<?php echo $level . $uname; ?>
 			</span>
-			<li class="nav-item">
-				<a class="nav-link" href="../reviewrequest/">Review Order</a>
+			<?php
+			if ($_SESSION['level'] != 2) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="../reviewrequest/">Review Order</a>';
+			}
+			?>
+
 			<li class="nav-item">
 				<a class="nav-link" href="../user/changepass.php">Change Password</a>
 			<li class="nav-item dropdown">
