@@ -57,18 +57,11 @@ if ($lev == 0) {
 				<?php echo $level . $uname; ?>
 			</span>
 			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/user/changepass.php">Change Password</a>
+				<a class="nav-link" href="../reviewrequest/">Review Order</a>
+			<li class="nav-item">
+				<a class="nav-link" href="../user/changepass.php">Change Password</a>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="#my-target">
-					Dropdown
-				</a>
-				<div id="my-target" class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			</li>
+				<a class="nav-link" href="../">Logout</a>
 		</ul>
 	</div>
 </nav>
