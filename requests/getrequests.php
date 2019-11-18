@@ -10,9 +10,9 @@ $num = $_GET['num'];
 $user = $_SESSION['user'];
 $sql = "";
 if ($num == 1) {
-    $sql = "select * from purchase_request where teacher_id=" . $user . ";";
+    $sql = "select * from purchase_request where teacher_id=" . $user . " and arrived=0;";
 } else {
-    $sql = "select * from purchase_request;";
+    $sql = "select * from purchase_request where arrived=0;";
 }
 $result = $conn->query($sql);
 
@@ -37,6 +37,6 @@ if ($result != null) {
 } else {
     echo '
             <tr>
-                <td colspan="3"><h4>No items ordered yet</h4>
+                <td colspan="3"><h4>No pending orders</h4>
         ';
 }

@@ -59,7 +59,7 @@ if ($lev == 0) {
 			<?php
 			if ($_SESSION['level'] != 2) {
 				echo '<li class="nav-item">
-						<a class="nav-link" href="../reviewrequest/">Review Order</a>';
+						<a class="nav-link" href="../reviewrequest/">Review Orders</a>';
 			}
 			?>
 

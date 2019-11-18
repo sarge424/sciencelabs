@@ -91,11 +91,11 @@
             let num = 1;
             if (<?php echo $_SESSION['level']; ?> < 2) {
                 if (button.innerHTML == "View All Orders") {
-                    document.getElementById("heading").innerHTML = "All Orders";
+                    document.getElementById("heading").innerHTML = "All Pending Orders";
                     document.getElementById("btn-hidden").innerHTML = "View Your Orders";
                     num = 0;
                 } else {
-                    document.getElementById("heading").innerHTML = "Your Orders";
+                    document.getElementById("heading").innerHTML = "Your Pending Orders";
                     document.getElementById("btn-hidden").innerHTML = "View All Orders";
                     num = 1;
                 }
@@ -142,7 +142,7 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <div align="center">
-                    <h2 id="heading">Your Orders</h2>
+                    <h2 id="heading">Your Pending Orders</h2>
                 </div>
                 <div style="height: 400px !important; overflow-y: auto !important;">
                     <table class="table">

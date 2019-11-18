@@ -78,13 +78,30 @@
 </style>
 
 <script>
-
     function checkAll() {
         let input = document.getElementsByClassName("chk");
+        let btn = document.getElementById("btn");
+        if (btn.innerHTML == "Check All")
+            btn.innerHTML = "Uncheck All";
+        else
+            btn.innerHTML = "Check All";
+
+        let flag = false;
         let x = 0;
-        while (x < input.length) {
-            input[x++].checked = true;
-        }
+
+        while (x < input.length)
+            if (!input[x++].checked) {
+                flag = false;
+                break;
+            } else
+                flag = true;
+        x = 0;
+        if (flag)
+            while (x < input.length)
+                input[x++].checked = false;
+        else
+            while (x < input.length)
+                input[x++].checked = true;
     }
 
     function submit() {
@@ -94,7 +111,7 @@
         let check = document.getElementsByClassName("chk");
         let x = 0;
         while (x < item.length) {
-            if (check[x].checked == true) {
+            if (check[x].checked) {
                 let queryString = "?item=" + item[x].innerHTML + "&quantity=" + quantity[x].innerHTML + "&specs=" + specs[x].innerHTML;
                 document.location.href = "review.php" + queryString;
             }
@@ -146,7 +163,7 @@
                         <tr>
                             <td colspan="2">
                             <td><button class="btn btn-success" onclick="submit()">Submit</button>
-                            <td><button class="btn btn-warning" onclick="checkAll()">Check All</button>
+                            <td><button class="btn btn-warning" onclick="checkAll()" id="btn">Check All</button>
                     </tbody>
                 </table>
             </div>
