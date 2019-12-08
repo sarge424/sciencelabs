@@ -18,7 +18,7 @@ $level = "";
 if ($lev == 0) {
 	$level = 'Admin ';
 } else if ($lev == 1) {
-	$level = 'LabMaster ';
+	$level = 'Lab Master ';
 } else {
 	$level = 'Teacher ';
 }
