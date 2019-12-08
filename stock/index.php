@@ -88,10 +88,10 @@
 				<tr>
 					<th onclick="sort('id')">DBID</th>
 					<th onclick="sort('item_name')">Name</th>
-					<th onclick="sort('stock')">Stock</th>
+					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf No.</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
-					<th><button class="btn btn-success float-right" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev != 1) ? 'disabled' : ''; ?>">New Item</button></th>
+					<th><button class="btn btn-success float-right" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,7 +104,7 @@
 					$order_by = $_GET['orderby'];
 				}
 
-				$sql = 'SELECT * from item ORDER BY ' . $order_by . ';';
+				$sql = 'SELECT * from item WHERE lab="' . $_SESSION['lab'] . '" ORDER BY ' . $order_by . ';';
 
 				$result = $conn->query($sql);
 
@@ -124,9 +124,9 @@
 							<td><?php echo $item_stock > 0 ? $item_stock : 'OUT OF STOCK'; ?></td>
 							<td><?php echo $item_loc ?></td>
 							<td><?php echo $item_specs ?>
-							<td><button class="btn btn-danger btn-small float-right" onclick="delItem(<?php echo $item_id ?>)" <?php echo ($lev != 1) ? 'disabled' : ''; ?>">&times;</button>
+							<td><button class="btn btn-danger btn-small float-right" onclick="delItem(<?php echo $item_id ?>)" <?php echo ($lev >= 1) ? 'disabled' : ''; ?>>&times;</button>
 								<p class="float-right px-1"> </p>
-								<button class="btn btn-warning btn-small float-right" onclick="editItem(<?php echo $item_id ?>)" <?php echo ($lev != 0) ? 'disabled' : ''; ?>">Edit</button>
+								<button class="btn btn-warning btn-small float-right" onclick="editItem(<?php echo $item_id ?>)" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>Edit</button>
 							</td>
 						</tr>
 

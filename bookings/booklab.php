@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$date = date_create($date);
 				$date = date_format($date, 'Y-m-d');
 
-				$sql = "insert into lab_booking (booked_date, booked_time, teacher_id, class_id) values ('" . $date . "', '" . $time . "', " . $user . ", " . $class . ");";
+				$sql = "insert into lab_booking (booked_date, booked_time, teacher_id, class_id, lab) values ('" . $date . "', '" . $time . "', " . $user . ", " . $class . ", '" . $_SESSION['lab'] . "');";
 				$conn->query($sql);
 				echo '<script>alert("Lab successfully booked on ' . $date . ' between ' . $time . '");</script>';
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<br>
 	<div class="row">
 		<div class="col-sm-12 text-center">
-			<h2>Lab Booking</h2>
+			<h3>Lab Booking</h3>
 		</div>
 	</div>
 	<div class="row">

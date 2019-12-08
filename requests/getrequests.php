@@ -10,9 +10,9 @@ $num = $_GET['num'];
 $user = $_SESSION['user'];
 $sql = "";
 if ($num == 1) {
-    $sql = "select * from purchase_request where teacher_id=" . $user . " and arrived=0;";
+    $sql = "select * from purchase_request where teacher_id=" . $user . " and arrived=0 and lab='" . $_SESSION['lab'] . "';";
 } else {
-    $sql = "select * from purchase_request where arrived=0;";
+    $sql = "select * from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
 }
 $result = $conn->query($sql);
 

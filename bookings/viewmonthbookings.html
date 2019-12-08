@@ -1,186 +1,85 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery-3.4.1.min.js"></script>
-	<script src="../js/gijgo.min.js" type="text/javascript"></script>
-	<link href="../css/gijgo.min.css" rel="stylesheet" type="text/css" />
-	<style>
-		tr {
-			line-height: 50px;
-			min-height: 50px;
-			height: 50px;
-		}
-	</style>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 
 <body>
-	<script>
-		let d = new Date;
-		let currDate = "";
-		let month_dates = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		let month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    <div class="container col-md-7 ">
+        <br>
+        <br>
+        <div class="card">
+            <h3 class="card-header" id="monthAndYear"></h3>
+            <table class="table table-bordered table-responsive-sm" id="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
 
-		let date = d.getDate() + 1;
-		let month = d.getMonth();
-		let year = d.getFullYear();
-		let day;
+                <tbody id="calendar-body">
 
-		function fillCalendar(addMonth) {
-			if (addMonth == 0) {
-				day = (Number(date) + d.getDay() + 1) % 7;
-			}
-			if (addMonth == 1) {
-				day = (day + month_dates[month]) % 7;
-			}
+                </tbody>
+            </table>
 
-			month += addMonth;
-			if (month == 12) {
-				month = 0;
-				year++;
-			}
-			if (month == -1) {
-				month = 11;
-				year--;
-			}
-			if (year % 4 == 0)
-				month_dates[1] = 29;
-			else
-				month_dates[1] = 28;
+            <div class="form-inline">
+
+                <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+
+                <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+            </div>
+            <br />
+            <form class="form-inline">
+                <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+                <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                    <option value=0>Jan</option>
+                    <option value=1>Feb</option>
+                    <option value=2>Mar</option>
+                    <option value=3>Apr</option>
+                    <option value=4>May</option>
+                    <option value=5>Jun</option>
+                    <option value=6>Jul</option>
+                    <option value=7>Aug</option>
+                    <option value=8>Sep</option>
+                    <option value=9>Oct</option>
+                    <option value=10>Nov</option>
+                    <option value=11>Dec</option>
+                </select>
 
 
-			if (addMonth == -1) {
-				day = 7 - ((month_dates[month] - day) % 7);
-				day = (day == 7) ? 0 : day;
-			}
+                <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+                    <option value=2019>2019</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                    <option value=2022>2022</option>
+                    <option value=2023>2023</option>
+                    <option value=2024>2024</option>
+                    <option value=2025>2025</option>
+                    <option value=2026>2026</option>
+                    <option value=2027>2027</option>
+                    <option value=2028>2028</option>
+                    <option value=2029>2029</option>
+                    <option value=2030>2030</option>
+                </select></form>
+        </div>
+    </div>
+    <!--<button name="jump" onclick="jump()">Go</button>-->
+    <script src="scripts.js"></script>
 
-			let table = document.getElementById("table-body");
-			let html = "";
-			let totalBoxes = day + month_dates[month];
-			let count = 0;
+    <!-- Optional JavaScript for bootstrap -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
-			while (count < day) {
-				if (count % 7 == 0) {
-					html += "<tr'>";
-				}
-				html += "<td class='text-right btn-secondary'>";
-				count++;
-			}
-			count = 1;
-			let tmpd = day;
 
-			while (count <= month_dates[month]) {
-				if (tmpd % 7 == 0) {
-					html += "<tr>";
-				}
-				html += "<td class='text-right' id='date" + count + "' onclick='displayBookings(" + count + ", " + (month + 1) + ", " + year + ")'>" + count;
-				count++;
-				tmpd++;
-			}
-			table.innerHTML = html;
-
-			let name_space = document.getElementById("month name");
-			name_space.innerHTML = "<div align='center'><h2>" + month_names[month] + " " + year + "<h2></div>";
-
-			count = 1;
-			while (count <= month_dates[month]) {
-				displaySlots(count, month, year);
-				count++;
-			}
-		}
-
-		function displayBookings(date, month, year) {
-			document.location.href = "viewdaybookings.html?date=" + date + "&month=" + month + "&year=" + year;
-		}
-
-		function displaySlots(date, month, year) {
-			let currDate = fabricateDate(date, month, year);
-			let box = document.getElementById("date" + date);
-
-			let request;
-
-			try {
-				request = new XMLHttpRequest();
-			} catch (e) {
-				try {
-					request = new ActiveXObject("Msxml2.XMLHTTP");
-				} catch (e) {
-					try {
-						request = new ActiveXObject("Microsoft.XMLHTTP");
-					} catch (e) {
-						return false;
-					}
-				}
-			}
-
-			let result;
-			request.onreadystatechange = function () {
-				if (request.readyState == 4) {
-					result = request.responseText;
-					if (result == 4) {
-						box.classList.add("btn-danger");
-					}
-					else if (result == 0) {
-						box.classList.add("btn-info");
-					}
-					else if (result < 4 && result > 0) {
-						box.classList.add("btn-warning");
-					}
-				}
-			}
-
-			let queryString = "?date=" + currDate;
-			request.open("GET", "findslotstaken.php" + queryString, true);
-			request.send(null);
-		}
-
-		function fabricateDate(date, month, year) {
-			let m = month + 1;
-			let d = date;
-			m = (m < 10) ? "0" + m : m;
-			d = (d < 10) ? "0" + d : d;
-			currDate = year + " " + m + " " + d;
-			return currDate;
-		}
-	</script>
-	<div class="container-fluid">
-		<br>
-		<br>
-		<div class="row">
-			<div class="col-sm-3">
-				<div align="center">
-					<div class="btn btn-primary" onclick="fillCalendar(-1)">Previous Month</div>
-				</div>
-			</div>
-			<div class="col-sm-6" id="month name"></div>
-			<div class="col-sm-3">
-				<div align="center">
-					<div class="btn btn-primary" onclick="fillCalendar(1)">Next Month</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
-				<table class="table table-bordered" style="table-layout: fixed; width: 100%;">
-					<thead class="thead thead-dark">
-						<th class="text-center">Sun</th>
-						<th class="text-center">Mon</th>
-						<th class="text-center">Tue</th>
-						<th class="text-center">Wed</th>
-						<th class="text-center">Thu</th>
-						<th class="text-center">Fri</th>
-						<th class="text-center">Sat</th>
-					</thead>
-					<tbody id="table-body">
-						<script>fillCalendar(0);</script>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
 </body>
 
 </html>

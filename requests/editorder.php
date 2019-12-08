@@ -31,7 +31,7 @@
         $conn->query($sql);
 
         echo '<script>
-            document.location.href = "index.php";
+            document.location.href = "../requests/";
         </script>';
 
         $conn->close();
@@ -68,7 +68,7 @@
                 <div align="center">
                     <form action="<?php $_SERVER = ["PHP_SELF"] ?>" method="POST">
                         <table class="table">
-                            <h2>Edit Request</h2>
+                            <h3>Edit Request</h3>
                             <br>
                             <tbody>
                                 <tr>

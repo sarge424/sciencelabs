@@ -7,7 +7,7 @@ $tbookedby = array("-", "-", "-", "-");
 $cbookedby = array("-", "-", "-", "-");
 $date = $_GET['date'];
 
-$sql = "select date_format(booked_date, '%Y %m %d') as booked_date, booked_time, teacher_id, class_id from lab_booking where date_format(booked_date, '%Y %m %d')='" . $date . "';";
+$sql = "select date_format(booked_date, '%Y %m %d') as booked_date, booked_time, teacher_id, class_id from lab_booking where lab='" . $_SESSION['lab'] . "' and date_format(booked_date, '%Y %m %d')='" . $date . "';";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -46,4 +46,5 @@ while ($var < 4) {
         <td>' . $cbookedby[$var];
     $var += 1;
 }
+
 ?>

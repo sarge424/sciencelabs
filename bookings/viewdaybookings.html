@@ -30,21 +30,21 @@
 			date = Number(date);
 			month = Number(month);
 			date = date + addDays;
-			if (date > months[month - 1]) {
+			if (date > months[month]) {
 				date = 1;
 				month++;
-				if (month == 13) {
-					month = 1;
+				if (month == 12) {
+					month = 0;
 					year++;
 				}
 			}
 			if (date == 0) {
 				month--;
-				if (month == 0) {
-					month = 12;
+				if (month == -1) {
+					month = 11;
 					year--;
 				}
-				date = months[month - 1];
+				date = months[month];
 			}
 
 			if (year % 4 == 0)
@@ -52,13 +52,12 @@
 			else
 				months[1] = 28;
 
-
-			month = (month < 10) ? "0" + month : month;
 			date = (date < 10) ? "0" + date : date;
-			currDate = year + " " + month + " " + date;
+			currDate = year + " " + (month + 1) + " " + date;
 
-			month = monthnames[Number(month)];
-			copcurrDate = year + " " + month + " " + date;
+			let copmonth = monthnames[Number(month)];
+			let copcurrDate = year + " " + copmonth + " " + date;
+			console.log(copcurrDate);
 
 			let request;
 
@@ -88,7 +87,7 @@
 			request.send(null);
 
 			let div = document.getElementById("header");
-			div.innerHTML = "<h2>Booking Schedule</h2><br><h3>" + copcurrDate + "</h3>";
+			div.innerHTML = "<h3>Booking Schedule</h3><br><h4>" + copcurrDate + "</h4>";
 		}
 
 		function back() {

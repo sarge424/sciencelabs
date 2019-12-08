@@ -7,7 +7,7 @@ create table teacher(
 	teacher_name varchar(50) not null unique,
 	teacher_pass varchar(70) not null,
 	levels varchar(20) not null,
-	email varchar(30) default "<-- no email provided -->",
+	email varchar(40) default "<-- no email provided -->",
 	primary key(id)
 );
 
@@ -31,20 +31,10 @@ create table item(
 	id int not null auto_increment unique,
 	item_name varchar(50) not null,
 	lab_location int not null,
-	specs varchar(100),
+	specs varchar(100) default '',
 	quantity int default 0,
+	lab varchar(1) not null default "p",
 	primary key(id)
-);
-
-create table teacher_request(
-	id int not null auto_increment unique,
-	item_id int not null,
-	quantity int not null,
-	teacher_id int not null,
-	date datetime default now() not null,
-	primary key(id),
-	foreign key (item_id) references item(id),
-	foreign key (teacher_id) references teacher(id)
 );
 
 create table student_checkout(
@@ -52,8 +42,10 @@ create table student_checkout(
 	student_id int not null,
 	item_id int not null,
 	quantity int not null,
-	returned int not null,
+	returned int not null default 0,
 	checkout_date date default now(),
+	lab varchar(1) not null default "p",
+	returned_date date,
 	primary key(id),
 	foreign key (student_id) references student(id),
 	foreign key (item_id) references item(id)
@@ -65,26 +57,45 @@ create table purchase_request(
 	item_name varchar(50) not null,
 	quantity int not null,
 	specs varchar(100),
-	is_for varchar(20) not null,
-	date datetime not null default now(),
+	date_ordered datetime not null default now(),
 	arrived bit not null,
+	date_arrived datetime not null default now(),
+	comments varchar(100),
+	bill_code varchar(10) default "<No Bill>",
+	lab varchar(1) not null default "p",
+	primary key(id),
+	foreign key (teacher_id) references teacher(id)
+);
+
+create table lab_transaction(
+	id int not null auto_increment unique,
+	teacher_id int not null,
+	item_name varchar(50) not null,
+	quantity int not null,
+	specs varchar(100),
+	sender varchar(20) not null,
+	receiver varchar(20) not null,
+	date_ordered datetime not null default now(),
+	arrived bit not null,
+	date_arrived datetime not null default now(),
 	comments varchar(100),
 	primary key(id),
 	foreign key (teacher_id) references teacher(id)
 );
 
 create table lab_booking(
+	id int not null auto_increment,
 	booked_date date,
 	booked_time varchar(15),
 	teacher_id int,
 	class_id int,
 	lab varchar(1) default "p",
-	primary key (booked_date, booked_time, lab),
+	primary key (id),
 	foreign key (teacher_id) references teacher(id),
 	foreign key (class_id) references class(id)
 );
 
-insert into teacher(id, teacher_name, teacher_pass, levels) values (1, 'a', '9992', 2);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (1, 'abhinav', '9992', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'b', '9363', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (4, 'd', '1161', 2);

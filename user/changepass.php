@@ -61,7 +61,7 @@
 				<form action="<?php $_SERVER = ["PHP_SELF"] ?>" method="POST">
 					<div align="center">
 						<div class="btn-group btn-large">
-							<h2>Change Password</h2>
+							<h3>Change Password</h3>
 						</div>
 						<div class="float-right"><img src="../img/Technology Elements/joystick.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
 					</div>

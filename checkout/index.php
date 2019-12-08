@@ -39,7 +39,7 @@
 				<form action="checkoutdb.php" method="POST">
 					<div align="center">
 						<div class="btn-group btn-large">
-							<h2>Checkout an Item (For Students)</h2>
+							<h3>Checkout an Item (For Students)</h3>
 						</div>
 					</div>
 					<div align="center">

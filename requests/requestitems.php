@@ -10,7 +10,7 @@ $item = $_GET['item'];
 $quantity = $_GET['quantity'];
 $user = $_SESSION['user'];
 
-$sql = 'insert into purchase_request (teacher_id, item_name, quantity, specs, is_for, arrived) values (' . $user . ', "' . $item . '", ' . $quantity . ', "' . $specs . '", "p", 0)';
+$sql = 'insert into purchase_request (teacher_id, item_name, quantity, specs, arrived, lab) values (' . $user . ', "' . $item . '", ' . $quantity . ', "' . $specs . '", 0, "' . $_SESSION['lab'] . '");';
 
 $conn->query($sql);
 

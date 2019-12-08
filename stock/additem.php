@@ -17,7 +17,7 @@ $conn->close();
 
 <body>
 	<script>
-		document.location.href = 'index.php';
+		document.location.href = '../stock/';
 	</script>
 </body>
 

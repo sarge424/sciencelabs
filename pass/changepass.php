@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "select * from teacher where teacher_name='" . $name . "'";
     if ($uid == $conn->query($sql)->fetch_assoc()['id']) {
-        echo "<script>console.log('hi');</script>";
         if ($pass == $conf) {
             $sql = "update teacher set teacher_pass='" . $pass . "' where id=" . $uid . ";";
             $conn->query($sql);
@@ -39,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-sm-4 bg-white" align="center">
                 <div align="center">
                     <div class="btn-group btn-large">
-                        <h2>Change Password</h2>
+                        <h3>Change Password</h3>
                     </div>
                     <div class="float-right"><img src="../img/Technology Elements/joystick.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
                 </div>

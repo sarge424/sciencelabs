@@ -19,6 +19,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $user = $_POST["user"];
 $pass = $_POST["pass"];
+$_SESSION["lab"] = "p";
+$_SESSION["labname"] = "Phy";
 
 $_SESSION['range_date'] = 0;
 

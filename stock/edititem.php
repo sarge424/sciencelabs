@@ -12,8 +12,6 @@ $sql = 'UPDATE item' .
 	' SET item_name="' . $item_name . '", quantity="' . $item_stock . '", lab_location="' . $item_loc . '", specs="' . $item_specs . '"' .
 	' WHERE id=' . $item_id . ';';
 
-echo "<script>alert('" . $sql . "');</script>";
-
 $conn->query($sql);
 
 $conn->close();
@@ -23,7 +21,7 @@ $conn->close();
 <body>
 	<script>
 		alert('The item \'<?php echo $item_name ?>\' was updated.');
-		document.location.href = 'index.php';
+		document.location.href = '../stock/';
 	</script>
 </body>
 

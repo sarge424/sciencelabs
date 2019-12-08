@@ -21,13 +21,13 @@
 		}
 	}
 	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
-		echo '<script>alert("You do not have access to perform this action.");document.location.href = "index.php";</script>';
+		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}
 	?>
 
 	<script>
 		function back() {
-			document.location.href = 'index.php';
+			document.location.href = '../stock/';
 		}
 	</script>
 

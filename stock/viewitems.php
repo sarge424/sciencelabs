@@ -15,7 +15,7 @@
 
 	<script>
 		function back() {
-			document.location.href = 'index.php';
+			document.location.href = '../stock/';
 		}
 	</script>
 
@@ -26,7 +26,7 @@
 	global $conn;
 
 	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
-		echo '<script>alert("You do not have access to perform this action.");document.location.href = "index.php";</script>';
+		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}
 
 	$item_id = $_GET['item_id'];
@@ -84,7 +84,7 @@
 						</div>
 				</table>
 
-				<button type="submit" class="btn btn-success btn-block">Edit</button>
+				<button type="submit" class="btn btn-warning btn-block">Edit</button>
 			</form>
 			<button name='button' class="btn btn-light btn-block" onclick='back()'>Cancel</button>
 		</div>

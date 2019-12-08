@@ -15,30 +15,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require '..\PHPMailer\third_party\phpmailer\PHPMailerAutoload.php';
 
         $mail = new PHPMailer(true);
-
+		
         $mail->IsSMTP(); // telling the class to use SMTP
         $mail->SMTPAuth = true; // enable SMTP authentication
-        $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+        $mail->SMTPSecure = "ssl"; // sets the prefix to the server
         $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
         $mail->Port = 465; // set the SMTP port for the GMAIL server
-        $mail->Username = "asrivatsa6@gmail.com"; // GMAIL username
-        $mail->Password = "Asrivatsa2001"; // GMAIL password
+        $mail->Username = "abhinav@ishahomeschool.org"; // GMAIL username
+        $mail->Password = "9738421573"; // GMAIL password
 
         //Senders information
-        $email_from = "asrivatsa6@gmail.com";
+        $email_from = "abhinav@ishahomeschool";
         $name_from = "Abhinav Srivatsa";
 
         //Typical mail data
         $mail->AddAddress($email, $name);
         $mail->SetFrom($email_from, $name_from);
         $mail->Subject = "Change Science Labs Password";
-        $mail->Body = "To change your password click <html> <a href='localhost/sciencelabs/pass/changepass.php?id=".$id."'>here</a>.";
+        $mail->Body = "To change your password click <html> <a href='10.0.3.119/sciencelabs/pass/changepass.php?id=".$id."'>here</a>.<br><br>
+						If this link doesn't work follow this link: <br><br>
+						10.0.3.119/sciencelabs/pass/changepass.php?id=".$id;
         $mail->IsHTML(true);
 
         try {
             $mail->Send();
             echo "<script>alert('Mail sent successfully!');document.location.href='../'</script>";
         } catch (Exception $e) {
+			echo '<script>alert("'.$e.'");';
             echo "<script>alert('Something went wrong. Try again later.');document.location.href='../'</script>";
         }
     } else {
@@ -71,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <table class="table">
                         <tr>
                             <div align="center">
-                                <h2>Forgot Password</h2>
+                                <h3>Forgot Password</h3>
                             </div>
                         <tr>
                             <td>

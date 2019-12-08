@@ -26,29 +26,32 @@
 				<form action="user/validateuser.php" method="POST">
 					<div align="center">
 						<div class="btn-group btn-group-lg">
-							<h2>Login</h2>
+							<h3>Login</h3>
 						</div>
 						<div class="float-right"><img src="img/Mad Science/017-mad-scientist.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
 					</div>
 					<div align="center">
 						<table class="table">
-							<tr>
-								<td>
-									<label class="form-control input-sm text-primary"><b>Username</b></label>
-								<td>
-									<input class="form-control input-sm" type="text" placeholder="Enter Username" name="user" autofocus required></input>
-							<tr>
-								<td>
-									<label class="form-control input-sm text-primary"><b>Password</b></label>
-								<td>
-									<input class="form-control input-sm" type="password" placeholder="Enter Password" name="pass" required></input>
-							<tr>
-								<td colspan="2">
-									<button class="btn btn-success btn-block" type="submit">Login</button>
-							<tr>
-								<td colspan="2">
-									<button class="btn btn-warning btn-block" onclick="forgotpass()">Forgot Password?</button>
+							<tbody>
+								<tr>
+									<td>
+										<label class="form-control input-sm text-primary"><b>Username</b></label>
+									<td>
+										<input class="form-control input-sm" type="text" placeholder="Enter Username" name="user" autofocus required></input>
+								<tr>
+									<td>
+										<label class="form-control input-sm text-primary"><b>Password</b></label>
+									<td>
+										<input class="form-control input-sm" type="password" placeholder="Enter Password" name="pass" required></input>
+										<tr>
+									<td colspan="2">
+										<button class="btn btn-success btn-block">Login</button>
+										<tr>
+									<td colspan="2">
+										<button class="btn btn-warning btn-block" onclick="forgotpass()">Forgot Password?</button>
+							</tbody>
 						</table>
+						
 					</div>
 				</form>
 			</div>

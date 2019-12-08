@@ -12,6 +12,6 @@ if ($_SESSION['level'] < 2 && isset($_SESSION['level'])) {
 } else {
 	echo '<script>alert("You do not have access to perform this action.");</script>';
 }
-echo '<script>document.location.href = "index.php";</script>';
+echo '<script>document.location.href = "../stock/";</script>';
 $conn->close();
 ?>

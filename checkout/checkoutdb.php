@@ -1,5 +1,8 @@
 <?php require_once '../db.php'; ?>
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 global $conn;
 
 $sql = 'select * from item where id=' . $_POST['itemid'];
@@ -17,21 +20,22 @@ $sql = 'select * from item where id=' . $_POST['itemid'];
 $uniqueitem = $conn->query($sql)->fetch_assoc()['quantity'];
 if ($uniqueitem < $_POST['quantity']) {
 	echo '<script>alert("Not enough stock.");document.location.href="index.php";</script>';
-}
+} else {
+	$sql = 'insert into student_checkout (student_id, item_id, quantity, returned, lab) values (' .
+		$_POST['rollno'] . ', ' .
+		$_POST['itemid'] . ', ' .
+		$_POST['quantity'] . ', ' .
+		'0, "' .
+		$_SESSION['lab'] . '");';
 
-$sql = 'insert into student_checkout (student_id, item_id, quantity, returned) values (' .
-	$_POST['rollno'] . ', ' .
-	$_POST['itemid'] . ', ' .
-	$_POST['quantity'] . ', ' .
-	'0);';
+	$conn->query($sql);
 
-$conn->query($sql);
-
-$sql = 'select * from student where id=' . $_POST['rollno'];
-$student = $conn->query($sql)->fetch_assoc()['student_name'];
-$item = $_POST['itemname'];
-echo '<script>
-		alert("Recorded '. $_POST['quantity'] .' '. $item .' checked out by '. $student .'");
+	$sql = 'select * from student where id=' . $_POST['rollno'] . ';';
+	$student = $conn->query($sql)->fetch_assoc()['student_name'];
+	$item = $_POST['itemname'];
+	echo '<script>
+		alert("Recorded ' . $_POST['quantity'] . ' ' . $item . ' checked out by ' . $student . '");
 		document.location.href = "index.php";
 	</script>';
+}
 ?>

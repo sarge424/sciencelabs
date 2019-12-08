@@ -11,13 +11,13 @@ $item = $_GET['item'];
 $specs = $_GET['specs'];
 $quantity = $_GET['quantity'];
 
-$sql = "delete from purchase_request where id = (select min(id) from purchase_request" .
+$sql = "delete from purchase_request where lab='" . $_SESSION['lab'] . "' and id = (select min(id) from purchase_request" .
     " where item_name = '" . $item . "' and teacher_id = '" . $user . "' and specs = '" . $specs . "' and quantity = " . $quantity . ");";
 
 $conn->query($sql);
 
 $conn->close();
 
-header('Location: index.php');
+header('Location: ../requests/');
 exit;
 ?>
