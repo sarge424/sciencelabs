@@ -22,7 +22,7 @@ if ($result != null) {
         while ($row = $result->fetch_assoc()) {
             $item = $row['item_name'];
             $specs = $row['specs'];
-            $quantity = $row['quantity'];
+            $quantity = $row['quantity_ordered'];
 
             echo '
                     <tr>

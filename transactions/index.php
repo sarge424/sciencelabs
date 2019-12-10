@@ -57,7 +57,8 @@
                         <th>ID
                         <th>Teacher
                         <th>Item
-                        <th>Quantity
+                        <th>Quantity Ordered
+                        <th>Quantity Received
                         <th>Specifications
                         <th>Date Ordered
                         <th>Date Received
