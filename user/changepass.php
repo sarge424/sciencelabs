@@ -65,7 +65,7 @@
 						<div class="btn-group btn-large">
 							<h3>Change Password</h3>
 						</div>
-						<div class="float-right"><img src="../img/Technology Elements/joystick.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
+						<div class="float-right"><img src="../img/joystick.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
 					</div>
 					<div align="center">
 						<table class="table">
