@@ -81,7 +81,7 @@ if ($lab == 'b') {
 					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
 					<?php
 					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../reviewrequest/">Review Orders</a>';
+						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a>';
 					}
 					?>
 					<?php
