@@ -78,7 +78,6 @@ if ($lab == 'b') {
 				</span>
 				<a class="nav-link dropdown-toggle navbar-text text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-gear fa-spin" style="font-size:20px"></i> </a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
 					<?php
 					if ($_SESSION['level'] != 2) {
 						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a>';
@@ -86,10 +85,11 @@ if ($lab == 'b') {
 					?>
 					<?php
 					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>';
+						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>
+						<div class="dropdown-divider"></div>';
 					}
 					?>
-					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
 					<a class="dropdown-item" href="../">Logout</a>
 				</div>
 			</li>

@@ -4,9 +4,10 @@
 
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-	<script src="../js/jquery-3.4.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="checkbox.css">
 </head>
 
 <script>
@@ -38,7 +39,8 @@
 
     function submit() {
         let item = document.getElementsByClassName("item");
-        let quantity = document.getElementsByClassName("quan");
+        let quantity_ordered = document.getElementsByClassName("quano");
+        let quantity_received = document.getElementsByClassName("quanr");
         let specs = document.getElementsByClassName("specs");
         let check = document.getElementsByClassName("chk");
         let comments = document.getElementsByClassName("comments");
@@ -69,7 +71,7 @@
                     }
                 }
 
-                let queryString = "?item=" + item[x].innerHTML + "&quantity=" + quantity[x].innerHTML + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
+                let queryString = "?item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
                 request.open("GET", "review.php" + queryString, true);
                 request.send(null);
             }
@@ -93,7 +95,8 @@
                 <table class="table">
                     <thead class="thead thead-dark">
                         <th>Name
-                        <th>Quantity
+                        <th>Quantity Ordered
+                        <th>Quantity Received
                         <th>Specifications
                         <th>Arrived?
                         <th>Comments
@@ -106,14 +109,15 @@
                             session_start();
                         }
 
-                        $sql = "select * from purchase_request where lab='".$_SESSION['lab']."' and arrived=0;";
+                        $sql = "select * from purchase_request where lab='" . $_SESSION['lab'] . "' and arrived=0;";
                         $result = $conn->query($sql);
 
                         $var = 0;
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo '<tr><td class="item">' . $row['item_name'] .
-                                    '<td class="quan">' . $row['quantity'] .
+                                    '<td class="quano">' . $row['quantity_ordered'] .
+                                    '<td><input class="quanr form-control input-sm" type="number" min=0 />' .
                                     '<td class="specs">' . $row['specs'] .
                                     '<td><label class="container">
                                                 <input id="chk' . $var . '" name="chk' . $var . '" type="checkbox" class="chk">
