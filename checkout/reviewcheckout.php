@@ -2,6 +2,8 @@
 
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 </head>
 
@@ -67,7 +69,7 @@ include '../navbar.php';
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item returned");
-                document.location.href="../checkout/reviewcheckout.php";
+                document.location.href = "../checkout/reviewcheckout.php";
             }
         }
 
