@@ -71,7 +71,7 @@
                     }
                 }
 
-                let queryString = "?item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
+                let queryString = "?teacher=" + teacher[x].innerHTML + "&item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
                 request.open("GET", "review.php" + queryString, true);
                 request.send(null);
             }
@@ -94,6 +94,7 @@
                 </div>
                 <table class="table">
                     <thead class="thead thead-dark">
+                        <th>Teacher
                         <th>Name
                         <th>Quantity Ordered
                         <th>Quantity Received
@@ -115,7 +116,10 @@
                         $var = 0;
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo '<tr><td class="item">' . $row['item_name'] .
+                                $sql = "select teacher_name from teacher where id=" . $row['teacher_id'] . ";";
+                                $teacher = $conn->query($sql);
+                                echo '<tr><td class="teacher">' . $teacher->fetch_assoc()['teacher_name'] .
+                                    '<td class="item">' . $row['item_name'] .
                                     '<td class="quano">' . $row['quantity_ordered'] .
                                     '<td><input class="quanr form-control input-sm" type="number" min=0 />' .
                                     '<td class="specs">' . $row['specs'] .
@@ -130,7 +134,7 @@
                         ?>
                         <tr>
                             <td>
-                            <td colspan="2"><button class="btn btn-warning float-right" onclick="checkAll()" id="btn">Check All</button>
+                            <td colspan="4"><button class="btn btn-warning float-right" onclick="checkAll()" id="btn">Check All</button>
                             <td><button class="btn btn-success" onclick="submit()">Submit</button>
                             <td><input id="bill" class="form-control input-sm" placeholder="Enter Bill Code" />
                     </tbody>
