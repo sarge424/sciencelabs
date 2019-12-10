@@ -35,8 +35,6 @@ if ($result->num_rows > 0) {
 $sql = "select * from teacher where teacher_name='" . $user . "';";
 $result = $conn->query($sql);
 
-echo '<script>console.log("' . $sql . '");</script>';
-
 if ($result->num_rows > 0) {
 	while ($row = $result->fetch_assoc()) {
 		$dbname = $row["teacher_name"];
