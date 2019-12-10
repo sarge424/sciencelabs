@@ -28,7 +28,7 @@
 						<div class="btn-group btn-group-lg">
 							<h3>Login</h3>
 						</div>
-						<div class="float-right"><img src="img/Mad Science/017-mad-scientist.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
+						<div class="float-right"><img src="img/mad-scientist.svg" height="50" width="50" align="center" border="0" alt="Icon"></div>
 					</div>
 					<div align="center">
 						<table class="table">
