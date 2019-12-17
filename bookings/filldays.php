@@ -1,6 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
-global $conn;
+<?php 
+require_once '../db.php';
+require_once '../checkSession.php';
 
 $times = array("09:35 - 10:55", "11:10 - 12:30", "01:30 - 02:50", "03:05 - 04:25");
 $tbookedby = array("-", "-", "-", "-");

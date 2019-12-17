@@ -1,5 +1,7 @@
-<?php require_once '../db.php'; ?>
-<?php include '../navbar.php'; ?>
+<?php 
+require_once '../db.php';
+include '../navbar.php'; 
+?>
 <html>
 
 <head>

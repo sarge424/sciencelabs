@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once '../checkSession.php';
 
     $newlab = $_GET['newlab'];
 
@@ -9,9 +9,9 @@
 
     if($newlab == 'p'){
         $_SESSION['labname'] = 'Phy';
-    }if($newlab == 'c'){
+    } if($newlab == 'c'){
         $_SESSION['labname'] = 'Chem';
-    }if($newlab == 'b'){
+    } if($newlab == 'b'){
         $_SESSION['labname'] = 'Bio';
     }
 ?>

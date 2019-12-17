@@ -1,9 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-	session_start();
-}
-global $conn;
+<?php 
+require_once '../db.php';
+require_once '../checkSession.php';
 
 $sql = 'select * from item where id=' . $_POST['itemid'];
 $uniqueitem = $conn->query($sql)->num_rows;

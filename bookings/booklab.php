@@ -1,11 +1,8 @@
-<?php require_once '../db.php'; ?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (session_status() == PHP_SESSION_NONE) {
-		session_start();
-	}
-	global $conn;
+require_once '../db.php';
+require_once '../checkSession.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$date = $_REQUEST['date'];
 	$time = $_REQUEST['time'];
 	$lab = $_REQUEST['lab'];
