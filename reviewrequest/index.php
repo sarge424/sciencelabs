@@ -78,6 +78,31 @@
             }
             x++;
         }
+        let request;
+
+        try {
+            request = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return false;
+                }
+            }
+        }
+
+        request.onreadystatechange = function() {
+            if(request.readyState == 4){
+                let tbody = document.getElementById('tbody');
+                tbody.innerHTML = request.responseText;
+            }
+        }
+
+        request.open("GET", "sendmail.php", true);
+        request.send(null);
     }
 </script>
 
@@ -103,7 +128,7 @@
                         <th>Arrived?
                         <th>Comments
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         <?php
                         include_once '../db.php';
 
@@ -119,11 +144,11 @@
                             while ($row = $result->fetch_assoc()) {
                                 $sql = "select * from teacher where id=" . $row['teacher_id'] . ";";
                                 $teacher = $conn->query($sql);
-								$teacher = $teacher->fetch_assoc();
+                                $teacher = $teacher->fetch_assoc();
                                 echo '<tr><td class="teacher" id="' . $teacher['id'] . '">' . $teacher['teacher_name'] .
                                     '<td class="item">' . $row['item_name'] .
                                     '<td class="quano">' . $row['quantity_ordered'] .
-                                    '<td><input class="quanr form-control input-sm" type="number" min=0 />' .
+                                    '<td><input class="quanr form-control input-sm" type="number" min=0 required />' .
                                     '<td class="specs">' . $row['specs'] .
                                     '<td><label class="container">
                                                 <input id="chk' . $var . '" name="chk' . $var . '" type="checkbox" class="chk">
