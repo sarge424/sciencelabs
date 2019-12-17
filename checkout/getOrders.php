@@ -1,9 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 require_once '../db.php';
+require_once '../checkSession.php';
 
 $sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned=0;';
 $result = $conn->query($sql);

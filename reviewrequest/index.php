@@ -38,6 +38,7 @@
     }
 
     function submit() {
+        let teacher = document.getElementsByClassName("teacher");
         let item = document.getElementsByClassName("item");
         let quantity_ordered = document.getElementsByClassName("quano");
         let quantity_received = document.getElementsByClassName("quanr");
@@ -71,7 +72,7 @@
                     }
                 }
 
-                let queryString = "?teacher=" + teacher[x].innerHTML + "&item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
+                let queryString = "?teacher=" + teacher[x].id + "&item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
                 request.open("GET", "review.php" + queryString, true);
                 request.send(null);
             }
@@ -116,9 +117,10 @@
                         $var = 0;
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                $sql = "select teacher_name from teacher where id=" . $row['teacher_id'] . ";";
+                                $sql = "select * from teacher where id=" . $row['teacher_id'] . ";";
                                 $teacher = $conn->query($sql);
-                                echo '<tr><td class="teacher">' . $teacher->fetch_assoc()['teacher_name'] .
+								$teacher = $teacher->fetch_assoc();
+                                echo '<tr><td class="teacher" id="' . $teacher['id'] . '">' . $teacher['teacher_name'] .
                                     '<td class="item">' . $row['item_name'] .
                                     '<td class="quano">' . $row['quantity_ordered'] .
                                     '<td><input class="quanr form-control input-sm" type="number" min=0 />' .

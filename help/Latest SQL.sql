@@ -97,7 +97,7 @@ create table lab_booking(
 );
 
 insert into teacher(id, teacher_name, teacher_pass, levels) values (1, 'abhinav', '9992', 0);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'b', '9363', 2);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '9151', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (4, 'd', '1161', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (5, 'e', '9987', 2);

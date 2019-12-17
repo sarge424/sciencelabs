@@ -1,8 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 require_once '../db.php';
+require_once '../checkSession.php';
 
 $student = $_GET['student'];
 $item = $_GET['item'];

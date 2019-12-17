@@ -1,4 +1,3 @@
-<?php require_once '../db.php'; ?>
 <html>
 
 <head>
@@ -21,10 +20,8 @@
 	</script>
 
 	<?php
-	if (session_status() == PHP_SESSION_NONE) {
-		session_start();
-	}
-	global $conn;
+	require_once '../db.php';
+	require_once '../checkSession.php';
 
 	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
 		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';

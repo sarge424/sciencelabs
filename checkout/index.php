@@ -22,10 +22,7 @@
 </head>
 
 <body>
-	<?php
-	include '../navbar.php';
-	require '../db.php';
-	?>
+	<?php include '../navbar.php'; ?>
 	<script>
 		setActive('Checkout');
 	</script>

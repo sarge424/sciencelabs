@@ -1,9 +1,6 @@
 <?php
-require_once "../db.php";
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+require_once '../db.php';
+require_once '../checkSession.php';
 
 $sql = "select * from purchase_request where arrived=1 and lab='" . $_SESSION["lab"] . "';";
 $result = $conn->query($sql);

@@ -16,11 +16,7 @@
 
 	<br><br>
 	<?php
-	if (!isset($_SESSION)) {
-		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
-		}
-	}
+	require_once '../checkSession.php';
 	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
 		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}

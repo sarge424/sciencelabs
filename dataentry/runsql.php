@@ -1,6 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
-global $conn;
+<?php 
+require_once '../db.php';
+require_once '../checkSession.php';
 
 $sql = $_POST['sqlcode'];
 

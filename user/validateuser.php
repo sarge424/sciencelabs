@@ -1,4 +1,3 @@
-<?php require_once '../db.php'; ?>
 <html>
 <script>
 	function invite(user, level) {
@@ -11,11 +10,8 @@
 	}
 </script>
 <?php
-global $conn;
-
-if (session_status() == PHP_SESSION_NONE) {
-	session_start();
-}
+require_once '../db.php';
+session_start();
 
 $user = $_POST["user"];
 $pass = $_POST["pass"];

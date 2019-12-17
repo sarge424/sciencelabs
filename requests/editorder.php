@@ -1,4 +1,3 @@
-<?php require_once '../db.php'; ?>
 <html>
 
 <head>
@@ -10,12 +9,11 @@
 
 <body>
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+    require_once '../db.php';
+    require_once '../checkSession.php';
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $_SESSION['user'];
-        global $conn;
 
         $item = $_REQUEST['item'];
         $specs = $_REQUEST['specs'];

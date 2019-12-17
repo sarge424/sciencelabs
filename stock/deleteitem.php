@@ -1,9 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-	session_start();
-}
-global $conn;
+<?php 
+require_once '../db.php';
+require_once '../checkSession.php';
 
 if ($_SESSION['level'] < 2 && isset($_SESSION['level'])) {
 	$item_id = $_GET['item_id'];
