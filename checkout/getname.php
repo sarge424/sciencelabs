@@ -27,7 +27,7 @@ if (!empty($result) && !empty($rollno)) {
 echo '###';
 
 $itemname = $_GET['itemnm'];
-$sql = 'SELECT id,quantity,item_name,specs FROM item';
+$sql = 'SELECT id,quantity,item_name,specs FROM item where lab="'.$_SESSION['lab'].'";';
 
 $result = $conn->query($sql);
 
