@@ -10,12 +10,6 @@ $specs = $_GET['specs'];
 $comment = $_GET['comments'];
 $bill = $_GET['bill'];
 
-$fname = "people.txt";
-
-$file = fopen($fname, 'a');
-fwrite($file, $teacher . " " . $item . "\r\n");
-fclose($file);
-
 $sql = "update purchase_request set arrived=1, date_arrived=now(), comments='" . $comment . "', bill_code='" . $bill . "', quantity_received=" . $quantity_received . " where item_name='" . $item . "' and quantity_ordered=" . $quantity_ordered . " and specs='" . $specs . "' and lab='" . $_SESSION['lab'] . "';";
 $conn->query($sql);
 

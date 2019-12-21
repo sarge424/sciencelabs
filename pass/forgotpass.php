@@ -1,5 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
+<?php 
+require_once '../db.php'; 
+require_once '../maildetails.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     global $conn;
@@ -11,23 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $conn->query($sql)->fetch_assoc()['id'];
 
     if ($email == $conn->query($sql)->fetch_assoc()['email']) {
-        //Adding PHPMailer
-        require '..\PHPMailer\third_party\phpmailer\PHPMailerAutoload.php';
-
-        $mail = new PHPMailer(true);
-		
-        $mail->IsSMTP(); // telling the class to use SMTP
-        $mail->SMTPAuth = true; // enable SMTP authentication
-        $mail->SMTPSecure = "ssl"; // sets the prefix to the server
-        $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-        $mail->Port = 465; // set the SMTP port for the GMAIL server
-        $mail->Username = "abhinav@ishahomeschool.org"; // GMAIL username
-        $mail->Password = "9738421573"; // GMAIL password
-
-        //Senders information
-        $email_from = "abhinav@ishahomeschool";
-        $name_from = "Abhinav Srivatsa";
-
         //Typical mail data
         $mail->AddAddress($email, $name);
         $mail->SetFrom($email_from, $name_from);
