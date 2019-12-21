@@ -132,12 +132,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								</div>
 								<div class="form-check">
 									<label class="form-check-label" for="radio2">
-										<input type="radio" class="form-check-input" name="lab" value="c" disabled>Chemistry Lab
+										<input type="radio" class="form-check-input" name="lab" value="c">Chemistry Lab
 									</label>
 								</div>
 								<div class="form-check">
 									<label class="form-check-label">
-										<input type="radio" class="form-check-input" name="lab" value="b" disabled>Biology Lab
+										<input type="radio" class="form-check-input" name="lab" value="b">Biology Lab
 									</label>
 								</div>
 							</div>

@@ -33,6 +33,10 @@ if ($lab == 'b') {
 }
 ?>
 
+<head>
+	<link rel="icon" href="settings.svg" type="image/gif" sizes="16x16">
+</head>
+
 <script src="../js/popper.min.js"></script>
 <link rel="stylesheet" href="../css/font-awesome.min.css">
 
