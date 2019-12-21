@@ -7,7 +7,7 @@ $item_stock = 0;
 $item_loc = $_POST['itemloc'];
 $item_specs = $_POST['itemspecs'];
 
-$sql = 'INSERT INTO item (item_name, quantity, lab_location, specs) VALUES (\'' . $item_name . '\', ' . $item_stock . ', ' . $item_loc . ', \'' . $item_specs . '\' );';
+$sql = 'INSERT INTO item (item_name, quantity, lab_location, specs, lab) VALUES ("' . $item_name . '", ' . $item_stock . ', ' . $item_loc . ', "' . $item_specs . '", "' . $_SESSION['lab'] . '");';
 $conn->query($sql);
 echo '<script>alert("The item ' . $item_name . ' was succcessfully added.");</script>';
 
