@@ -41,7 +41,46 @@ include '../navbar.php';
     }
 
     function submit() {
-        
+        let item = document.getElementsByClassName("item");
+        let specs = document.getElementsByClassName("specs");
+        let quantity = document.getElementsByClassName("quantity");
+
+        let x = 0;
+        while (x < item.length) {
+            if (quantity[x].value != "") {
+                enterRecon(item[x].innerHTML, specs[x].innerHTML, quantity[x].value);
+            }
+            x++;
+        }
+    }
+
+    function enterRecon(item, specs, quantity) {
+        let request;
+
+        try {
+            request = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return false;
+                }
+            }
+        }
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                console.log(request.responseText);
+                //document.location.href = "../recon/";
+            }
+        }
+
+        let queryString = "?item=" + item + "&specs=" + specs + "&quantity=" + quantity;
+        request.open("GET", "enterrecon.php" + queryString, true);
+        request.send(null);
     }
 </script>
 

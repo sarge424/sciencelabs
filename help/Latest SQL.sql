@@ -34,6 +34,7 @@ create table item(
 	specs varchar(100) default '',
 	quantity int default 0,
 	lab varchar(1) not null default "p",
+	recon date,
 	primary key(id)
 );
 
