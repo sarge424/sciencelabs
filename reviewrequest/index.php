@@ -78,31 +78,6 @@
             }
             x++;
         }
-        let request;
-
-        try {
-            request = new XMLHttpRequest();
-        } catch (e) {
-            try {
-                request = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {
-                    return false;
-                }
-            }
-        }
-
-        request.onreadystatechange = function() {
-            if(request.readyState == 4){
-                let tbody = document.getElementById('tbody');
-                tbody.innerHTML = request.responseText;
-            }
-        }
-
-        request.open("GET", "sendmail.php", true);
-        request.send(null);
     }
 </script>
 

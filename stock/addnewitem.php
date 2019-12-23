@@ -16,7 +16,7 @@
 
 	<br><br>
 	<?php
-	require_once '../checkSession.php';
+	require_once '../checksession.php';
 	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
 		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}

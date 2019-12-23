@@ -1,6 +1,6 @@
 <?php 
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $specs = $_GET['specs'];
 $item = $_GET['item'];

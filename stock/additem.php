@@ -1,6 +1,6 @@
 <?php 
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $item_name = ucwords(strtolower($_POST['itemname']));
 $item_stock = 0;

@@ -25,9 +25,9 @@ if ($lev == 0) {
 
 $lab = $_SESSION['lab'];
 if ($lab == 'b') {
-	$lab = 'success';
-} else if ($lab == 'c') {
 	$lab = 'primary';
+} else if ($lab == 'c') {
+	$lab = 'success';
 } else {
 	$lab = 'danger';
 }
@@ -91,6 +91,11 @@ if ($lab == 'b') {
 					if ($_SESSION['level'] != 2) {
 						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>
 						<div class="dropdown-divider"></div>';
+					}
+					?>
+					<?php
+					if ($_SESSION['level'] != 2) {
+						echo '<a class="dropdown-item" href="../recon/">Reconciliation</a>';
 					}
 					?>
 					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>

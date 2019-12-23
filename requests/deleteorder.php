@@ -1,6 +1,6 @@
 <?php 
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $user = $_SESSION['user'];
 
@@ -17,4 +17,3 @@ $conn->close();
 
 header('Location: ../requests/');
 exit;
-?>
