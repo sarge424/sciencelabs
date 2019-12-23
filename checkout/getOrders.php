@@ -1,6 +1,6 @@
 <?php
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned=0;';
 $result = $conn->query($sql);

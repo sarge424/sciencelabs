@@ -1,6 +1,6 @@
 <?php 
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $sql = 'select * from item where id=' . $_POST['itemid'];
 $uniqueitem = $conn->query($sql)->num_rows;

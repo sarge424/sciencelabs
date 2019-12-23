@@ -10,7 +10,7 @@
 <body>
     <?php
     require_once '../db.php';
-    require_once '../checkSession.php';
+    require_once '../checksession.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $_SESSION['user'];

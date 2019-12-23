@@ -1,6 +1,6 @@
 <?php 
 require_once '../db.php';
-require_once '../checkSession.php';
+require_once '../checksession.php';
 
 $rollno = $_GET['rollno'];
 $sql = 'SELECT student_name,id FROM student WHERE 1;';
