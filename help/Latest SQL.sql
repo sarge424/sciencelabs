@@ -70,19 +70,29 @@ create table purchase_request(
 );
 
 create table lab_transaction(
-	id int not null auto_increment unique,
-	teacher_id int not null,
+	id int not null unique auto_increment,
+	from_lab varchar(1) not null,
 	item_name varchar(50) not null,
 	quantity int not null,
 	specs varchar(100),
-	sender varchar(20) not null,
-	receiver varchar(20) not null,
-	date_ordered datetime not null default now(),
-	arrived bit not null,
+	lab varchar(20) not null,
 	date_arrived datetime not null default now(),
 	comments varchar(100),
-	primary key(id),
-	foreign key (teacher_id) references teacher(id)
+	bill_code varchar(10) default "<No Bill>",
+	primary key(id)
+);
+
+create table dept_transaction(
+	id int not null unique auto_increment,
+	from_lab varchar(1) not null,
+	item_name varchar(50) not null,
+	quantity int not null,
+	specs varchar(100),
+	to_lab varchar(20) not null,
+	date_arrived datetime not null default now(),
+	comments varchar(100),
+	bill_code varchar(10) default "<No Bill>",
+	primary key(id)
 );
 
 create table lab_booking(
