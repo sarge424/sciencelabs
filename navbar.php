@@ -25,11 +25,11 @@ if ($lev == 0) {
 
 $lab = $_SESSION['lab'];
 if ($lab == 'b') {
-	$lab = 'primary';
-} else if ($lab == 'c') {
 	$lab = 'success';
-} else {
+} else if ($lab == 'c') {
 	$lab = 'danger';
+} else {
+	$lab = 'primary';
 }
 ?>
 
