@@ -39,6 +39,12 @@ if ($lab == 'b') {
 
 <script src="../js/popper.min.js"></script>
 <link rel="stylesheet" href="../css/font-awesome.min.css">
+<style>
+	.show>.dropdown-menu {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+</style>
 
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-<?php echo $lab; ?>">
 
@@ -68,10 +74,15 @@ if ($lab == 'b') {
 	</div>
 
 	<div class="mx-auto order-0">
-		<a class="navbar-brand mx-auto" href="/sciencelabs/home"><?php echo $_SESSION['labname']; ?>Lab</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+
+		<button class="btn btn-outline-light dropdown-toggle" style="background-color:transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="navbar-brand mx-auto" href="/sciencelabs/home"><?php echo $_SESSION['labname']; ?>Lab</a>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" <?php echo ($_SESSION['lab']=='p')?'hidden':''; ?>>Physics</a>
+          <a class="dropdown-item" href="#" <?php echo ($_SESSION['lab']=='c')?'hidden':''; ?>>Chemistry</a>
+          <a class="dropdown-item" href="#" <?php echo ($_SESSION['lab']=='b')?'hidden':''; ?>>Biology</a>
+        </div>
 	</div>
 
 	<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
