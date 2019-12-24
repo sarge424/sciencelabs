@@ -22,9 +22,11 @@
 		month = Number(url.searchParams.get("month"));
 		let date = Number(url.searchParams.get("date"));
 
-		month = (month < 10) ? "0" + month : month;
+		month++;
+		m = (month < 10) ? "0" + month : month;
 		date = (date < 10) ? "0" + date : date;
-		currDate = year + " " + month + " " + date;
+		currDate = year + " " + m + " " + date;
+		month--;
 
 		function ajaxFunction(addDays) {
 			date = Number(date);
@@ -52,8 +54,12 @@
 			else
 				months[1] = 28;
 
+			month++;
 			date = (date < 10) ? "0" + date : date;
-			currDate = year + " " + (month + 1) + " " + date;
+			m = (month < 10) ? "0" + month : month;
+			currDate = year + " " + m + " " + date;
+			console.log(currDate);
+			month--;
 
 			let copmonth = monthnames[Number(month)];
 			let copcurrDate = year + " " + copmonth + " " + date;
