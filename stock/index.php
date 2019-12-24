@@ -87,7 +87,7 @@ require_once '../checksession.php';
 
 	<div class="container">
 		<h1 class="text-center">View Stock</h1>
-		<table class="table table-bordered table-hover">
+		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
 					<th onclick="sort('id')">DBID</th>
