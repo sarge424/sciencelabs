@@ -73,8 +73,7 @@ include '../navbar.php';
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
-                console.log(request.responseText);
-                //document.location.href = "../recon/";
+                document.location.href = "../recon/";
             }
         }
 
