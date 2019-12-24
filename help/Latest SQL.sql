@@ -30,7 +30,7 @@ create table student(
 create table item(
 	id int not null auto_increment unique,
 	item_name varchar(50) not null,
-	lab_location int not null,
+	lab_location varchar(10),
 	specs varchar(100) default '',
 	quantity int default 0,
 	lab varchar(1) not null default "p",
