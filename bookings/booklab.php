@@ -5,7 +5,7 @@ require_once '../checksession.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$date = $_REQUEST['date'];
 	$time = $_REQUEST['time'];
-	$lab = $_REQUEST['lab'];
+	$lab = $_SESSION['lab'];
 	$class = strtoupper($_REQUEST['class']);
 
 	$month = (int) date("m");
@@ -117,27 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<div class="form-check">
 									<label class="form-check-label">
 										<input type="radio" class="form-check-input" name="time" value="03:05 - 04:25">03:05 - 04:25
-									</label>
-								</div>
-							</div>
-					<tr>
-						<td>
-							<label class="form-control input-sm text-primary" align="center" style="width:125px"><b>Select Lab</b></label>
-						<td>
-							<div align="right">
-								<div class="form-check">
-									<label class="form-check-label">
-										<input type="radio" class="form-check-input" name="lab" value="p" <?php echo ($_SESSION['lab'] == 'p')? 'checked':'disabled';?>>Physics Lab
-									</label>
-								</div>
-								<div class="form-check">
-									<label class="form-check-label" for="radio2">
-										<input type="radio" class="form-check-input" name="lab" value="c" <?php echo ($_SESSION['lab'] == 'c')? 'checked':'disabled';?>>Chemistry Lab
-									</label>
-								</div>
-								<div class="form-check">
-									<label class="form-check-label">
-										<input type="radio" class="form-check-input" name="lab" value="b" <?php echo ($_SESSION['lab'] == 'b')? 'checked':'disabled';?>>Biology Lab
 									</label>
 								</div>
 							</div>

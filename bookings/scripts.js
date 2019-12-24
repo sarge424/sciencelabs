@@ -65,8 +65,8 @@ function showCalendar(month, year) {
                 let cell = document.createElement("td");
                 cell.id = date;
                 cell.onclick = function () {
-                    let queryString = "year=" + currentYear + "&month=" + currentMonth + "&date=" + cell.id;
-                    document.location.href = "viewdaybookings.html?" + queryString;
+                    let queryString = "?year=" + currentYear + "&month=" + currentMonth + "&date=" + cell.id;
+                    document.location.href = "viewdaybookings.html" + queryString;
                 };
                 addColor(cell, date);
                 let cellText = document.createTextNode(date);
@@ -94,6 +94,7 @@ function addColor(cell, date) {
             total_date = currentYear + " " + (currentMonth + 1) + " 0" + date;
         else
             total_date = currentYear + " " + (currentMonth + 1) + " " + date;
+    
 
     let request;
 
