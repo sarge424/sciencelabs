@@ -29,6 +29,9 @@
 
 	<div class="container-fluid">
 		<br>
+		<div class="text-center">
+		<button class="btn btn-primary" onclick="document.location.href='reviewcheckout.php';">Pending Checkouts</button>
+		</div>
 		<br>
 		<div class="row">
 			<div class="col-sm-3"></div>
