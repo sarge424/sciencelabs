@@ -68,7 +68,15 @@ if ($lab == 'b') {
 	</div>
 
 	<div class="mx-auto order-0">
-		<a class="navbar-brand mx-auto" href="/sciencelabs/home"><?php echo $_SESSION['labname']; ?>Lab</a>
+		<div class="dropdown">
+			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);" type="button" data-toggle="dropdown"><?php echo $_SESSION['labname']; ?>Lab
+			<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">Physics Lab</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">Chemistry Lab</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">Biology Lab</a></li>
+			</ul>
+		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
 			<span class="navbar-toggler-icon"></span>
 		</button>
