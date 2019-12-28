@@ -82,6 +82,9 @@ include '../navbar.php';
 <body>
     <div class="container-fluid">
         <br>
+        <div class="text-center">
+		<button class="btn btn-primary" onclick="document.location.href='index.php';">Checkout Something Else</button>
+		</div>
         <br>
         <div class="row">
             <div class="col-sm-3"></div>
