@@ -3,6 +3,9 @@
 <?php
 include '../navbar.php';
 ?>
+<script>
+    setActive('Reconciliation');
+</script>
 
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">

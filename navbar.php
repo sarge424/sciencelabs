@@ -50,8 +50,11 @@ if ($lab == 'b') {
 				<a class="nav-link" href="/sciencelabs/stock">Stock</a>
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/requests">Requests</a>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/checkout">Checkout</a>
+				<?php
+				if ($_SESSION['level'] != 2)
+					echo '<li class="nav-item">
+					<a class="nav-link" href="/sciencelabs/checkout/">Checkout</a>';
+				?>
 				<?php
 				if ($_SESSION['level'] != 2)
 					echo '<li class="nav-item">
@@ -60,9 +63,15 @@ if ($lab == 'b') {
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/bookings/">Bookings</a>
 				<?php
+				if ($_SESSION['level'] != 2) {
+					echo '<li class="nav-item">
+					<a class="nav-link" href="../recon/">Reconciliation</a>';
+				}
+				?>
+				<?php
 				if ($_SESSION['level'] == 0)
 					echo '<li class="nav-item">
-						<a class="nav-link" href="../dataentry/">Data Entry</a>';
+					<a class="nav-link" href="../dataentry/">Data Entry</a>';
 				?>
 		</ul>
 	</div>
@@ -70,7 +79,7 @@ if ($lab == 'b') {
 	<div class="mx-auto order-0">
 		<div class="dropdown">
 			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);" type="button" data-toggle="dropdown"><?php echo $_SESSION['labname']; ?>Lab
-			<span class="caret"></span></button>
+				<span class="caret"></span></button>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">Physics Lab</a></li>
 				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">Chemistry Lab</a></li>
@@ -99,11 +108,6 @@ if ($lab == 'b') {
 					if ($_SESSION['level'] != 2) {
 						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>
 						<div class="dropdown-divider"></div>';
-					}
-					?>
-					<?php
-					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../recon/">Reconciliation</a>';
 					}
 					?>
 					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
