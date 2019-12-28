@@ -128,8 +128,8 @@ if ($lab == 'b') {
 		Array.prototype.forEach.call(buttons, function foreach(item, index) {
 			if (item.innerHTML === pagename) {
 				item.classList.add('active');
-				item.classList.add('bg-light');
-				item.classList.add('text-<?php echo $lab; ?>');
+				//item.classList.add('bg-light');
+				//item.classList.add('text-<?php echo $lab; ?>');
 			}
 		});
 	}
