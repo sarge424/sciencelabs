@@ -7,9 +7,10 @@
     <script src="../js/bootstrap.min.js"></script>
 </head>
 
-<?php
-include '../navbar.php';
-?>
+<?php include '../navbar.php'; ?>
+<script>
+    setActive('Checkout');
+</script>
 
 <script>
     function getData() {
@@ -83,8 +84,8 @@ include '../navbar.php';
     <div class="container-fluid">
         <br>
         <div class="text-center">
-		<button class="btn btn-primary" onclick="document.location.href='index.php';">Checkout Something Else</button>
-		</div>
+            <button class="btn btn-primary" onclick="document.location.href='../checkout/';">Checkout Something Else</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-3"></div>

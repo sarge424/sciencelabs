@@ -8,8 +8,12 @@ $itemspecs = $_POST['item'];
 
 $item = explode(" (", $itemspecs);
 $item = $item[0];
-$specs = explode(") ", $itemspecs);
-$specs = $specs[1];
+$specs = explode(")", $itemspecs);
+if ($specs[1] != "") {
+    $specs = trim($specs[1]);
+} else {
+    $specs = "";
+}
 
 $sql = "select id from item where item_name='" . $item . "' and specs='" . $specs . "' and lab='" . $_SESSION['lab'] . "';";
 $result = $conn->query($sql);
