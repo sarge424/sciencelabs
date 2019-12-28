@@ -24,12 +24,16 @@ if ($lev == 0) {
 }
 
 $lab = $_SESSION['lab'];
+$img = '';
 if ($lab == 'b') {
 	$lab = 'success';
+	$img = '<img src="../img/cells.svg" width="30" height="30">';
 } else if ($lab == 'c') {
 	$lab = 'danger';
+	$img = '<img src="../img/flask.svg" width="30" height="30">';
 } else {
 	$lab = 'primary';
+	$img = '<img src="../img/atom.svg" width="30" height="30">';
 }
 ?>
 
@@ -78,12 +82,18 @@ if ($lab == 'b') {
 
 	<div class="mx-auto order-0">
 		<div class="dropdown">
-			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);" type="button" data-toggle="dropdown"><?php echo $_SESSION['labname']; ?>Lab
+			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img.' '.$_SESSION['labname']; ?>Lab
 				<span class="caret"></span></button>
 			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">Physics Lab</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">Chemistry Lab</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">Biology Lab</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
+					<img src="../img/atom.svg" width="30" height="30"> Physics Lab
+				</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">
+					<img src="../img/flask.svg" width="30" height="30"> Chemistry Lab
+				</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">
+					<img src="../img/cells.svg" width="30" height="30"> Biology Lab
+				</a></li>
 			</ul>
 		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
@@ -101,13 +111,7 @@ if ($lab == 'b') {
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 					<?php
 					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a>';
-					}
-					?>
-					<?php
-					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>
-						<div class="dropdown-divider"></div>';
+						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a><div class="dropdown-divider"></div>';
 					}
 					?>
 					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
@@ -124,8 +128,8 @@ if ($lab == 'b') {
 		Array.prototype.forEach.call(buttons, function foreach(item, index) {
 			if (item.innerHTML === pagename) {
 				item.classList.add('active');
-				item.classList.add('bg-light');
-				item.classList.add('text-<?php echo $lab; ?>');
+				//item.classList.add('bg-light');
+				//item.classList.add('text-<?php echo $lab; ?>');
 			}
 		});
 	}
