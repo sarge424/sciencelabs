@@ -2,9 +2,9 @@
 require_once '../db.php';
 require_once '../checksession.php';
 
-$tolab = $_POST['tolab'];
-$quan = $_POST['quantity'];
-$itemspecs = $_POST['item'];
+$tolab = $_GET['tolab'];
+$quan = $_GET['quantity'];
+$itemspecs = $_GET['item'];
 
 $item = explode(" (", $itemspecs);
 $item = $item[0];
@@ -24,3 +24,4 @@ while ($row = $result->fetch_assoc()) {
 
 $sql = "insert into dept_transaction (from_lab, item_id, quantity, to_lab) values ('" . $_SESSION['lab'] . "', " . $item . ", " . $quan . ", '" . $tolab . "');";
 $conn->query($sql);
+$conn->close();
