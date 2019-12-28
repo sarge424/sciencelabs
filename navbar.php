@@ -111,13 +111,7 @@ if ($lab == 'b') {
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 					<?php
 					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a>';
-					}
-					?>
-					<?php
-					if ($_SESSION['level'] != 2) {
-						echo '<a class="dropdown-item" href="../checkout/reviewcheckout.php">Review Student Checkouts</a>
-						<div class="dropdown-divider"></div>';
+						echo '<a class="dropdown-item" href="../reviewrequest/">Review Pending Orders</a><div class="dropdown-divider"></div>';
 					}
 					?>
 					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
