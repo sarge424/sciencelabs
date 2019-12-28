@@ -75,7 +75,7 @@ create table lab_transaction(
 	item_name varchar(50) not null,
 	quantity int not null,
 	specs varchar(100),
-	lab varchar(20) not null,
+	lab varchar(1) not null,
 	date_arrived datetime not null default now(),
 	comments varchar(100),
 	bill_code varchar(10) default "<No Bill>",
@@ -83,16 +83,15 @@ create table lab_transaction(
 );
 
 create table dept_transaction(
-	id int not null unique auto_increment,
+	id int not null auto_increment,
 	from_lab varchar(1) not null,
-	item_name varchar(50) not null,
+	item_id int not null,
 	quantity int not null,
-	specs varchar(100),
-	to_lab varchar(20) not null,
-	date_arrived datetime not null default now(),
+	to_lab varchar(1) not null,
+	transfer_date datetime not null default now(),
 	comments varchar(100),
-	bill_code varchar(10) default "<No Bill>",
-	primary key(id)
+	primary key(id),
+	foreign key (item_id) references item(id)
 );
 
 create table lab_booking(
