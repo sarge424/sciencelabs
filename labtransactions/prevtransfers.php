@@ -1,5 +1,7 @@
 <html>
 
+<?php include '../navbar.php'; ?>
+
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/jquery-3.4.1.min.js"></script>
@@ -41,6 +43,9 @@
 <body>
     <div class="container-fluid">
         <br>
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="document.location.href='../labtransactions/';">Transfer More</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-3"></div>
