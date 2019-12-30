@@ -46,6 +46,9 @@
 
         ajaxRequest.onreadystatechange = function() {
             if (ajaxRequest.readyState == 4) {
+                if (ajaxRequest.responseText != "") {
+                    alert(ajaxRequest.responseText);
+                }
                 document.location.href = "../labtransactions/";
             }
         }
@@ -70,6 +73,9 @@
 
     <div class="container-fluid">
         <br>
+        <div class="text-center">
+            <button class="btn btn-primary" onclick="document.location.href='prevtransfers.php';">Older Transfers</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-3"></div>
