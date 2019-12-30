@@ -15,12 +15,16 @@ while ($row = $result->fetch_assoc()) {
 
 $lev = $_SESSION['level'];
 $level = "";
+$icon = "";
 if ($lev == 0) {
 	$level = 'Admin ';
+	$icon = '<i class="fa fa-hand-spock-o" aria-hidden="true"></i>';
 } else if ($lev == 1) {
 	$level = 'Lab Master ';
+	$icon = '<i class="fa fa-graduation-cap" aria-hidden="true"></i>';
 } else {
 	$level = 'Teacher ';
+	$icon = '<i class="fa fa-user" aria-hidden="true"></i>';
 }
 
 $lab = $_SESSION['lab'];
@@ -87,7 +91,7 @@ if ($lab == 'b') {
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/transactions/">
-				<i class="fa fa-comments"></i>Transactions</a>
+				<i class="fa fa-shopping-basket"></i>Transactions</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/bookings/">
@@ -110,8 +114,17 @@ if ($lab == 'b') {
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="/sciencelabs/reviewrequest">
-			<i class="fa fa-list-ol"></i>Pending Orders</a>
+			<i class="fa fa-list-alt"></i>Pending Orders</a>
 		</li>
+		<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<?php echo $icon.$level.$uname?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#"><i class="fa fa-key" aria-hidden="true"></i> Change Password</a>
+          <a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+        </div>
+      </li>
 		</ul>
   	</div>
 </nav>
