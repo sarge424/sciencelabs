@@ -13,7 +13,7 @@ if (!empty($result) && !empty($rollno)) {
 	$html = '';
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith((string) $row['id'], (string) $rollno)) {
-			$html = $html . '<b>' . $row['id'] . '</b>  ' . $row['student_name'] . '<br>';
+			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setroll('.$row['id'].')"><b>' . $row['id'] . '</b>  ' . $row['student_name'] . '</div>';
 		}
 	}
 	if (strcmp($html, '') == 0)
@@ -37,7 +37,7 @@ if (!empty($result) && !empty($itemname)) {
 	$lastid = 0;
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith(strtolower($row['item_name']), strtolower($itemname))) {
-			$html = $html . '<b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '<br>';
+			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setitemvalues('.$row['id'].',\''.$row['item_name'].'\');"><b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '</div>';
 			$rows += 1;
 			$lastid = $row['id'];
 		}else{
