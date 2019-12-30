@@ -69,6 +69,9 @@
 
 <body>
     <?php include '../navbar.php'; ?>
+    <script>
+		setActive('Lab Transfers');
+	</script>
     <?php include '../checksession.php'; ?>
 
     <div class="container-fluid">

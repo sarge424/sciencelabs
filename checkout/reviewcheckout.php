@@ -9,7 +9,7 @@
 
 <?php include '../navbar.php'; ?>
 <script>
-    setActive('Checkout');
+    setActive('Checkouts');
 </script>
 
 <script>

@@ -46,203 +46,89 @@ if ($lab == 'b') {
 <link rel="stylesheet" href="../nav.css">
 
 <nav class="navbar sticky-top navbar-icon-top navbar-expand-lg navbar-dark bg-<?php echo $lab;?>">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	<ul class="navbar-nav mr-auto">
-	<li class="nav-item active">
-		<a class="nav-link" href="#">
-		<i class="fa fa-home"></i>
-		Home
-		<span class="sr-only">(current)</span>
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Stock
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Requests
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Checkouts
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Transactions
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Bookings
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Recon
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-envelope-o"></i>
-		Data Entry
-		</a>
-	</li>
-	<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<i class="fa fa-envelope-o"></i>
-		Dropdown
-		</a>
-		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		<a class="dropdown-item" href="#">Action</a>
-		<a class="dropdown-item" href="#">Another action</a>
-		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="#">Something else here</a>
-		</div>
-	</li>
-	</ul>
+ 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	 	<li class="nav-item navbar-brand dropdown">
+		 <div class="dropdown">
+				<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
+					<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
+							<img src="../img/atom.svg" width="30" height="30"> Physics Lab
+						</a></li>
+					<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">
+							<img src="../img/flask.svg" width="30" height="30"> Chemistry Lab
+						</a></li>
+					<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">
+							<img src="../img/cells.svg" width="30" height="30"> Biology Lab
+						</a></li>
+				</ul>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</li>
 
-	<div class="mx-auto order-0">
-		<div class="dropdown">
-			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
-				<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
-						<img src="../img/atom.svg" width="30" height="30"> Physics Lab
-					</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">
-						<img src="../img/flask.svg" width="30" height="30"> Chemistry Lab
-					</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">
-						<img src="../img/cells.svg" width="30" height="30"> Biology Lab
-					</a></li>
-			</ul>
-		</div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-	</div>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/sciencelabs/home">
+				<i class="fa fa-home"></i>Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/stock">
+				<i class="fa fa-bar-chart"></i>Stock</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/requests/">
+				<i class="fa fa-comments"></i>Requests</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/checkout/">
+				<i class="fa fa-shopping-cart"></i>Checkouts</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/transactions/">
+				<i class="fa fa-comments"></i>Transactions</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/bookings/">
+				<i class="fa fa-calendar-check-o"></i>Bookings</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/recon">
+				<i class="fa fa-minus-square"></i>Reconciliation</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/dataentry">
+				<i class="fa fa-database"></i>Data Entry</a>
+			</li>
+		</ul>
 
-	<ul class="navbar-nav ">
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-bell"></i>
-		Lab Transfers
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">
-		<i class="fa fa-globe"></i>
-		Pending Orders
-		</a>
-	</li>
-	</ul>
-  </div>
+		<ul class="navbar-nav ">
+		<li class="nav-item">
+			<a class="nav-link" href="/sciencelabs/labtransactions">
+			<i class="fa fa-exchange"></i>Lab Transfers</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/sciencelabs/reviewrequest">
+			<i class="fa fa-list-ol"></i>Pending Orders</a>
+		</li>
+		</ul>
+  	</div>
 </nav>
 
 <script>
 	function setActive(pagename) {
-		var buttons = document.getElementsByClassName('nav-link');
-		Array.prototype.forEach.call(buttons, function foreach(item, index) {
-			if (item.innerHTML === pagename) {
-				item.classList.add('active');
-				//item.classList.add('bg-light');
-				//item.classList.add('text-<?php echo $lab; ?>');
-			}
-		});
+		var buttons = document.getElementsByClassName('nav-item');
+		for(let x = 0; x<buttons.length; x++){
+			if(buttons[x].classList.contains('active'))
+				buttons[x].classList.toggle('active');
+		}
+
+		buttons = document.getElementsByClassName('nav-link');
+		for(let x = 0; x<buttons.length; x++){
+			let name = buttons[x].innerHTML.substring(buttons[x].innerHTML.indexOf('</i>') + 4);
+			if(name===pagename)
+				buttons[x].parentElement.classList.toggle('active');
+		}
 	}
 </script>
-
-
-
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-<?php echo $lab; ?>">
-
-	<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/home">Home</a>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/stock">Stock</a>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/requests">Requests</a>
-				<?php
-				if ($_SESSION['level'] != 2)
-					echo '<li class="nav-item">
-					<a class="nav-link" href="/sciencelabs/checkout/">Checkout</a>';
-				?>
-				<?php
-				if ($_SESSION['level'] != 2)
-					echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/transactions/">Transactions</a>';
-				?>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/bookings/">Bookings</a>
-				<?php
-				if ($_SESSION['level'] != 2) {
-					echo '<li class="nav-item">
-					<a class="nav-link" href="../recon/">Reconciliation</a>';
-				}
-				?>
-				<?php
-				if ($_SESSION['level'] == 0)
-					echo '<li class="nav-item">
-					<a class="nav-link" href="../dataentry/">Data Entry</a>';
-				?>
-		</ul>
-	</div>
-
-	<div class="mx-auto order-0">
-		<div class="dropdown">
-			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
-				<span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
-						<img src="../img/atom.svg" width="30" height="30"> Physics Lab
-					</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">
-						<img src="../img/flask.svg" width="30" height="30"> Chemistry Lab
-					</a></li>
-				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">
-						<img src="../img/cells.svg" width="30" height="30"> Biology Lab
-					</a></li>
-			</ul>
-		</div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-	</div>
-
-	<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-		<ul class="navbar-nav ml-auto">
-			<span class="navbar-text text-white">
-				<?php echo $level . $uname; ?>
-			</span>
-			<?php
-			if ($_SESSION['level'] != 2) {
-				echo '<li class="nav-item"><a class="nav-link" href="/sciencelabs/labtransactions">Lab Transfers</a>';
-			}
-			?>
-			<?php
-			if ($_SESSION['level'] != 2) {
-				echo '<li class="nav-item"><a class="nav-link" href="../reviewrequest/">Review Pending Orders</a>';
-			}
-			?>
-			<li class="nav-item dropdown ml-auto">
-				<a class="nav-link dropdown-toggle navbar-text text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-gear fa-spin" style="font-size:20px"></i> </a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="../user/changepass.php">Change Password</a>
-					<a class="dropdown-item" href="../">Logout</a>
-				</div>
-			</li>
-		</ul>
-	</div>
-</nav>
