@@ -43,6 +43,126 @@ if ($lab == 'b') {
 
 <script src="../js/popper.min.js"></script>
 <link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../nav.css">
+
+<nav class="navbar sticky-top navbar-icon-top navbar-expand-lg navbar-dark bg-<?php echo $lab;?>">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+	<li class="nav-item active">
+		<a class="nav-link" href="#">
+		<i class="fa fa-home"></i>
+		Home
+		<span class="sr-only">(current)</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Stock
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Requests
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Checkouts
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Transactions
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Bookings
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Recon
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-envelope-o"></i>
+		Data Entry
+		</a>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<i class="fa fa-envelope-o"></i>
+		Dropdown
+		</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		<a class="dropdown-item" href="#">Action</a>
+		<a class="dropdown-item" href="#">Another action</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="#">Something else here</a>
+		</div>
+	</li>
+	</ul>
+
+	<div class="mx-auto order-0">
+		<div class="dropdown">
+			<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
+				<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
+						<img src="../img/atom.svg" width="30" height="30"> Physics Lab
+					</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=c';">
+						<img src="../img/flask.svg" width="30" height="30"> Chemistry Lab
+					</a></li>
+				<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=b';">
+						<img src="../img/cells.svg" width="30" height="30"> Biology Lab
+					</a></li>
+			</ul>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+
+	<ul class="navbar-nav ">
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-bell"></i>
+		Lab Transfers
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">
+		<i class="fa fa-globe"></i>
+		Pending Orders
+		</a>
+	</li>
+	</ul>
+  </div>
+</nav>
+
+<script>
+	function setActive(pagename) {
+		var buttons = document.getElementsByClassName('nav-link');
+		Array.prototype.forEach.call(buttons, function foreach(item, index) {
+			if (item.innerHTML === pagename) {
+				item.classList.add('active');
+				//item.classList.add('bg-light');
+				//item.classList.add('text-<?php echo $lab; ?>');
+			}
+		});
+	}
+</script>
+
+
 
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-<?php echo $lab; ?>">
 
@@ -126,16 +246,3 @@ if ($lab == 'b') {
 		</ul>
 	</div>
 </nav>
-
-<script>
-	function setActive(pagename) {
-		var buttons = document.getElementsByClassName('nav-link');
-		Array.prototype.forEach.call(buttons, function foreach(item, index) {
-			if (item.innerHTML === pagename) {
-				item.classList.add('active');
-				//item.classList.add('bg-light');
-				//item.classList.add('text-<?php echo $lab; ?>');
-			}
-		});
-	}
-</script>
