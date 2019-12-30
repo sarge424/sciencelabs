@@ -74,6 +74,15 @@
 		</div>
 	</div>
 	<script language="javascript" type="text/javascript">
+		function setitemvalues (id, name) {
+			document.getElementById('itemid').value = id;
+			document.getElementById('inm').value = name;
+		}
+
+		function setroll (id) {
+			document.getElementById('rno').value = id;
+		}
+		
 		function getDBStuff() {
 			var ajaxRequest;
 
