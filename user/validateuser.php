@@ -11,7 +11,7 @@
 </script>
 <?php
 require_once '../db.php';
-session_start();
+require_once '../checksession.php';
 
 $user = $_POST["user"];
 $pass = $_POST["pass"];
