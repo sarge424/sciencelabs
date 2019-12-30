@@ -6,11 +6,6 @@
 </head>
 
 <body>
-	<?php
-	if (session_status() == PHP_SESSION_NONE) {
-		session_start();
-	}
-	?>
 	<script>
 		function forgotpass() {
 			document.location.href = 'pass/forgotpass.php';
@@ -43,15 +38,15 @@
 										<label class="form-control input-sm text-primary"><b>Password</b></label>
 									<td>
 										<input class="form-control input-sm" type="password" placeholder="Enter Password" name="pass" required></input>
-										<tr>
+								<tr>
 									<td colspan="2">
 										<button class="btn btn-success btn-block">Login</button>
-										<tr>
+								<tr>
 									<td colspan="2">
 										<button class="btn btn-warning btn-block" onclick="forgotpass()">Forgot Password?</button>
 							</tbody>
 						</table>
-						
+
 					</div>
 				</form>
 			</div>
