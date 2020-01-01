@@ -24,7 +24,7 @@
 <body>
 	<?php include '../navbar.php'; ?>
 	<script>
-		setActive('Checkout');
+		setActive('Checkouts');
 	</script>
 
 	<div class="container-fluid">

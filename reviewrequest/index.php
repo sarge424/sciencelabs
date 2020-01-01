@@ -1,4 +1,7 @@
 <?php include '../navbar.php'; ?>
+<script>
+    setActive('Pending Orders');
+</script>
 
 <html>
 
