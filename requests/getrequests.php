@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 
@@ -20,12 +20,16 @@ if ($result != null) {
             $item = $row['item_name'];
             $specs = $row['specs'];
             $quantity = $row['quantity_ordered'];
+            $link = $row['link'];
+            $cost = $row['cost'];
 
             echo '
                     <tr>
                         <td id="item' . $var . '">' . $item . '
                         <td id="specs' . $var . '">' . $specs . '
                         <td id="quantity' . $var . '">' . $quantity . '
+                        <td id="link' . $var . '">' . $link . '
+                        <td id="cost' . $var . '">' . $cost . '
                         <td><div class="btn btn-warning btn-sm" id="edit' . $var . '" onclick="editRow(' . $var . ')">Edit</div>
                         <td><div class="btn btn-danger btn-sm" id="delete' . $var . '" onclick="deleteRow(' . $var . ')">Delete</div>';
             $var++;
