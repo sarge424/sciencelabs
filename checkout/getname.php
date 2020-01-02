@@ -9,7 +9,6 @@ require '../db.php';
 $result = $conn->query($sql);
 
 if (!empty($result) && !empty($rollno)) {
-	$row = $result->fetch_assoc();
 	$html = '';
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith((string) $row['id'], (string) $rollno)) {
