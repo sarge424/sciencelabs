@@ -105,6 +105,10 @@ if ($lab == 'b') {
 				<a class="nav-link" href="/sciencelabs/dataentry">
 				<i class="fa fa-database"></i>Data Entry</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/sciencelabs/itembooking">
+				<i class="fa fa-folder-open"></i>Item Booking</a>
+			</li>
 		</ul>
 
 		<ul class="navbar-nav ">
