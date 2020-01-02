@@ -13,9 +13,8 @@
             margin: 0;
         }
 
-        #studentname,
         #itemname {
-            max-height: 150px;
+            max-height: 100px;
             overflow-y: scroll;
         }
     </style>
@@ -65,13 +64,17 @@
         ajaxRequest.open("GET", "transfer.php" + queryString, true);
         ajaxRequest.send(null);
     }
+
+    function setItem(item) {
+        document.getElementById('item').value = item;
+    }
 </script>
 
 <body>
     <?php include '../navbar.php'; ?>
     <script>
-		setActive('Lab Transfers');
-	</script>
+        setActive('Lab Transfers');
+    </script>
     <?php include '../checksession.php'; ?>
 
     <div class="container-fluid">
