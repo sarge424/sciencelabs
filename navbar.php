@@ -1,9 +1,6 @@
-<?php require_once '../db.php'; ?>
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-	session_start();
-}
-global $conn;
+<?php 
+require_once '../db.php'; 
+require_once '../checksession.php';
 
 $uname = $_SESSION['user'];
 
