@@ -106,6 +106,24 @@ create table lab_booking(
 	foreign key (class_id) references class(id)
 );
 
+create table experiment(
+	id int not null auto_increment,
+	exp_name varchar(50) not null,
+	item_id int not null,
+	quantity int not null,
+	primary key (id),
+	foreign key (item_id) references item (id)
+);
+
+create table item_booking(
+	id int not null auto_increment,
+	labbooking_id int not null,
+	item_id int not null,
+	primary key (id),
+	foreign key (item_id) references item (id),
+	foreign key (labbooking_id) references lab_booking (id)
+);
+
 insert into teacher(id, teacher_name, teacher_pass, levels) values (1, 'abhinav', '9992', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '9151', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
