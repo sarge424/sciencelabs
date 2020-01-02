@@ -54,14 +54,6 @@
 									<div id="studentname" class="text-secondary">Start typing to see experiments.</div>
 							<tr>
 								<td>
-									<label class="form-control input-sm text-primary" align="center"><b>Item Name</b></label>
-								<td>
-									<input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">
-									<input type="text" id="itemid" name="itemid" hidden>
-									<br>
-									<div id="itemname" class="text-secondary">Start typing to see items.</div>
-							<tr>
-								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>No. of Students</b></label>
 								<td>
 									<input class="form-control" type="number" name="quantity" min="1" required>

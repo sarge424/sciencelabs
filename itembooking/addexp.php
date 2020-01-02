@@ -5,22 +5,21 @@
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-</head>
 
-<div id="confirm" class="modal">
-    <div class="modal-content">
-        <table class="table">
-            <tr>
-                <td colspan="2">
-                    <b>Are you sure you want to delete this order?</b>
-            <tr>
-                <td>
-                    <button class="btn btn-danger" onclick="del()">Yes</button>
-                <td>
-                    <button class="btn btn-success float-right" onclick="back()">No</button>
-        </table>
-    </div>
-</div>
+    <style>
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		#studentname,
+		#itemname {
+			max-height: 150px;
+			overflow-y: scroll;
+		}
+	</style>
+</head>
 
 <body>
     <?php
@@ -38,11 +37,21 @@
             new_tr.id = 'tr' + count;
             new_tr.classList.toggle('d-none');
 
-            let del = new_tr.lastChild.previousSibling.firstChild;
+            let del = new_tr.lastChild.firstChild;
             del.id = 'del' + count;
 
-            let stat = new_tr.lastChild.firstChild;
-            stat.id = 'status' + count;
+            let itemid = new_tr.firstChild.nextSibling.firstChild;
+            itemid.id = 'id' + count;
+            itemid.innerHTML = document.getElementById('itemid').value;
+            document.getElementById('itemid').value = '';
+
+            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild;
+            itemnm.id = 'name' + count;
+            itemnm.innerHTML = document.getElementById('inm').value;
+            document.getElementById('inm').value = '';
+            document.getElementById('itemname').innerHTML = 'Start typing to see items.';
+
+            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.id = 'quantity' + count;
 
             let x = count;
             del.onclick = function() {
@@ -59,30 +68,12 @@
             tbody.removeChild(row);
         }
 
-        function order() {
-            let x = 1;
-            while (x < count) {
-                let child;
-                try {
-                    child = document.getElementById('tr' + x).children;
+        function setitemvalues (id, name) {
+			document.getElementById('itemid').value = id;
+			document.getElementById('inm').value = name;
+		}
 
-                    if (child.length > 0) {
-                        let item, quantity, specs, cost;
-
-                        item = child[0].firstChild.value;
-                        quantity = child[1].firstChild.value;
-                        specs = child[2].firstChild.value;
-
-                        if (item.length > 0 && quantity.length > 0) {
-                            connectAjax(item, quantity, specs, x);
-                        }
-                    }
-                } catch (e) {}
-                x++;
-            }
-        }
-
-        function connectAjax(item, quantity, specs, index) {
+        function getDBStuff() {
             let request;
 
             try {
@@ -102,25 +93,52 @@
 
             request.onreadystatechange = function() {
                 if (request.readyState == 4) {
-                    let status = document.getElementById("status" + index);
-                    status.classList.remove("text-secondary");
-                    status.classList.add("text-success");
-                    status.firstChild.innerHTML = "Success!";
-                    let delButton = document.getElementById("del" + index);
-                    delButton.innerHTML = "Clear";
-                    let ref = document.getElementById("btn-hidden");
-                    ref.click();
-                    ref.click();
+                    let res = request.responseText.split("###");
+                    document.getElementById('itemname').innerHTML = res[1];
                 }
             }
 
-            let queryString = "?specs=" + specs + "&item=" + item + "&quantity=" + quantity;
-            request.open("GET", "requestitems.php" + queryString, true);
+            let queryString = "?itemnm=" + document.getElementById('inm').value;
+            request.open("GET", "getname.php" + queryString, true);
             request.send(null);
         }
 
-        function redirect() {
-            document.location.href = "../requests/";
+        function submitAjax(id, q, nm) {
+            let request;
+
+            try {
+                request = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("Oops! Something went wrong.");
+                        return false;
+                    }
+                }
+            }
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {
+                    document.body.innerHTML += '<br>' + request.responseText;
+                }
+            }
+
+            let queryString = "?id=" + id + '&q=' + q + '&name=' + nm;
+            request.open("GET", "submitexp.php" + queryString, true);
+            request.send(null);
+        }
+
+        function submitExp () {
+            for(let x=1; x < count; x++){
+                if(document.getElementById('tr'+x)!==null){
+                    submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
+                    alert(x);
+                }
+            }
         }
     </script>
 
@@ -130,37 +148,46 @@
     </script>
     <div class="container-fluid">
         <br>
+        <div class="text-center">
+			<button class="btn btn-primary" onclick="document.location.href='index.php';">Back to Booking</button>
+		</div>
         <br>
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <div align="center">
                     <div class="btn-group btn-group-lg">
-                        <h3>Purchase Request</h3>
+                        <h3>Create Experiment</h3>
                     </div>
 
                 </div>
                 <div style="height: 400px !important; overflow-y: auto !important;">
                     <table class="table">
                         <thead class="thead thead-dark">
+                            <th>ID
                             <th>Item
                             <th>Quantity
-                            <th colspan="2">Specifications
-                            <th>Status
+                            <th>
                         <tbody id="tbody2">
                             <tr id="tr0" class='d-none'>
-                                <td><input class="form-control input-sm" required>
-                                <td><input class="form-control input-sm" type="number" style="width: 100px;" required>
-                                <td><input class="form-control input-sm">
+                                <td><div id="id0" class="form-control input-sm" type="number" readonly></div>
+                                <td><div id="name0" class="form-control input-sm" readonly></div>
+                                <td><input id="quantity0" class="form-control input-sm" type="number">
                                 <td><button class="btn btn-danger" id="del0">Delete</button>
-                                <td><label class="form-control text-secondary" id="status0" style="text-align: center;"><b>Pending...</b></label>
                     </table>
                 </div>
                 <br>
-                <div class="pull-right">
-                    <button class="btn btn-success float-right" onclick="addRow()">&plus; Add Order</button>
-                    <button class="btn btn-primary btn-md float-right" onclick="order()">&#10004; Place Order</button>
+                <div class="pull-right form-inline">
+                    <input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">&emsp;
+					<input type="text" id="itemid" name="itemid" hidden>
+                    <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
+                <div class="form-inline">
+                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm">&emsp;
+                    <button class="btn btn-primary btn-md" onclick="submitExp()">&#10004; Confirm Experiment</button>
+                </div>
+                <br>
+                <div id="itemname" class="text-secondary pull-right">Start typing to see items.</div>
 
             </div>
             <div class="col-sm-2"></div>
