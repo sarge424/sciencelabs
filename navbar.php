@@ -1,5 +1,5 @@
-<?php 
-require_once '../db.php'; 
+<?php
+require_once '../db.php';
 require_once '../checksession.php';
 
 $uname = $_SESSION['user'];
@@ -88,10 +88,14 @@ if ($lab == 'b') {
 				<a class="nav-link" href="/sciencelabs/requests/">
 					<i class="fa fa-comments"></i>Requests</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/checkout/">
-					<i class="fa fa-shopping-cart"></i>Checkouts</a>
-			</li>
+			<?php
+			if ($_SESSION['level'] < 2) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/checkout/">
+							<i class="fa fa-shopping-cart"></i>Checkouts</a>
+					</li>';
+			}
+			?>
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/transactions/">
 					<i class="fa fa-shopping-basket"></i>Transactions</a>
@@ -100,29 +104,41 @@ if ($lab == 'b') {
 				<a class="nav-link" href="/sciencelabs/bookings/">
 					<i class="fa fa-calendar-check-o"></i>Bookings</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/recon">
-					<i class="fa fa-minus-square"></i>Reconciliation</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/itembooking">
-					<i class="fa fa-folder-open"></i>Item Booking</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/dataentry">
-					<i class="fa fa-database"></i>Data Entry</a>
-			</li>
+			<?php
+			if ($_SESSION['level'] < 2) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/recon">
+							<i class="fa fa-minus-square"></i>Reconciliation</a>
+					</li>';
+			}
+			?>
+			<?php
+			if ($_SESSION['level'] == 0) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/dataentry">
+							<i class="fa fa-database"></i>Data Entry</a>
+					</li>';
+			}
+			?>
 		</ul>
 
 		<ul class="navbar-nav ">
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/labtransactions">
-					<i class="fa fa-exchange"></i>Lab Transfers</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/reviewrequest">
-					<i class="fa fa-list-alt"></i>Pending Orders</a>
-			</li>
+			<?php
+			if ($_SESSION['level'] < 2) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/labtransactions">
+							<i class="fa fa-exchange"></i>Lab Transfers</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/reviewrequest">
+							<i class="fa fa-list-alt"></i>Pending Orders</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../genexcel.php">
+							<i class="fa fa-file-excel-o"></i>Create Excel</a>
+					</li>';
+			}
+			?>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<?php echo $icon . $level . $uname ?>
