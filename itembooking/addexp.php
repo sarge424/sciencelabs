@@ -123,7 +123,7 @@
 
             request.onreadystatechange = function() {
                 if (request.readyState == 4) {
-                    document.body.innerHTML += '<br>' + request.responseText;
+                    //document.body.innerHTML += '<br>' + request.responseText;
                 }
             }
 
@@ -144,12 +144,12 @@
 
     <?php include '../navbar.php'; ?>
     <script>
-        setActive('Item Booking');
+        setActive('Bookings');
     </script>
     <div class="container-fluid">
         <br>
         <div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='index.php';">Back to Booking</button>
+			<button class="btn btn-primary" onclick="document.location.href='index.php?bookingid=<?php echo $_GET['bookingid']?>';">Back to Booking</button>
 		</div>
         <br>
         <div class="row">

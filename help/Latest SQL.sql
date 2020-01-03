@@ -120,9 +120,10 @@ create table experiment(
 create table item_booking(
 	id int not null auto_increment,
 	labbooking_id int not null,
-	item_id int not null,
+	exp_id int not null,
+	quantity int not null default 1,
 	primary key (id),
-	foreign key (item_id) references item (id),
+	foreign key (exp_id) references experiment (id),
 	foreign key (labbooking_id) references lab_booking (id)
 );
 
