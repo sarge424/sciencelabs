@@ -22,15 +22,15 @@
 </head>
 
 <body>
-	<?php include '../navbar.php'; ?>
+	<?php include '../navbar.php';?>
 	<script>
-		setActive('Item Booking');
+		setActive('Bookings');
 	</script>
 
 	<div class="container-fluid">
         <br>
         <div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='addexp.php';">New Experiment</button>
+			<button class="btn btn-primary" onclick="document.location.href='addexp.php?bookingid=<?php echo $_GET['bookingid']?>';">New Experiment</button>
 		</div>
 		<br>
 		<div class="row">
@@ -50,6 +50,7 @@
 								<td>
 									<input type="text" placeholder="e.g.-'Simple Pendulum'" id="expnm" name="expname" onkeyup="getDBStuff()" class="form-control input-sm">
                                     <input type="text" id="expid" name="expid" hidden>
+									<input type="number" id="bookid" name="bookingid" value="<?php echo $_GET['bookingid'] || -1;?>" hidden>
                                     <br>
 									<div id="studentname" class="text-secondary">Start typing to see experiments.</div>
 							<tr>
@@ -98,19 +99,14 @@
 			ajaxRequest.onreadystatechange = function() {
 				if (ajaxRequest.readyState == 4) {
 					var studentDisplay = document.getElementById('studentname');
-					var itemDisplay = document.getElementById('itemname');
-					var itemId = document.getElementById('itemid');
 					let res = ajaxRequest.responseText.split("###");
 					studentDisplay.innerHTML = res[0];
-					itemDisplay.innerHTML = res[1];
-					itemId.value = res[2];
 				}
 			}
 
 			var rollno = document.getElementById('expnm').value;
-			var itemnm = document.getElementById('inm').value;
 
-			var queryString = "?expname=" + rollno + "&itemnm=" + itemnm;
+			var queryString = "?expname=" + rollno;
 			ajaxRequest.open("GET", "getname.php" + queryString, true);
 			ajaxRequest.send(null);
 		}
