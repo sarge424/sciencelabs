@@ -126,6 +126,15 @@ create table item_booking(
 	foreign key (labbooking_id) references lab_booking (id)
 );
 
+create table missing(
+	id int not null auto_increment,
+	item_id int not null,
+	quantity int not null,
+	entry_date date default now(),
+	primary key (id),
+	foreign key (item_id) references item (id)
+);
+
 insert into teacher(id, teacher_name, teacher_pass, levels) values (1, 'abhinav', '9992', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '9151', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
