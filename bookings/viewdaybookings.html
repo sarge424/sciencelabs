@@ -58,7 +58,6 @@
 			date = (date < 10) ? "0" + date : date;
 			m = (month < 10) ? "0" + month : month;
 			currDate = year + " " + m + " " + date;
-			console.log(currDate);
 			month--;
 
 			let copmonth = monthnames[Number(month)];
@@ -98,6 +97,37 @@
 		function back() {
 			document.location.href = 'viewmonthbookings.html';
 		}
+
+		function bookitem(row) {
+			let bookingid;
+
+			let request;
+
+			try {
+				request = new XMLHttpRequest();
+			} catch (e) {
+				try {
+					request = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch (e) {
+					try {
+						request = new ActiveXObject("Microsoft.XMLHTTP");
+					} catch (e) {
+						return false;
+					}
+				}
+			}
+
+			request.onreadystatechange = function () {
+				if (request.readyState == 4) {
+					bookingid = request.responseText;
+					window.open("../itembooking/index.php?bookingid=" + bookingid);
+				}
+			}
+
+			let queryString = "?date=" + currDate + "&row=" + row;
+			request.open("GET", "getbooking.php" + queryString, true);
+			request.send(null);
+		}
 	</script>
 	<div class="container-fluid">
 		<br>
@@ -129,7 +159,7 @@
 						<th>Time
 						<th>Teacher
 						<th>Class
-						<th>
+						<th>Book Items
 					<tbody id="ajaxDiv">
 						<script>
 							ajaxFunction(0);
