@@ -8,33 +8,6 @@
 </head>
 
 <body>
-    <?php
-    require_once '../db.php';
-    require_once '../checksession.php';
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $user = $_SESSION['user'];
-
-        $item = $_REQUEST['item'];
-        $specs = $_REQUEST['specs'];
-        $quantity = $_REQUEST['quantity'];
-
-        $prev_item = $_REQUEST['item_repeat'];
-        $prev_quantity = $_REQUEST['quan_repeat'];
-        $prev_specs = $_REQUEST['specs_repeat'];
-
-        $sql = "update purchase_request set item_name = '" . $item . "', quantity = " . $quantity . ", specs = '" . $specs .
-            "' where id = (select min(id) from purchase_request" .
-            " where teacher_id = " . $user . " and item_name = '" . $prev_item . "' and specs = '" . $prev_specs . "' and quantity = " . $prev_quantity . " and arrived = 0);";
-        $conn->query($sql);
-
-        echo '<script>
-            document.location.href = "../requests/";
-        </script>';
-
-        $conn->close();
-    }
-    ?>
     <script>
         function initialise() {
             let url_string = window.location.href;
@@ -53,10 +26,40 @@
             document.getElementById("quan_repeat").value = quantity;
         }
     </script>
-    <?php include '../navbar.php'; ?>
+    <?php require '../navbar.php'; ?>
     <script>
         setActive('Requests');
     </script>
+    
+    <?php
+    require_once '../db.php';
+    require_once '../checksession.php';
+    global $conn;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $user = $_SESSION['user'];
+
+        $item = $_REQUEST['item'];
+        $specs = $_REQUEST['specs'];
+        $quantity = $_REQUEST['quantity'];
+
+        $prev_item = $_REQUEST['item_repeat'];
+        $prev_quantity = $_REQUEST['quan_repeat'];
+        $prev_specs = $_REQUEST['specs_repeat'];
+
+        $sql = "update purchase_request set item_name = '" . $item . "', quantity = " . $quantity . ", specs = '" . $specs .
+            "' where id = (select min(id) from purchase_request" .
+            " where teacher_id = " . $user . " and item_name = '" . $prev_item . "' and specs = '" . $prev_specs . "' and quantity_ordered = " . $prev_quantity . " and arrived = 0);";
+        $conn->query($sql);
+
+        echo '<script>
+            document.location.href = "../requests/vieworders.php";
+        </script>';
+
+        $conn->close();
+    }
+    ?>
+    
     <div class="container">
         <br>
         <br>

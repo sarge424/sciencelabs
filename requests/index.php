@@ -53,6 +53,7 @@
                         specs = child[2].firstChild.value;
                         link = child[3].firstChild.value;
                         cost = child[4].firstChild.value;
+                        child[5].firstChild.click();
 
                         if (item.length > 0 && quantity.length > 0) {
                             connectAjax(item, quantity, specs, link, cost, x);
@@ -102,7 +103,7 @@
     <div class="container-fluid">
         <br>
         <div class="text-center">
-            <button class="btn btn-primary" onclick="document.location.href='vieworders.php';">Pending Checkouts</button>
+            <button class="btn btn-primary" onclick="document.location.href='vieworders.php';">Pending Orders</button>
         </div>
         <br>
         <div class="row">

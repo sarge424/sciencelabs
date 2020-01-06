@@ -122,7 +122,7 @@ include_once '../navbar.php';
     <div class="container-fluid">
         <br>
         <div class="text-center">
-            <button class="btn btn-primary" onclick="document.location.href='../requests/';">Pending Checkouts</button>
+            <button class="btn btn-primary" onclick="document.location.href='../requests/';">New Order</button>
         </div>
         <br>
         <div class="row">
