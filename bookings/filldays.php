@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 
@@ -43,8 +43,12 @@ while ($var < 4) {
     echo '<tr>
         <td>' . $times[$var] . '
         <td>' . $tbookedby[$var] . '
-        <td>' . $cbookedby[$var];
+        <td>' . $cbookedby[$var] . '
+        <td>';
+    if ($tbookedby[$var] != "-") {
+        echo '<button class="btn btn-sm btn-success" onclick="bookitem(' . $var . ')">Book Items</button>';
+    } else {
+        echo "-";
+    }
     $var += 1;
 }
-
-?>
