@@ -98,6 +98,10 @@ include_once '../navbar.php';
         request.open("GET", "getrequests.php" + queryString, true);
         request.send(null);
     }
+
+    function createExcel(){
+        document.location.href = "genexcel.php";
+    }
 </script>
 
 <body>
@@ -141,8 +145,8 @@ include_once '../navbar.php';
                 </div>
                 <br>
                 <div class="pull-right">
-                    <button class="btn btn-success float-right d-none" id="btn-hidden" onclick="adminButtonClick()">View
-                        All Orders</button>
+                    <button class="btn btn-success float-right d-none" id="btn-hidden" style="margin: 5px" onclick="adminButtonClick()">View All Orders</button>
+                    <button class="btn btn-primary float-right <?php echo ($_SESSION['level'] != 2) ? "" : "d-none"; ?>" style="margin: 5px" id="genxl" onclick="createExcel()">Generate Excel</button>
                 </div>
                 <script>
                     adminButtonClick();

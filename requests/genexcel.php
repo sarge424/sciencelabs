@@ -1,7 +1,7 @@
 <?php
-require_once 'db.php';
-require_once 'checksession.php';
-require_once 'PHPSpreadsheet/vendor/autoload.php';
+require_once '../db.php';
+require_once '../checksession.php';
+require_once '../PHPSpreadsheet/vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -40,7 +40,7 @@ if ($result->num_rows != 0) {
 }
 
 $writer = new Xlsx($spreadsheet);
-$writer->save(date("Y m d") . ' Purchase.xlsx');
+$writer->save("../excel/".date("Y m d") . '.xlsx');
 
-header("Location: /sciencelabs/home/");
+header("Location: ../requests/");
 exit;
