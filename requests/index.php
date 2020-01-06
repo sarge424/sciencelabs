@@ -82,9 +82,7 @@
             }
 
             request.onreadystatechange = function() {
-                if (request.readyState == 4) {
-                    alert("Items Ordered");
-                }
+                if (request.readyState == 4) {}
             }
 
             let queryString = "?specs=" + specs + "&item=" + item + "&quantity=" + quantity + "&link=" + link + "&cost=" + cost;
