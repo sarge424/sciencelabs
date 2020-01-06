@@ -47,7 +47,7 @@
         $prev_quantity = $_REQUEST['quan_repeat'];
         $prev_specs = $_REQUEST['specs_repeat'];
 
-        $sql = "update purchase_request set item_name = '" . $item . "', quantity = " . $quantity . ", specs = '" . $specs .
+        $sql = "update purchase_request set item_name = '" . $item . "', quantity_ordered = " . $quantity . ", specs = '" . $specs .
             "' where id = (select min(id) from purchase_request" .
             " where teacher_id = " . $user . " and item_name = '" . $prev_item . "' and specs = '" . $prev_specs . "' and quantity_ordered = " . $prev_quantity . " and arrived = 0);";
         $conn->query($sql);
