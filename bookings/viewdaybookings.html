@@ -120,7 +120,7 @@
 			request.onreadystatechange = function () {
 				if (request.readyState == 4) {
 					bookingid = request.responseText;
-					window.open("../itembooking/index.php?bookingid=" + bookingid);
+					window.top.location.href = "../itembooking/index.php?bookingid=" + bookingid;
 				}
 			}
 

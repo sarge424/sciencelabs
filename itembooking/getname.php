@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 
@@ -12,12 +12,12 @@ if (!empty($result) && !empty($expname)) {
 	$html = '';
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith(strtolower((string) $row['exp_name']), strtolower((string) $expname))) {
-			$getIDsql = 'SELECT id from experiment where exp_name = "'.$row['exp_name'].'" limit 1;';
+			$getIDsql = 'SELECT id from experiment where exp_name = "' . $row['exp_name'] . '" limit 1;';
 			$id = $conn->query($getIDsql)->fetch_assoc()['id'];
-			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setexp('.$id.',\''.$row['exp_name'].'\')">'.
-			'<kbd>EXP' . $id . '</kbd>'.
-			'<b>  ' . $row['exp_name'] . '</b>'.
-			stringres('SELECT a.exp_name, a.item_id, b.id, b.item_name from experiment a, item b where a.exp_name = "'.$row['exp_name'].'" AND a.item_id=b.id;','item_name').'</div>';
+			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setexp(' . $id . ',\'' . $row['exp_name'] . '\')">' .
+				'<kbd>EXP' . $id . '</kbd>' .
+				'<b>  ' . $row['exp_name'] . '</b>' .
+				stringres('SELECT a.exp_name, a.item_id, b.id, b.item_name from experiment a, item b where a.exp_name = "' . $row['exp_name'] . '" AND a.item_id=b.id;', 'item_name') . '</div>';
 		}
 	}
 	if (strcmp($html, '') == 0)
@@ -30,7 +30,7 @@ if (!empty($result) && !empty($expname)) {
 echo '###';
 
 $itemname = $_GET['itemnm'];
-$sql = 'SELECT id,quantity,item_name,specs FROM item where lab="'.$_SESSION['lab'].'";';
+$sql = 'SELECT id,quantity,item_name,specs FROM item where lab="' . $_SESSION['lab'] . '";';
 
 $result = $conn->query($sql);
 
@@ -40,11 +40,10 @@ if (!empty($result) && !empty($itemname)) {
 	$lastid = 0;
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith(strtolower($row['item_name']), strtolower($itemname))) {
-			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setitemvalues('.$row['id'].',\''.$row['item_name'].'\');"><b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '</div>';
+			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setitemvalues(' . $row['id'] . ',\'' . $row['item_name'] . '\');"><b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '</div>';
 			$rows += 1;
 			$lastid = $row['id'];
-		}else{
-			
+		} else {
 		}
 	}
 	if (strcmp($html, '') == 0) {
@@ -71,9 +70,9 @@ function stringres($sql, $attr)
 	include '../db.php';
 	$res = $conn->query($sql);
 	$ret = '  (';
-	while($row = $res->fetch_assoc()){
-		$ret .= $row[$attr].', ';
+	while ($row = $res->fetch_assoc()) {
+		$ret .= $row[$attr] . ', ';
 	}
-	$ret = rtrim($ret,', ').')';
+	$ret = rtrim($ret, ', ') . ')';
 	return $ret;
 }

@@ -22,15 +22,15 @@
 </head>
 
 <body>
-	<?php include '../navbar.php';?>
+	<?php include '../navbar.php'; ?>
 	<script>
 		setActive('Bookings');
 	</script>
 
 	<div class="container-fluid">
-        <br>
-        <div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='addexp.php?bookingid=<?php echo $_GET['bookingid']?>';">New Experiment</button>
+		<br>
+		<div class="text-center">
+			<button class="btn btn-primary" onclick="document.location.href='addexp.php?bookingid=<?php echo $_GET['bookingid'] ?>';">New Experiment</button>
 		</div>
 		<br>
 		<div class="row">
@@ -49,9 +49,8 @@
 									<label class="form-control input-sm text-primary" align="center"><b>Experiment Name</b></label>
 								<td>
 									<input type="text" placeholder="e.g.-'Simple Pendulum'" id="expnm" name="expname" onkeyup="getDBStuff()" class="form-control input-sm">
-                                    <input type="text" id="expid" name="expid" hidden>
-									<input type="number" id="bookid" name="bookingid" value="<?php echo $_GET['bookingid'] || -1;?>" hidden>
-                                    <br>
+									<input type="number" id="bookid" name="bookingid" value="<?php echo $_GET['bookingid']; ?>" hidden>
+									<br>
 									<div id="studentname" class="text-secondary">Start typing to see experiments.</div>
 							<tr>
 								<td>
@@ -68,16 +67,16 @@
 		</div>
 	</div>
 	<script language="javascript" type="text/javascript">
-		function setitemvalues (id, name) {
+		function setitemvalues(id, name) {
 			document.getElementById('itemid').value = id;
 			document.getElementById('inm').value = name;
 		}
 
-		function setexp (id,name) {
+		function setexp(id, name) {
 			document.getElementById('expid').value = id;
-            document.getElementById('expnm').value = name;
+			document.getElementById('expnm').value = name;
 		}
-		
+
 		function getDBStuff() {
 			var ajaxRequest;
 

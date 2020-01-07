@@ -46,7 +46,7 @@ if ($result->num_rows != 0) {
 
 $sheet->setCellValue("E" . $col, "Total Amount");
 $sheet->getStyle("E" . $col)->getFont()->setBold(true);
-$sheet->setCellValue("F" . $col, "=F2:F" . ($col - 1));
+$sheet->setCellValue("F" . $col, "=sum(F2:F" . ($col - 1) . ")");
 
 foreach (range('A', 'E') as $col) {
     $sheet->getColumnDimension($col)->setAutoSize(true);
