@@ -9,33 +9,29 @@
 
 <body>
 	<?php require_once '../checksession.php'; ?>
-	<?php include '../navbar.php'; ?>
+	<?php include '../navbar.php';
+	$lab = $_SESSION['lab'];
+	if ($lab == 'b') {
+		$lab = 'success';
+	} else if ($lab == 'c') {
+		$lab = 'danger';
+	} else {
+		$lab = 'primary';
+	}
+	?>
 	<script>
 		setActive('Home');
 	</script>
 
-	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
-			<div class="display-1 text-center">Welcome to <?php echo $_SESSION["labname"]; ?>Lab!</div>
-			<div class="float-right rounded img-thumbnail"><img src="../img/mad-scientist.svg" alt="Icon"></div>
-		</div>
-		<div class="col-sm-2"></div>
-	</div>
+	<div class="container-fluid">
+		<div class="col-sm-1"></div>
+		<div class="display-1">Welcome to <?php echo $_SESSION["labname"]; ?>Lab!</div>
 
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 text-center">
-			<input class='mx-auto' type="image" src="../img/atom.svg" onclick="ajaxLabs('p')" title="Physics Lab" width="150" height="150">
-			<input class='mx-auto' type="image" src="../img/flask.svg" onclick="ajaxLabs('c')" title="Chemistry Lab" width="150" height="150">
-			<input class='mx-auto' type="image" src="../img/cells.svg" onclick="ajaxLabs('b')" title="Biology Lab" width="150" height="150">
-			<br>
-			<br>
-			<a href="bookings.php">
-				<h4>View current booking and items required</h4>
-			</a>
-		</div>
-		<div class="col-sm-3"></div>
+		<button class="btn btn-lg btn-<?php echo $lab?>" href="bookings.php">
+			View bookings and items required for today
+		</button>
+		<br><br><br>
+		<div class="display-2">Overview</div>
 	</div>
 
 	<script>
