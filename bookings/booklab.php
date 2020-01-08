@@ -34,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			$result = $conn->query($sql);
 
-			if ($result->num_rows > 0) { } else {
+			if ($result->num_rows > 0) {
+			} else {
 				$sql = 'select id from teacher where teacher_name="' . $user . '"';
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0) {
