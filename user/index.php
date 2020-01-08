@@ -1,6 +1,6 @@
-<?php 
+<?php
 require_once '../db.php';
-include '../navbar.php'; 
+include '../navbar.php';
 ?>
 <html>
 
@@ -30,8 +30,9 @@ include '../navbar.php';
 					$dbname = $row["teacher_name"];
 					$dbpass = $row["teacher_pass"];
 
-					if (strcmp($oldpass, $dbpass) == 0) {
+					if (password_verify($oldpass, $dbpass)) {
 						if (strcmp($name, $dbname) == 0) {
+							$newpass = password_hash($newpass, PASSWORD_DEFAULT);
 							$sql = 'update teacher set teacher_pass="' . $newpass . '" where teacher_name="' . $name . '";';
 							$conn->query($sql);
 							echo '<script>alert("Password Successfully Changed");document.location.href="../home";</script>';

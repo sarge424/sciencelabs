@@ -5,7 +5,7 @@ use labs;
 create table teacher(
 	id int not null unique,
 	teacher_name varchar(50) not null unique,
-	teacher_pass varchar(70) not null,
+	teacher_pass varchar(60) not null,
 	levels varchar(20) not null,
 	email varchar(40) default "<-- no email provided -->",
 	primary key(id)

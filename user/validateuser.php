@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 		$dbpass = $row["teacher_pass"];
 		$dblevel = $row["levels"];
 
-		if (strcmp($pass, $dbpass) == 0) {
+		if (password_verify($pass, $dbpass)) {
 			echo '<script>invite("' . $user . '", "' . $dblevel . '");</script>';
 		} else {
 			echo '<script>invite("Anonymous", "none");</script>';

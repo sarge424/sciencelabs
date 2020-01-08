@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "select * from teacher where teacher_name='" . $name . "'";
     if ($uid == $conn->query($sql)->fetch_assoc()['id']) {
         if ($pass == $conf) {
+            $pass = password_hash($pass, PASSWORD_DEFAULT);
             $sql = "update teacher set teacher_pass='" . $pass . "' where id=" . $uid . ";";
             $conn->query($sql);
             echo "<script>alert('Password updated successfully!');document.location.href='../';</script>";
@@ -26,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-	<script src="../js/jquery-3.4.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
