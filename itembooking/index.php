@@ -34,7 +34,6 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-sm-3"></div>
 			<div class="col-sm-6 bg-white" align="center">
 				<form action="checkoutitems.php" method="POST">
 					<div align="center">
@@ -64,6 +63,56 @@
 					</div>
 				</form>
 			</div>
+			<div class="col-sm-6 bg-white">
+				<div align="center">
+					<div class="btn-group btn-large">
+						<h3>All Experiments</h3>
+				</div>
+				<table class="table table-hover">
+				<thead class="thead thead-dark">
+					<tr>
+						<th>Experiment</th>
+						<th>Items</th>
+					</tr><br>
+				</thead>
+				<tbody>
+					<?php
+					function stringres($sql, $attr){
+						include '../db.php';
+						$res = $conn->query($sql);
+						$ret = '  (';
+						while ($row = $res->fetch_assoc()) {
+							$ret .= $row[$attr] . ', ';
+						}
+						$ret = rtrim($ret, ', ') . ')';
+						return $ret;
+					}
+
+					global $conn;
+
+					$sql = 'select distinct exp_name from experiment where 1;';
+
+					$result = $conn->query($sql);
+
+					if ($result->num_rows > 0) {
+						while ($row = $result->fetch_assoc()) {
+							$sql = 'SELECT a.exp_name, a.item_id, b.id, b.item_name from experiment a, item b where a.exp_name = "' . $row['exp_name'] . '" AND a.item_id=b.id;';
+							$itemswithb = stringres($sql, 'item_name');
+							$items = substr($itemswithb, 3, strlen($itemswithb)-4);
+							?>
+
+							<tr>
+								<td><?php echo $row['exp_name'];?>
+								<td><?php echo $items?>
+							</tr>
+
+					<?php
+						}
+					}
+
+					$conn->close();
+					?>
+			</table>
 		</div>
 	</div>
 	<script language="javascript" type="text/javascript">
