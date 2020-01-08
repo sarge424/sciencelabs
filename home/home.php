@@ -31,7 +31,7 @@
 			<input class='mx-auto' type="image" src="../img/cells.svg" onclick="ajaxLabs('b')" title="Biology Lab" width="150" height="150">
 			<br>
 			<br>
-			<a href="viewuser.php">
+			<a href="bookings.php">
 				<h4>View current booking and items required</h4>
 			</a>
 		</div>
