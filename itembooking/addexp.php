@@ -103,6 +103,23 @@
             request.send(null);
         }
 
+        function handle(res){
+            if(res === 'exists'){
+                alert('This experiment already exists!');
+                document.getElementById('exn').value = '';
+            }
+            if(res === 'done'){
+                alert('Experiment added!');
+                document.getElementById('exn').value = '';
+                for(let x=1; x < count; x++){
+                    if(document.getElementById('del'+x)!==null){
+                        document.getElementById('del'+x).click();
+                    }
+                }
+
+            }
+        }
+
         function submitAjax(id, q, nm) {
             let request;
 
@@ -123,7 +140,7 @@
 
             request.onreadystatechange = function() {
                 if (request.readyState == 4) {
-                    //document.body.innerHTML += '<br>' + request.responseText;
+                    handle(request.responseText);
                 }
             }
 
@@ -136,7 +153,6 @@
             for(let x=1; x < count; x++){
                 if(document.getElementById('tr'+x)!==null){
                     submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
-                    alert(x);
                 }
             }
         }
