@@ -29,6 +29,11 @@
 			<input class='mx-auto' type="image" src="../img/atom.svg" onclick="ajaxLabs('p')" title="Physics Lab" width="150" height="150">
 			<input class='mx-auto' type="image" src="../img/flask.svg" onclick="ajaxLabs('c')" title="Chemistry Lab" width="150" height="150">
 			<input class='mx-auto' type="image" src="../img/cells.svg" onclick="ajaxLabs('b')" title="Biology Lab" width="150" height="150">
+			<br>
+			<br>
+			<a href="viewuser.php">
+				<h4>View current booking and items required</h4>
+			</a>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
