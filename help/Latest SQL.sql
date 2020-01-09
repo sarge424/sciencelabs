@@ -113,6 +113,7 @@ create table experiment(
 	exp_name varchar(50) not null,
 	item_id int not null,
 	quantity int not null,
+	date_created datetime not null default now(),
 	primary key (id),
 	foreign key (item_id) references item (id)
 );

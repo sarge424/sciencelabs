@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 ?>
@@ -31,15 +31,16 @@ require_once '../checksession.php';
 			</thead>
 			<tbody>
 				<?php
-                $path = '../excel';
-                $files = array_diff(scandir($path), array('.', '..'));
+				$path = '../excel';
+				$files = array_diff(scandir($path), array('.', '..'));
+				$files = array_reverse($files);
 
-                foreach ($files as $excel) {
-                    ?>
+				foreach ($files as $excel) {
+				?>
 
-                    <tr onclick="window.open('<?php echo $path.'/'.$excel?>');">
-                        <td><?php echo 'Purchase Request: '.$excel; ?></td>
-                    </tr>
+					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">
+						<td><?php echo 'Purchase Request: ' . $excel; ?></td>
+					</tr>
 
 				<?php
 				}

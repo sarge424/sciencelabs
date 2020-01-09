@@ -27,7 +27,7 @@
 		<div class="col-sm-1"></div>
 		<div class="display-1">Welcome to <?php echo $_SESSION["labname"]; ?>Lab!</div>
 
-		<button class="btn btn-lg btn-<?php echo $lab?>" href="bookings.php">
+		<button class="btn btn-lg btn-<?php echo $lab ?>" onclick="document.location.href = 'bookings.php'">
 			View bookings and items required for today
 		</button>
 		<br><br><br>

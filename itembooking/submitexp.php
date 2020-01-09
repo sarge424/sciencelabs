@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 
@@ -7,21 +7,17 @@ $q = $_GET['q'];
 $name = $_GET['name'];
 $exists = false;
 
-$sql = 'select distinct exp_name from experiment where exp_name="'.$name.'";';
+$sql = 'select distinct date_format(date_created, "%Y %m %d %H %i") from experiment where exp_name="' . $name . '";';
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        if(strcmp($row['exp_name'], $name)==0)
-            $exists = true;
-    }
+if ($result->num_rows > 1) {
+    $exists = true;
 }
 
-$sql = 'INSERT INTO experiment (exp_name, item_id, quantity) VALUES ("'.$name.'", '.$id.', '.$q.');';
-if(!$exists){
+$sql = 'INSERT INTO experiment (exp_name, item_id, quantity) VALUES ("' . $name . '", ' . $id . ', ' . $q . ');';
+if (!$exists) {
     $conn->query($sql);
     echo 'done';
-}else{
+} else {
     echo 'exists';
 }
-?>
