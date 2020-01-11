@@ -31,7 +31,7 @@ if ($quantity < $quan) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $id = $result->fetch_assoc()['id'];
-        $sql = "update item set quantity=" . $quan . " where id=" . $id . ";";
+        $sql = "update item set quantity=quantity+" . $quan . " where id=" . $id . ";";
     } else {
         $sql = "insert into item (item_name, specs, quantity, lab) values ('" . $item_name . "', '" . $specs . "', " . $quan . ", '" . $tolab . "');";
     }
