@@ -156,7 +156,7 @@
 
             ajaxRequest.onreadystatechange = function() {
                 if (ajaxRequest.readyState == 4) {
-                    var itemDisplay = document.getElementById('itemname');
+                    let itemDisplay = document.getElementById('itemname');
                     itemDisplay.innerHTML = ajaxRequest.responseText;
                 }
             }
