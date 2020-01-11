@@ -62,6 +62,39 @@
             count++;
         }
 
+        function init(itid, name, quant) {
+            let tbody = document.getElementById('tbody2');
+            let tr = document.getElementById('tr0');
+
+            console.log(tr);
+
+            let new_tr = tr.cloneNode(true);
+            new_tr.id = 'tr' + count;
+            new_tr.classList.toggle('d-none');
+
+            let del = new_tr.lastChild.firstChild;
+            del.id = 'del' + count;
+
+            let itemid = new_tr.firstChild.nextSibling.firstChild;
+            itemid.id = 'id' + count;
+            itemid.innerHTML = itid;
+
+            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild;
+            itemnm.id = 'name' + count;
+            itemnm.innerHTML = name;
+            
+            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.id = 'quantity' + count;
+            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.value = quant;
+
+            let x = count;
+            del.onclick = function() {
+                deleteRowReq(x);
+            };
+
+            tbody.appendChild(new_tr);
+            count++;
+        }
+
         function deleteRowReq(index) {
             let tbody = document.getElementById("tbody2");
             let row = document.getElementById("tr" + index);
@@ -108,7 +141,7 @@
                 alert('This experiment already exists!');
                 document.getElementById('exn').value = '';
             }
-            else if(res === 'done'){
+            if(res === 'done'){
                 document.getElementById('exn').value = '';
                 for(let x=1; x < count; x++){
                     if(document.getElementById('del'+x)!==null){
@@ -116,8 +149,6 @@
                     }
                 }
 
-            }else{
-                alert(res);
             }
         }
 
@@ -159,7 +190,7 @@
         }
     </script>
 
-    <?php include '../navbar.php'; ?>
+    <?php include '../navbar.php';?>
     <script>
         setActive('Bookings');
     </script>
@@ -174,7 +205,7 @@
             <div class="col-sm-8">
                 <div align="center">
                     <div class="btn-group btn-group-lg">
-                        <h3>Create Experiment</h3>
+                        <h3>Edit Experiment <?php echo $_GET['expname']?></h3>
                     </div>
 
                 </div>
@@ -200,7 +231,7 @@
                     <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
                 <div class="form-inline">
-                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm">&emsp;
+                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm" value="<?php echo $_GET['expname'];?>" readonly>&emsp;
                     <button class="btn btn-primary btn-md" onclick="submitExp()">&#10004; Confirm Experiment</button>
                 </div>
                 <br>
@@ -210,6 +241,17 @@
             <div class="col-sm-2"></div>
         </div>
     </div>
+    <?php
+        include_once '../db.php';
+        $sql = 'select * from experiment where exp_name="'.$_GET['expname'].'";';
+        $result=$conn->query($sql);
+        echo '<script>';
+        while($row=$result->fetch_assoc()){
+            $itemname = $conn->query('select item_name from item where id='.$row['item_id'].';')->fetch_assoc()['item_name'];
+            echo 'init('.$row['item_id'].', "'.$itemname.'",'.$row['quantity'].');';
+        }
+        echo '</script>';
+    ?>
 </body>
 
 </html>
