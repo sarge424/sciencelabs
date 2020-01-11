@@ -122,7 +122,6 @@
 		}
 
 		function setexp(id, name) {
-			document.getElementById('expid').value = id;
 			document.getElementById('expnm').value = name;
 		}
 

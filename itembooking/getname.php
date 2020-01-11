@@ -15,7 +15,7 @@ if (!empty($result) && !empty($expname)) {
 			$getIDsql = 'SELECT id from experiment where exp_name = "' . $row['exp_name'] . '" limit 1;';
 			$id = $conn->query($getIDsql)->fetch_assoc()['id'];
 			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setexp(' . $id . ',\'' . $row['exp_name'] . '\')">' .
-				'<kbd>EXP' . $id . '</kbd>' .
+				'<kbd>EXP</kbd>' .
 				'<b>  ' . $row['exp_name'] . '</b>' .
 				stringres('SELECT a.exp_name, a.item_id, b.id, b.item_name from experiment a, item b where a.exp_name = "' . $row['exp_name'] . '" AND a.item_id=b.id;', 'item_name') . '</div>';
 		}
