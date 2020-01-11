@@ -22,7 +22,7 @@ require_once '../checksession.php';
 	<br>
 
 	<div class="container">
-		<h1 class="text-center">Request Spreadsheets</h1>
+		<h2 class="text-center">Request Spreadsheets</h3>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
@@ -31,11 +31,17 @@ require_once '../checksession.php';
 			</thead>
 			<tbody>
 				<?php
+				function startsWith($haystack, $needle) {
+					$length = strlen($needle);
+					return (substr($haystack, 0, $length) === $needle);
+				}
+
 				$path = '../excel';
 				$files = array_diff(scandir($path), array('.', '..'));
 				$files = array_reverse($files);
 
 				foreach ($files as $excel) {
+					if(startsWith($excel, $_SESSION['labname'])) {
 				?>
 
 					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">
@@ -43,6 +49,7 @@ require_once '../checksession.php';
 					</tr>
 
 				<?php
+					}
 				}
 
 				$conn->close();

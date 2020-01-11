@@ -93,7 +93,7 @@
             <div class="col-sm-10">
                 <div align="center">
                     <div class="btn-group btn-group-lg">
-                        <h2>Review Arrived Order</h2>
+                        <h3>Review Arrived Order</h3>
                     </div>
                 </div>
                 <table class="table">

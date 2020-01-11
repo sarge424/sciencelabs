@@ -64,8 +64,8 @@
         <br>
         <div class="row">
             <div class="col-sm-12">
-                <h2><?php echo $dbtime; ?></h2>
-                <h2>Lab booked by: <?php echo $teacher; ?></h2>
+                <h3><?php echo $dbtime; ?></h3>
+                <h3>Lab booked by: <?php echo $teacher; ?></h3>
                 <br>
                 <div align="center">
                     <table class="table">

@@ -17,7 +17,7 @@ $sheet->setCellValue('F1', 'Amount');
 
 $sheet->getStyle("A1:F1")->getFont()->setBold(true);
 
-$sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0;";
+$sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -53,7 +53,7 @@ foreach (range('A', 'E') as $col) {
 }
 
 $writer = new Xlsx($spreadsheet);
-$writer->save("../excel/" . date("Y m d") . '.xlsx');
+$writer->save("../excel/" . $_SESSION['labname'] . " " . date("Y m d") . '.xlsx');
 
 header("Location: ../requests/");
 exit;

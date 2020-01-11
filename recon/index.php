@@ -95,7 +95,7 @@ include '../navbar.php';
             <div class="col-sm-6">
                 <div align="center">
                     <div class="btn-group btn-group-lg">
-                        <h2>Reconciliation</h2>
+                        <h3>Reconciliation</h3>
                     </div>
                 </div>
                 <table class="table">
