@@ -137,8 +137,8 @@ create table missing(
 	foreign key (item_id) references item (id)
 );
 
-insert into teacher(id, teacher_name, teacher_pass, levels, email) values (1, 'abhinav', '9992', 0, "abhinav@ishahomeschool.org");
-insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '9151', 0);
+insert into teacher(id, teacher_name, teacher_pass, levels, email) values (1, 'abhinav', '$2y$10$Inr2U7NdVEQHAkf4WL3Biu3LrM0FKxz28xZE0nWM1JoqOOYokEJVe', 0, "abhinav@ishahomeschool.org");
+insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '$2y$10$Inr2U7NdVEQHAkf4WL3Biu3LrM0FKxz28xZE0nWM1JoqOOYokEJVe', 0);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (4, 'd', '1161', 2);
 insert into teacher(id, teacher_name, teacher_pass, levels) values (5, 'e', '9987', 2);

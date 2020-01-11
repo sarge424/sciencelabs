@@ -4,31 +4,39 @@ require_once '../checksession.php';
 
 $tolab = $_GET['tolab'];
 $quan = $_GET['quantity'];
-$itemspecs = $_GET['item'];
+$id = $_GET['id'];
 
-$mix = explode(" (", $itemspecs);
-$item = $mix[0];
-$quantity = $mix[1];
-$quantity = explode(" )", $quantity);
-$quantity = $quantity[0];
-$quantity = substr($quantity, 0, -1);
-$specs = explode(")", $itemspecs);
-if ($specs[1] != "") {
-    $specs = trim($specs[1]);
-} else {
-    $specs = "";
+$sql = "select quantity from item where id=" . $id . " and lab='" . $_SESSION['lab'] . "';";
+$result = $conn->query($sql);
+
+while ($row = $result->fetch_assoc()) {
+    $quantity = $row['quantity'];
 }
+
 if ($quantity < $quan) {
     echo "Not enough stock";
 } else {
-    $sql = "select id from item where item_name='" . $item . "' and specs='" . $specs . "' and lab='" . $_SESSION['lab'] . "';";
-    $result = $conn->query($sql);
-
-    while ($row = $result->fetch_assoc()) {
-        $item = $row['id'];
-    }
-
-    $sql = "insert into dept_transaction (from_lab, item_id, quantity, to_lab) values ('" . $_SESSION['lab'] . "', " . $item . ", " . $quan . ", '" . $tolab . "');";
+    $sql = "insert into dept_transaction (from_lab, item_id, quantity, to_lab) values ('" . $_SESSION['lab'] . "', " . $id . ", " . $quan . ", '" . $tolab . "');";
     $conn->query($sql);
+
+    $sql = "update item set quantity=" . ($quantity - $quan) . " where id=" . $id . " and lab='" . $_SESSION['lab'] . "';";
+    $conn->query($sql);
+
+    $sql = "select item_name, specs from item where id=" . $id . " and lab='" . $_SESSION['lab'] . "';";
+    $item_name = $conn->query($sql)->fetch_assoc()['item_name'];
+    $specs = $conn->query($sql)->fetch_assoc()['specs'];
+
+    $sql = "select id from item where lab='" . $tolab . "' and item_name='" . $item_name . "' and specs='" . $specs . "';";
+    echo $sql;
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $id = $result->fetch_assoc()['id'];
+        $sql = "update item set quantity=" . $quan . " where id=" . $id . ";";
+    } else {
+        $sql = "insert into item (item_name, specs, quantity, lab) values ('" . $item_name . "', '" . $specs . "', " . $quan . ", '" . $tolab . "');";
+    }
+    $conn->query($sql);
+
+    echo "Item Transfered";
 }
 $conn->close();
