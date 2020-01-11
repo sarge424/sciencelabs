@@ -56,8 +56,7 @@ if (!empty($result) && !empty($itemname)) {
 	echo 'Start typing to see items.';
 }
 
-function startsWith($haystack, $needle)
-{
+function startsWith($haystack, $needle) {
 	$length = strlen($needle);
 	return (substr($haystack, 0, $length) === $needle);
 }

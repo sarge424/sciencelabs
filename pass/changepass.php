@@ -1,6 +1,16 @@
 <?php
 require_once '../db.php';
 $uid = $_GET["id"];
+password_verify($dbid, $uid)
+
+$sql = "select id from teacher";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc()) {
+    if (password_verify($row['id'], $uid)) {
+        $uid = $row['id'];
+        break;
+    }    
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_REQUEST['name'];

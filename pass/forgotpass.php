@@ -10,22 +10,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = 'select * from teacher where teacher_name="' . $name . '";';
     $id = $conn->query($sql)->fetch_assoc()['id'];
+    $id = password_hash($id, PASSWORD_DEFAULT);
 
     if ($email == $conn->query($sql)->fetch_assoc()['email']) {
         //Typical mail data
         $mail->AddAddress($email, $name);
         $mail->SetFrom($email_from, $name_from);
         $mail->Subject = "Change Science Labs Password";
-        $mail->Body = "To change your password click <html> <a href='10.0.3.119/sciencelabs/pass/changepass.php?id=".$id."'>here</a>.<br><br>
+        $mail->Body = "To change your password click <html> <a href='10.0.3.119/sciencelabs/pass/changepass.php?id=" . $id . "'>here</a>.<br><br>
 						If this link doesn't work follow this link: <br><br>
-						10.0.3.119/sciencelabs/pass/changepass.php?id=".$id;
+						10.0.3.119/sciencelabs/pass/changepass.php?id=" . $id;
         $mail->IsHTML(true);
 
         try {
             $mail->Send();
             echo "<script>alert('Mail sent successfully!');document.location.href='../'</script>";
         } catch (Exception $e) {
-			echo '<script>alert("'.$e.'");';
+			echo '<script>alert("' . $e . '");';
             echo "<script>alert('Something went wrong. Try again later.');document.location.href='../'</script>";
         }
     } else {
