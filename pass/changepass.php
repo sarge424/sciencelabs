@@ -1,7 +1,6 @@
 <?php
 require_once '../db.php';
 $uid = $_GET["id"];
-password_verify($dbid, $uid)
 
 $sql = "select id from teacher";
 $result = $conn->query($sql);

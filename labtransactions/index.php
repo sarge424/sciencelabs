@@ -23,7 +23,7 @@
 <script>
     function transact() {
         let tolab = document.getElementsByName("tolab");
-        let item = document.getElementById("itemname");
+        let item = document.getElementById("id");
         let quantity = document.getElementById("quantity");
 
         let ajaxRequest;
@@ -60,13 +60,14 @@
             }
         }
 
-        let queryString = "?item=" + item.innerText + "&quantity=" + quantity.value + "&tolab=" + lab.value;
+        let queryString = "?id=" + item.innerHTML + "&quantity=" + quantity.value + "&tolab=" + lab.value;
         ajaxRequest.open("GET", "transfer.php" + queryString, true);
         ajaxRequest.send(null);
     }
 
-    function setItem(item) {
+    function setItem(item, id) {
         document.getElementById('item').value = item;
+        document.getElementById('id').innerHTML = id;
     }
 </script>
 
@@ -75,7 +76,7 @@
     <script>
         setActive('Lab Transfers');
     </script>
-    <?php include '../checksession.php'; ?>
+    <?php require_once '../checksession.php'; ?>
 
     <div class="container-fluid">
         <br>
@@ -99,7 +100,8 @@
                             <td>
                                 <input class="form-control input-sm" type="text" placeholder="e.g.-'Convex Lens'" id="item" onkeyup="getDBStuff()" required>
                                 <br>
-                                <div id="itemname" class="text-secondary">Start typing to see items.</div>
+                                <div id="itemname" class="text-secondary">Start typing to see items. Please CLICK on item name.</div>
+                                <div id="id" hidden></div>
                         <tr>
                             <td>
                                 <label class="form-control input-sm text-primary" align="center"><b>Quantity</b></label>
@@ -155,7 +157,6 @@
             ajaxRequest.onreadystatechange = function() {
                 if (ajaxRequest.readyState == 4) {
                     var itemDisplay = document.getElementById('itemname');
-                    var itemId = document.getElementById('itemid');
                     itemDisplay.innerHTML = ajaxRequest.responseText;
                 }
             }
