@@ -23,6 +23,7 @@ if ($sql_frag[0] == "select") {
 		}
 	}
 	echo '</tbody>';
+	$conn->close();
 } else {
 	$conn->query($sql);
 	$conn->close();
