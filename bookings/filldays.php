@@ -45,7 +45,11 @@ while ($var < 4) {
         <td>' . $tbookedby[$var] . '
         <td>' . $cbookedby[$var] . '
         <td>';
-    if ($tbookedby[$var] != "-") {
+
+    $sql = "select id from teacher where teacher_name='" . $tbookedby[$var] . "';";
+    $id = $conn->query($sql)->fetch_assoc()['id'];
+
+    if ($tbookedby[$var] != "-" && $id == $_SESSION['user']) {
         echo '<button class="btn btn-sm btn-success" onclick="bookitem(' . $var . ')">Book Items</button>';
     } else {
         echo "-";
