@@ -177,7 +177,7 @@
             }
 
             let queryString = "?id=" + id + '&q=' + q + '&name=' + nm;
-            request.open("GET", "submitexp.php" + queryString, true);
+            request.open("GET", "submitedit.php" + queryString, true);
             request.send(null);
         }
 
