@@ -150,11 +150,12 @@
                 }
 
             }
+            alert(res);
         }
 
         function submitAjax(id, q, nm) {
             let request;
-
+            alert('boo');
             try {
                 request = new XMLHttpRequest();
             } catch (e) {
@@ -184,6 +185,7 @@
         function submitExp () {
             for(let x=1; x < count; x++){
                 if(document.getElementById('tr'+x)!==null){
+                    alert('init');
                     submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
                 }
             }

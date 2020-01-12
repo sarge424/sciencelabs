@@ -90,13 +90,13 @@
 
 					global $conn;
 
-					$sql = 'select distinct exp_name from experiment where 1;';
+					$sql = 'select exp_name from experiment where 1;';
 
 					$result = $conn->query($sql);
 
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
-							$sql = 'SELECT a.exp_name, a.item_id, b.id, b.item_name from experiment a, item b where a.exp_name = "' . $row['exp_name'] . '" AND a.item_id=b.id;';
+							$sql = 'SELECT a.exp_name, a.id, b.exp_id, i.id, i.item_name as item_name from experiment a, experiment_item b, item i where a.exp_name = "' . $row['exp_name'] . '" AND a.id=b.exp_id AND b.item_id = i.id;';
 							$itemswithb = stringres($sql, 'item_name');
 							$items = substr($itemswithb, 3, strlen($itemswithb)-4);
 							?>
