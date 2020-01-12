@@ -111,11 +111,17 @@ create table lab_booking(
 create table experiment(
 	id int not null auto_increment,
 	exp_name varchar(50) not null,
+	date_created datetime not null default now(),
+	primary key (id)
+);
+
+create table experiment_item(
+	id int not null auto_increment,
+	exp_id int not null,
 	item_id int not null,
 	quantity int not null,
-	date_created datetime not null default now(),
 	primary key (id),
-	foreign key (item_id) references item (id)
+	foreign key (exp_id) references experiment (id)
 );
 
 create table item_booking(
