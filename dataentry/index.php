@@ -104,7 +104,7 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
-				console.log(request.responseText);
+				document.getElementById("result").innerHTML = request.responseText;
 			}
 		}
 
@@ -172,8 +172,10 @@
 			</div>
 		</div>
 		<div class="row">
-			<table class="table" id="result">
-			</table>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<table class="table" id="result"></table>
+			</div>
 		</div>
 	</div>
 
