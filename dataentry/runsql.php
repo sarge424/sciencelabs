@@ -27,4 +27,5 @@ if ($sql_frag[0] == "select") {
 } else {
 	$conn->query($sql);
 	$conn->close();
+	echo 'href';
 }

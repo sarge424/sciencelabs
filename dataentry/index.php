@@ -104,7 +104,11 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
-				document.getElementById("result").innerHTML = request.responseText;
+				if (request.responseText == "href") {
+					document.location.href = "../dataentry/";
+				} else {
+					document.getElementById("result").innerHTML = request.responseText;
+				}
 			}
 		}
 
