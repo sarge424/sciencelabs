@@ -26,7 +26,7 @@ require_once '../checksession.php';
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
-					<th>Filename</th>
+					<th>Filename (click to Download)</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,7 +45,7 @@ require_once '../checksession.php';
 				?>
 
 					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">
-						<td><?php echo 'Purchase Request: ' . $excel; ?></td>
+						<td><i class="fa fa-cloud-download"></i><?php echo '  Purchase Request: ' . $excel; ?></td>
 					</tr>
 
 				<?php

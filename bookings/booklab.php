@@ -125,7 +125,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<td>
 							<label class="form-control input-sm text-primary" align="center" style="width:125px"><b>Select Class</b></label>
 						<td>
-							<input class="form-control input-sm" align="right" name="class" placeholder="e.g. 8b, 10A, 12" required>
+							<select class="custom-select input-sm" align="right" name="class" required>
+								<?php
+									$sql = 'select class_name from class;';
+									$result = $conn->query($sql);
+									while($row = $result->fetch_assoc()){
+										echo '<option>'.$row['class_name'].'</option>';
+									}
+								?>
+							</select>
 					<tr>
 						<td colspan="2">
 							<button class="btn btn-success btn-block" type="submit">Make Booking</button>
