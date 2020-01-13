@@ -8,9 +8,15 @@ $sql_frag = explode(" ", $sql);
 if ($sql_frag[0] == "select") {
 	$var = 0;
 
-	echo '<tbody>';
-
 	$result = $conn->query($sql);
+	
+	echo '<thead class="thead thead-dark">';
+	$columns = $result;
+	while($column = $columns -> fetch_field()){
+		echo '<th>'.$column->name;
+	}
+
+	echo '</thead><tbody>';
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_row()) {
 			$var = 0;
