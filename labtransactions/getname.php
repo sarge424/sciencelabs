@@ -3,7 +3,7 @@ require_once '../db.php';
 require_once '../checksession.php';
 
 $itemname = $_GET['itemnm'];
-$sql = 'SELECT id,quantity,item_name,specs FROM item where lab="' . $_SESSION['lab'] . '";';
+$sql = 'select id,quantity,item_name,specs from item where lab="' . $_SESSION['lab'] . '";';
 
 $result = $conn->query($sql);
 

@@ -21,6 +21,13 @@
 	</style>
 </head>
 
+<script>
+	function redirectedit(expname, bookingid) {
+		let queryString = "?expname=" + expname + "&bookingid=" + bookingid;
+		document.location.href = "editexp.php" + queryString;
+	}
+</script>
+
 <body>
 	<?php include '../navbar.php'; ?>
 	<script>
@@ -30,7 +37,7 @@
 	<div class="container-fluid">
 		<br>
 		<div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='addexp.php?bookingid=<?php echo $_GET['bookingid'] ?>';">New Experiment</button>
+			<button class="btn btn-primary" onclick="document.location.href='addexp.php?bookingid=<?php echo $_GET['bookingid']; ?>'">New Experiment</button>
 		</div>
 		<br>
 		<div class="row">
@@ -67,97 +74,100 @@
 				<div align="center">
 					<div class="btn-group btn-large">
 						<h3>All Experiments</h3>
-				</div>
-				<table class="table table-hover">
-				<thead class="thead thead-dark">
-					<tr>
-						<th>Experiment</th>
-						<th>Items</th>
-					</tr><br>
-				</thead>
-				<tbody>
-					<?php
-					function stringres($sql, $attr){
-						include '../db.php';
-						$res = $conn->query($sql);
-						$ret = '  (';
-						while ($row = $res->fetch_assoc()) {
-							$ret .= $row[$attr] . ', ';
-						}
-						$ret = rtrim($ret, ', ') . ')';
-						return $ret;
-					}
+					</div>
+					<table class="table table-hover">
+						<thead class="thead thead-dark">
+							<tr>
+								<th>Experiment</th>
+								<th>Items</th>
+								<th> </th>
+							</tr><br>
+						</thead>
+						<tbody>
+							<?php
+							function stringres($sql, $attr)
+							{
+								include '../db.php';
+								$res = $conn->query($sql);
+								$ret = '  (';
+								while ($row = $res->fetch_assoc()) {
+									$ret .= $row[$attr] . ', ';
+								}
+								$ret = rtrim($ret, ', ') . ')';
+								return $ret;
+							}
 
-					global $conn;
+							global $conn;
 
-					$sql = 'select exp_name from experiment where 1;';
+							$sql = 'select exp_name from experiment where 1;';
 
-					$result = $conn->query($sql);
+							$result = $conn->query($sql);
 
-					if ($result->num_rows > 0) {
-						while ($row = $result->fetch_assoc()) {
-							$sql = 'SELECT a.exp_name, a.id, b.exp_id, i.id, i.item_name as item_name from experiment a, experiment_item b, item i where a.exp_name = "' . $row['exp_name'] . '" AND a.id=b.exp_id AND b.item_id = i.id;';
-							$itemswithb = stringres($sql, 'item_name');
-							$items = substr($itemswithb, 3, strlen($itemswithb)-4);
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									$sql = 'select a.exp_name, a.id, b.exp_id, i.id, i.item_name as item_name from experiment a, experiment_item b, item i where a.exp_name = "' . $row['exp_name'] . '" AND a.id=b.exp_id AND b.item_id = i.id;';
+									$itemswithb = stringres($sql, 'item_name');
+									$items = substr($itemswithb, 3, strlen($itemswithb) - 4);
 							?>
 
-							<tr>
-								<td><?php echo $row['exp_name'];?>
-								<td><?php echo $items?>
-							</tr>
+									<tr>
+										<td><?php echo $row['exp_name']; ?>
+										<td><?php echo $items; ?>
+										<td><button class="btn btn-warning" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button>
+									</tr>
 
-					<?php
+							<?php
+								}
+							}
+
+							$conn->close();
+							?>
+					</table>
+				</div>
+			</div>
+			<script language="javascript" type="text/javascript">
+				function setitemvalues(id, name) {
+					document.getElementById('itemid').value = id;
+					document.getElementById('inm').value = name;
+				}
+
+				function setexp(id, name) {
+					document.getElementById('expnm').value = name;
+				}
+
+				function getDBStuff() {
+					var request;
+
+					try {
+						request = new XMLHttpRequest();
+					} catch (e) {
+						try {
+							request = new ActiveXObject("Msxml2.XMLHTTP");
+						} catch (e) {
+							try {
+								request = new ActiveXObject("Microsoft.XMLHTTP");
+							} catch (e) {
+								alert("Oops! Something went wrong.");
+								return false;
+							}
 						}
 					}
 
-					$conn->close();
-					?>
-			</table>
-		</div>
-	</div>
-	<script language="javascript" type="text/javascript">
-		function setitemvalues(id, name) {
-			document.getElementById('itemid').value = id;
-			document.getElementById('inm').value = name;
-		}
-
-		function setexp(id, name) {
-			document.getElementById('expnm').value = name;
-		}
-
-		function getDBStuff() {
-			var ajaxRequest;
-
-			try {
-				ajaxRequest = new XMLHttpRequest();
-			} catch (e) {
-				try {
-					ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-				} catch (e) {
-					try {
-						ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-					} catch (e) {
-						alert("Oops! Something went wrong.");
-						return false;
+					request.onreadystatechange = function() {
+						if (request.readyState == 4) {
+							var studentDisplay = document.getElementById('studentname');
+							let res = request.responseText.split("###");
+							studentDisplay.innerHTML = res[0];
+						}
 					}
+
+					var rollno = document.getElementById('expnm').value;
+
+					var queryString = "?expname=" + rollno;
+					request.open("GET", "getname.php" + queryString, true);
+					request.send(null);
 				}
-			}
-
-			ajaxRequest.onreadystatechange = function() {
-				if (ajaxRequest.readyState == 4) {
-					var studentDisplay = document.getElementById('studentname');
-					let res = ajaxRequest.responseText.split("###");
-					studentDisplay.innerHTML = res[0];
-				}
-			}
-
-			var rollno = document.getElementById('expnm').value;
-
-			var queryString = "?expname=" + rollno;
-			ajaxRequest.open("GET", "getname.php" + queryString, true);
-			ajaxRequest.send(null);
-		}
-	</script>
+			</script>
 </body>
 
 </html>

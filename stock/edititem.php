@@ -10,7 +10,7 @@ $item_specs = $_POST['itemspecs'];
 
 $sql = 'UPDATE item' .
 	' SET item_name="' . $item_name . '", quantity="' . $item_stock . '", lab_location="' . $item_loc . '", specs="' . $item_specs . '"' .
-	' WHERE id=' . $item_id . ';';
+	' where id=' . $item_id . ';';
 
 $conn->query($sql);
 

@@ -66,6 +66,7 @@
             <div class="col-sm-12">
                 <h3><?php echo $dbtime; ?></h3>
                 <h3>Lab booked by: <?php echo $teacher; ?></h3>
+                <h4>Experiment Booked: <?php echo $exp; ?></h4>
                 <br>
                 <div align="center">
                     <table class="table">
@@ -75,7 +76,15 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "select item_id, quantity from experiment where exp_name='" . $exp . "';";
+                            $sql = "select id from experiment where exp_name='" . $exp . "';";
+                            $id = $conn->query($sql);
+                            if($id->num_rows == 1){
+                                $id = $id->fetch_assoc()['id'];
+                            } else {
+                                $id = 0;
+                            }
+
+                            $sql = "select item_id, quantity from experiment_item where exp_id=" . $id . ";";
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_assoc()) {
                                 $sql = "select item_name from item where id=" . $row['item_id'] . ";";

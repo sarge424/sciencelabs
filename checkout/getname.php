@@ -3,7 +3,7 @@ require_once '../db.php';
 require_once '../checksession.php';
 
 $rollno = $_GET['rollno'];
-$sql = 'SELECT student_name,id FROM student WHERE 1;';
+$sql = 'select student_name,id from student where 1;';
 
 require '../db.php';
 $result = $conn->query($sql);
@@ -26,7 +26,7 @@ if (!empty($result) && !empty($rollno)) {
 echo '###';
 
 $itemname = $_GET['itemnm'];
-$sql = 'SELECT id,quantity,item_name,specs FROM item where lab="'.$_SESSION['lab'].'";';
+$sql = 'select id,quantity,item_name,specs from item where lab="'.$_SESSION['lab'].'";';
 
 $result = $conn->query($sql);
 
