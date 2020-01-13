@@ -7,18 +7,18 @@
     <script src="../js/bootstrap.min.js"></script>
 
     <style>
-		input[type=number]::-webkit-inner-spin-button,
-		input[type=number]::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-		#studentname,
-		#itemname {
-			max-height: 150px;
-			overflow-y: scroll;
-		}
-	</style>
+        #studentname,
+        #itemname {
+            max-height: 150px;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,12 +40,12 @@
             let del = new_tr.lastChild.firstChild;
             del.id = 'del' + count;
 
-            let itemid = new_tr.firstChild.nextSibling.firstChild;
+            let itemid = new_tr.firstChild.nextSibling.firstChild.nextSibling;
             itemid.id = 'id' + count;
             itemid.innerHTML = document.getElementById('itemid').value;
             document.getElementById('itemid').value = '';
 
-            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild;
+            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild.nextSibling;
             itemnm.id = 'name' + count;
             itemnm.innerHTML = document.getElementById('inm').value;
             document.getElementById('inm').value = '';
@@ -66,8 +66,6 @@
             let tbody = document.getElementById('tbody2');
             let tr = document.getElementById('tr0');
 
-            console.log(tr);
-
             let new_tr = tr.cloneNode(true);
             new_tr.id = 'tr' + count;
             new_tr.classList.toggle('d-none');
@@ -75,14 +73,14 @@
             let del = new_tr.lastChild.firstChild;
             del.id = 'del' + count;
 
-            let itemid = new_tr.firstChild.nextSibling.firstChild;
+            let itemid = new_tr.firstChild.nextSibling.firstChild.nextSibling;
             itemid.id = 'id' + count;
             itemid.innerHTML = itid;
 
-            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild;
+            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild.nextSibling;
             itemnm.id = 'name' + count;
             itemnm.innerHTML = name;
-            
+
             new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.id = 'quantity' + count;
             new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.value = quant;
 
@@ -101,10 +99,10 @@
             tbody.removeChild(row);
         }
 
-        function setitemvalues (id, name) {
-			document.getElementById('itemid').value = id;
-			document.getElementById('inm').value = name;
-		}
+        function setitemvalues(id, name) {
+            document.getElementById('itemid').value = id;
+            document.getElementById('inm').value = name;
+        }
 
         function getDBStuff() {
             let request;
@@ -136,52 +134,7 @@
             request.send(null);
         }
 
-        function handle(res){
-            if(res === 'exists'){
-                alert('This experiment already exists!');
-                document.getElementById('exn').value = '';
-            }
-            if(res === 'done'){
-                document.getElementById('exn').value = '';
-                for(let x=1; x < count; x++){
-                    if(document.getElementById('del'+x)!==null){
-                        document.getElementById('del'+x).click();
-                    }
-                }
-
-            }
-            alert(res);
-        }
-
         function submitAjax(id, q, nm) {
-            let request;
-            try {
-                request = new XMLHttpRequest();
-            } catch (e) {
-                try {
-                    request = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        request = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) {
-                        alert("Oops! Something went wrong.");
-                        return false;
-                    }
-                }
-            }
-
-            request.onreadystatechange = function() {
-                if (request.readyState == 4) {
-                    handle(request.responseText);
-                }
-            }
-
-            let queryString = "?id=" + id + '&q=' + q + '&name=' + nm;
-            request.open("GET", "submitedit.php" + queryString, true);
-            request.send(null);
-        }
-
-        function submitExp () {
             let request;
             try {
                 request = new XMLHttpRequest();
@@ -202,35 +155,63 @@
                 if (request.readyState == 4) {}
             }
 
-            let queryString = "?name=" + document.getElementById('exn').value;
+            let queryString = "?id=" + id + '&q=' + q + '&name=' + nm;
+            request.open("GET", "submitedit.php" + queryString, true);
+            request.send(null);
+        }
+
+        function submitExp() {
+            let request;
+            try {
+                request = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("Oops! Something went wrong.");
+                        return false;
+                    }
+                }
+            }
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {}
+            }
+
+            let queryString = "?expname=" + document.getElementById('exn').value;
             request.open("GET", "deleteexitems.php" + queryString, true);
             request.send(null);
 
-            for(let x=1; x < count; x++){
-                if(document.getElementById('tr'+x) !== null){
-                    alert('init');
-                    submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
+            for (let x = 1; x < count; x++) {
+                if (document.getElementById('tr' + x) !== null) {
+                    submitAjax(document.getElementById('id' + x).innerHTML, document.getElementById('quantity' + x).value, document.getElementById('exn').value);
                 }
             }
+
+            alert("Experiment successfully edited!");
+            document.location.href = "../itembooking?bookingid=<?php echo $_GET['bookingid']; ?>";
         }
     </script>
 
-    <?php include '../navbar.php';?>
+    <?php include '../navbar.php'; ?>
     <script>
         setActive('Bookings');
     </script>
     <div class="container-fluid">
         <br>
         <div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='index.php?bookingid=<?php echo $_GET['bookingid']?>';">Back to Booking</button>
-		</div>
+            <button class="btn btn-primary" onclick="document.location.href='index.php?bookingid=<?php echo $_GET['bookingid'] ?>';">Back to Booking</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <div align="center">
                     <div class="btn-group btn-group-lg">
-                        <h3>Edit Experiment <?php echo $_GET['expname']?></h3>
+                        <h3>Edit Experiment <?php echo $_GET['expname'] ?></h3>
                     </div>
 
                 </div>
@@ -243,8 +224,10 @@
                             <th>
                         <tbody id="tbody2">
                             <tr id="tr0" class='d-none'>
-                                <td><div id="id0" class="form-control input-sm" type="number" readonly></div>
-                                <td><div id="name0" class="form-control input-sm" readonly></div>
+                                <td>
+                                    <div id="id0" class="form-control input-sm" type="number" readonly></div>
+                                <td>
+                                    <div id="name0" class="form-control input-sm" readonly></div>
                                 <td><input id="quantity0" class="form-control input-sm" type="number">
                                 <td><button class="btn btn-danger" id="del0">Delete</button>
                     </table>
@@ -252,11 +235,11 @@
                 <br>
                 <div class="pull-right form-inline">
                     <input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">&emsp;
-					<input type="text" id="itemid" name="itemid" hidden>
+                    <input type="text" id="itemid" name="itemid" hidden>
                     <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
                 <div class="form-inline">
-                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm" value="<?php echo $_GET['expname'];?>" readonly>&emsp;
+                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm" value="<?php echo $_GET['expname']; ?>" readonly>&emsp;
                     <button class="btn btn-primary btn-md" onclick="submitExp()">&#10004; Confirm Experiment</button>
                 </div>
                 <br>
@@ -267,23 +250,23 @@
         </div>
     </div>
     <?php
-        require_once '../checksession.php';
-        require_once '../db.php';
+    require_once '../checksession.php';
+    require_once '../db.php';
 
-        $sql = 'select id from experiment where exp_name="' . $_GET['expname'] . '" and lab="' . $_SESSION['lab'] . '";';
-        $id = $conn->query($sql)->fetch_assoc()['id'];
+    $sql = 'select id from experiment where exp_name="' . $_GET['expname'] . '" and lab="' . $_SESSION['lab'] . '";';
+    $id = $conn->query($sql)->fetch_assoc()['id'];
 
-        $sql = 'select * from experiment_item where exp_id=' . $id . ';';
-        $result = $conn->query($sql);
+    $sql = 'select * from experiment_item where exp_id=' . $id . ';';
+    $result = $conn->query($sql);
 
-        echo '<script>';
-        while($row = $result->fetch_assoc()){
-            $sql = 'select item_name from item where id=' . $row['item_id'] . ';';
-            $itemname = $conn->query($sql)->fetch_assoc()['item_name'];
-            
-            echo 'init(' . $row['item_id'] . ', "' . $itemname . '",' . $row['quantity'] . ');';
-        }
-        echo '</script>';
+    echo '<script>';
+    while ($row = $result->fetch_assoc()) {
+        $sql = 'select item_name from item where id=' . $row['item_id'] . ';';
+        $itemname = $conn->query($sql)->fetch_assoc()['item_name'];
+
+        echo 'init(' . $row['item_id'] . ', "' . $itemname . '",' . $row['quantity'] . ');';
+    }
+    echo '</script>';
     ?>
 </body>
 
