@@ -173,6 +173,7 @@
 			</div>
 			<div class="col-sm-3">
 				<button type="submit" class="btn btn-success btn-block form-control" onclick="runsql()">Run</button>
+				<button class="btn btn-light btn-block form-control" onclick="document.getElementById('result').innerHTML = '';hide();">Clear</button>
 			</div>
 		</div>
 		<div class="row">
@@ -196,6 +197,19 @@
 			}
 			document.getElementById(cityName).style.display = "block";
 			evt.currentTarget.className += " active";
+		}
+		function hide () {
+			let tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			let tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			document.getElementById('textarea').value = '';
 		}
 	</script>
 </body>
