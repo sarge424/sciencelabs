@@ -29,7 +29,7 @@
 
 	$item_id = $_GET['item_id'];
 
-	$sql = 'SELECT * from item WHERE id=' . $item_id . ';';
+	$sql = 'select * from item where id=' . $item_id . ';';
 	$result = $conn->query($sql);
 
 	if ($result->num_rows == 1) {

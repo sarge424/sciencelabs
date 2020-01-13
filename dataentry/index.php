@@ -141,7 +141,7 @@
 				<?php
 				$tablenames = $conn->query($sql_gettables);
 				while ($tablename = $tablenames->fetch_assoc()) {
-					$sql_getfields = 'SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = \'labs\' AND TABLE_NAME = \'' . $tablename["Tables_in_labs"] . '\';';
+					$sql_getfields = 'select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = \'labs\' AND TABLE_NAME = \'' . $tablename["Tables_in_labs"] . '\';';
 					$fields = $conn->query($sql_getfields);
 					echo '<div id="' . $tablename["Tables_in_labs"] . '" class="tabcontent pre-scrollable"><table class="table table-striped table-bordered"><thead id="thead"><tr>';
 					while ($field = $fields->fetch_assoc()) {

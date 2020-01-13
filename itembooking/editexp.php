@@ -155,7 +155,6 @@
 
         function submitAjax(id, q, nm) {
             let request;
-            alert('boo');
             try {
                 request = new XMLHttpRequest();
             } catch (e) {
@@ -183,8 +182,32 @@
         }
 
         function submitExp () {
+            let request;
+            try {
+                request = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("Oops! Something went wrong.");
+                        return false;
+                    }
+                }
+            }
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {}
+            }
+
+            let queryString = "?name=" + document.getElementById('exn').value;
+            request.open("GET", "deleteexitems.php" + queryString, true);
+            request.send(null);
+
             for(let x=1; x < count; x++){
-                if(document.getElementById('tr'+x)!==null){
+                if(document.getElementById('tr'+x) !== null){
                     alert('init');
                     submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
                 }
@@ -244,13 +267,21 @@
         </div>
     </div>
     <?php
-        include_once '../db.php';
-        $sql = 'select * from experiment where exp_name="'.$_GET['expname'].'";';
-        $result=$conn->query($sql);
+        require_once '../checksession.php';
+        require_once '../db.php';
+
+        $sql = 'select id from experiment where exp_name="' . $_GET['expname'] . '" and lab="' . $_SESSION['lab'] . '";';
+        $id = $conn->query($sql)->fetch_assoc()['id'];
+
+        $sql = 'select * from experiment_item where exp_id=' . $id . ';';
+        $result = $conn->query($sql);
+
         echo '<script>';
-        while($row=$result->fetch_assoc()){
-            $itemname = $conn->query('select item_name from item where id='.$row['item_id'].';')->fetch_assoc()['item_name'];
-            echo 'init('.$row['item_id'].', "'.$itemname.'",'.$row['quantity'].');';
+        while($row = $result->fetch_assoc()){
+            $sql = 'select item_name from item where id=' . $row['item_id'] . ';';
+            $itemname = $conn->query($sql)->fetch_assoc()['item_name'];
+            
+            echo 'init(' . $row['item_id'] . ', "' . $itemname . '",' . $row['quantity'] . ');';
         }
         echo '</script>';
     ?>

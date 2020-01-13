@@ -7,18 +7,18 @@
     <script src="../js/bootstrap.min.js"></script>
 
     <style>
-		input[type=number]::-webkit-inner-spin-button,
-		input[type=number]::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-		#studentname,
-		#itemname {
-			max-height: 150px;
-			overflow-y: scroll;
-		}
-	</style>
+        #studentname,
+        #itemname {
+            max-height: 150px;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,12 +40,12 @@
             let del = new_tr.lastChild.firstChild;
             del.id = 'del' + count;
 
-            let itemid = new_tr.firstChild.nextSibling.firstChild;
+            let itemid = new_tr.firstChild.nextSibling.firstChild.nextSibling;
             itemid.id = 'id' + count;
             itemid.innerHTML = document.getElementById('itemid').value;
             document.getElementById('itemid').value = '';
 
-            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild;
+            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild.nextSibling;
             itemnm.id = 'name' + count;
             itemnm.innerHTML = document.getElementById('inm').value;
             document.getElementById('inm').value = '';
@@ -68,10 +68,10 @@
             tbody.removeChild(row);
         }
 
-        function setitemvalues (id, name) {
-			document.getElementById('itemid').value = id;
-			document.getElementById('inm').value = name;
-		}
+        function setitemvalues(id, name) {
+            document.getElementById('itemid').value = id;
+            document.getElementById('inm').value = name;
+        }
 
         function getDBStuff() {
             let request;
@@ -103,24 +103,6 @@
             request.send(null);
         }
 
-        function handle(res){
-            if(res === 'exists'){
-                alert('This experiment already exists!');
-                document.getElementById('exn').value = '';
-            }
-            else if(res === 'done'){
-                document.getElementById('exn').value = '';
-                for(let x=1; x < count; x++){
-                    if(document.getElementById('del'+x)!==null){
-                        document.getElementById('del'+x).click();
-                    }
-                }
-
-            }else{
-                alert(res);
-            }
-        }
-
         function submitAjax(id, q, nm) {
             let request;
 
@@ -140,9 +122,7 @@
             }
 
             request.onreadystatechange = function() {
-                if (request.readyState == 4) {
-                    handle(request.responseText);
-                }
+                if (request.readyState == 4) {}
             }
 
             let queryString = "?id=" + id + '&q=' + q + '&name=' + nm;
@@ -150,12 +130,43 @@
             request.send(null);
         }
 
-        function submitExp () {
-            for(let x=1; x < count; x++){
-                if(document.getElementById('tr'+x)!==null){
-                    submitAjax(document.getElementById('id'+x).innerHTML, document.getElementById('quantity'+x).value, document.getElementById('exn').value);
+        function submitExp() {
+            let request;
+            try {
+                request = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("Oops! Something went wrong.");
+                        return false;
+                    }
                 }
             }
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {
+                    if (request.responseText == 'exists') {
+                        alert('Try changing the name. This experiment already exists!');
+                        document.getElementById('exn').value = '';
+                    } else {
+                        for (let x = 1; x < count; x++) {
+                            if (document.getElementById('tr' + x) !== null) {
+                                submitAjax(document.getElementById('id' + x).innerHTML, document.getElementById('quantity' + x).value, document.getElementById('exn').value);
+                            }
+                        }
+                        alert("Experiment Added");
+                        document.location.href = "../itembooking";
+                    }
+                }
+            }
+
+            let queryString = '?name=' + document.getElementById('exn').value;
+            request.open("GET", "createexp.php" + queryString, true);
+            request.send(null);
         }
     </script>
 
@@ -166,8 +177,8 @@
     <div class="container-fluid">
         <br>
         <div class="text-center">
-			<button class="btn btn-primary" onclick="document.location.href='index.php?bookingid=<?php echo $_GET['bookingid']?>';">Back to Booking</button>
-		</div>
+            <button class="btn btn-primary" onclick="document.location.href='index.php?bookingid=<?php echo $_GET['bookingid'] ?>';">Back to Booking</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-2"></div>
@@ -187,8 +198,10 @@
                             <th>
                         <tbody id="tbody2">
                             <tr id="tr0" class='d-none'>
-                                <td><div id="id0" class="form-control input-sm" type="number" readonly></div>
-                                <td><div id="name0" class="form-control input-sm" readonly></div>
+                                <td>
+                                    <div id="id0" class="form-control input-sm" type="number" readonly></div>
+                                <td>
+                                    <div id="name0" class="form-control input-sm" readonly></div>
                                 <td><input id="quantity0" class="form-control input-sm" type="number">
                                 <td><button class="btn btn-danger" id="del0">Delete</button>
                     </table>
@@ -196,7 +209,7 @@
                 <br>
                 <div class="pull-right form-inline">
                     <input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">&emsp;
-					<input type="text" id="itemid" name="itemid" hidden>
+                    <input type="text" id="itemid" name="itemid" hidden>
                     <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
                 <div class="form-inline">

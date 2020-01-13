@@ -71,19 +71,6 @@ create table purchase_request(
 	foreign key (teacher_id) references teacher(id)
 );
 
-create table lab_transaction(
-	id int not null unique auto_increment,
-	from_lab varchar(1) not null,
-	item_name varchar(50) not null,
-	quantity int not null,
-	specs varchar(100),
-	lab varchar(1) not null,
-	date_arrived datetime not null default now(),
-	comments varchar(100),
-	bill_code varchar(10) default "<No Bill>",
-	primary key(id)
-);
-
 create table dept_transaction(
 	id int not null auto_increment,
 	from_lab varchar(1) not null,
@@ -111,7 +98,7 @@ create table lab_booking(
 create table experiment(
 	id int not null auto_increment,
 	exp_name varchar(50) not null,
-	date_created datetime not null default now(),
+	lab varchar(1) not null,
 	primary key (id)
 );
 

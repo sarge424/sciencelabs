@@ -84,16 +84,16 @@
 		}
 		
 		function getDBStuff() {
-			var ajaxRequest;
+			var request;
 
 			try {
-				ajaxRequest = new XMLHttpRequest();
+				request = new XMLHttpRequest();
 			} catch (e) {
 				try {
-					ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+					request = new ActiveXObject("Msxml2.XMLHTTP");
 				} catch (e) {
 					try {
-						ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+						request = new ActiveXObject("Microsoft.XMLHTTP");
 					} catch (e) {
 						alert("Oops! Something went wrong.");
 						return false;
@@ -101,12 +101,12 @@
 				}
 			}
 
-			ajaxRequest.onreadystatechange = function() {
-				if (ajaxRequest.readyState == 4) {
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
 					var studentDisplay = document.getElementById('studentname');
 					var itemDisplay = document.getElementById('itemname');
 					var itemId = document.getElementById('itemid');
-					let res = ajaxRequest.responseText.split("###");
+					let res = request.responseText.split("###");
 					studentDisplay.innerHTML = res[0];
 					itemDisplay.innerHTML = res[1];
 					itemId.value = res[2];
@@ -117,8 +117,8 @@
 			var itemnm = document.getElementById('inm').value;
 
 			var queryString = "?rollno=" + rollno + "&itemnm=" + itemnm;
-			ajaxRequest.open("GET", "getname.php" + queryString, true);
-			ajaxRequest.send(null);
+			request.open("GET", "getname.php" + queryString, true);
+			request.send(null);
 		}
 	</script>
 </body>
