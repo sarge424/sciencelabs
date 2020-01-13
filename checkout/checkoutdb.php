@@ -22,7 +22,7 @@ if ($uniqueitem < $_POST['quantity']) {
 		$_POST['rollno'] . ', ' .
 		$_POST['itemid'] . ', ' .
 		$_POST['quantity'] . ', ' .
-		'0, "' .
+		'"N", "' .
 		$_SESSION['lab'] . '");';
 
 	$conn->query($sql);
