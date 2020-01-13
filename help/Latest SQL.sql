@@ -43,10 +43,11 @@ create table student_checkout(
 	student_id int not null,
 	item_id int not null,
 	quantity int not null,
-	returned int not null default 0,
+	returned varchar(1) not null default "N",
 	checkout_date date default now(),
 	lab varchar(1) not null default "p",
 	returned_date date,
+	lost varchar(1) not null default "N",
 	primary key(id),
 	foreign key (student_id) references student(id),
 	foreign key (item_id) references item(id)
