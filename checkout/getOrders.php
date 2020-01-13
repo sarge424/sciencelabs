@@ -2,7 +2,7 @@
 require_once '../db.php';
 require_once '../checksession.php';
 
-$sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned=0;';
+$sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned="N";';
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -21,7 +21,8 @@ if ($result->num_rows > 0) {
             '<td id="' . $row['item_id'] . '">' . $item .
             '<td>' . $row['quantity'] .
             '<td>' . $row['checkout_date'] .
-            '<td><button class="btn btn-warning btn-sm" onclick="arrived(' . $var . ')">Returned</button>';
+            '<td><button class="btn btn-warning btn-sm" onclick="arrived(' . $var . ')">Returned</button>' .
+            '<td><button class="btn btn-danger btn-sm" onclick="lost(' . $var . ')">Lost</button>';
         $var++;
     }
 }

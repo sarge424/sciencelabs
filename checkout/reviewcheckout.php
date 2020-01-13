@@ -37,13 +37,12 @@
             }
         }
 
-        request.open("GET", "getOrders.php", true);
+        request.open("GET", "getorders.php", true);
         request.send(null);
     }
 
     function arrived(row) {
         let tr = document.getElementById("row" + row);
-
         tr = tr.firstChild;
         let student_id = tr.id;
         tr = tr.nextSibling;
@@ -52,7 +51,6 @@
         let quantity = tr.innerHTML;
 
         let request;
-
         try {
             request = new XMLHttpRequest();
         } catch (e) {
@@ -75,7 +73,43 @@
         }
 
         let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity;
-        request.open("GET", "returnItem.php" + queryString, true);
+        request.open("GET", "returnitem.php" + queryString, true);
+        request.send(null);
+    }
+
+    function lost(row) {
+        let tr = document.getElementById("row" + row);
+        tr = tr.firstChild;
+        let student_id = tr.id;
+        tr = tr.nextSibling;
+        let item_id = tr.id;
+        tr = tr.nextSibling;
+        let quantity = tr.innerHTML;
+
+        let request;
+        try {
+            request = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return false;
+                }
+            }
+        }
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                alert("Item recorded as lost.");
+                document.location.href = "../checkout/reviewcheckout.php";
+            }
+        }
+
+        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity;
+        request.open("GET", "lostitem.php" + queryString, true);
         request.send(null);
     }
 </script>
@@ -101,6 +135,7 @@
                             <th>Quantity
                             <th>Checkout Date
                             <th>Returned?
+                            <th>Lost?
                         </thead>
                         <tbody id="tbody">
                             <script>
