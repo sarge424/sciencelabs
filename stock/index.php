@@ -108,7 +108,7 @@ require_once '../checksession.php';
 					$order_by = $_GET['orderby'];
 				}
 
-				$sql = 'SELECT * from item WHERE lab="' . $_SESSION['lab'] . '" ORDER BY ' . $order_by . ';';
+				$sql = 'select * from item where lab="' . $_SESSION['lab'] . '" ORDER BY ' . $order_by . ';';
 
 				$result = $conn->query($sql);
 

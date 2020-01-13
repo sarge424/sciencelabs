@@ -44,16 +44,16 @@
 
 	<script>
 		function ajaxLabs(labname) {
-			var ajaxRequest;
+			var request;
 
 			try {
-				ajaxRequest = new XMLHttpRequest();
+				request = new XMLHttpRequest();
 			} catch (e) {
 				try {
-					ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+					request = new ActiveXObject("Msxml2.XMLHTTP");
 				} catch (e) {
 					try {
-						ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+						request = new ActiveXObject("Microsoft.XMLHTTP");
 					} catch (e) {
 						alert("Oops! Something went wrong.");
 						return false;
@@ -61,15 +61,15 @@
 				}
 			}
 
-			ajaxRequest.onreadystatechange = function() {
-				if (ajaxRequest.readyState == 4) {
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
 					location.reload();
 				}
 			}
 
 			var queryString = "?newlab=" + labname;
-			ajaxRequest.open("GET", "changelab.php" + queryString, true);
-			ajaxRequest.send(null);
+			request.open("GET", "changelab.php" + queryString, true);
+			request.send(null);
 		}
 	</script>
 

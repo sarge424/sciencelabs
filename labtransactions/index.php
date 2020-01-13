@@ -26,16 +26,16 @@
         let item = document.getElementById("id");
         let quantity = document.getElementById("quantity");
 
-        let ajaxRequest;
+        let request;
 
         try {
-            ajaxRequest = new XMLHttpRequest();
+            request = new XMLHttpRequest();
         } catch (e) {
             try {
-                ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                request = new ActiveXObject("Msxml2.XMLHTTP");
             } catch (e) {
                 try {
-                    ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
                 } catch (e) {
                     alert("Oops! Something went wrong.");
                     return false;
@@ -43,10 +43,10 @@
             }
         }
 
-        ajaxRequest.onreadystatechange = function() {
-            if (ajaxRequest.readyState == 4) {
-                if (ajaxRequest.responseText != "") {
-                    alert(ajaxRequest.responseText);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                if (request.responseText != "") {
+                    alert(request.responseText);
                 }
                 document.location.href = "../labtransactions/";
             }
@@ -61,8 +61,8 @@
         }
 
         let queryString = "?id=" + item.innerHTML + "&quantity=" + quantity.value + "&tolab=" + lab.value;
-        ajaxRequest.open("GET", "transfer.php" + queryString, true);
-        ajaxRequest.send(null);
+        request.open("GET", "transfer.php" + queryString, true);
+        request.send(null);
     }
 
     function setItem(item, id) {
@@ -137,16 +137,16 @@
     </div>
     <script language="javascript" type="text/javascript">
         function getDBStuff() {
-            let ajaxRequest;
+            let request;
 
             try {
-                ajaxRequest = new XMLHttpRequest();
+                request = new XMLHttpRequest();
             } catch (e) {
                 try {
-                    ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
                 } catch (e) {
                     try {
-                        ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
                     } catch (e) {
                         alert("Oops! Something went wrong.");
                         return false;
@@ -154,18 +154,18 @@
                 }
             }
 
-            ajaxRequest.onreadystatechange = function() {
-                if (ajaxRequest.readyState == 4) {
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {
                     let itemDisplay = document.getElementById('itemname');
-                    itemDisplay.innerHTML = ajaxRequest.responseText;
+                    itemDisplay.innerHTML = request.responseText;
                 }
             }
 
             var itemnm = document.getElementById('item').value;
 
             var queryString = "?itemnm=" + itemnm;
-            ajaxRequest.open("GET", "getname.php" + queryString, true);
-            ajaxRequest.send(null);
+            request.open("GET", "getname.php" + queryString, true);
+            request.send(null);
         }
     </script>
 </body>
