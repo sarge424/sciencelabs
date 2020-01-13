@@ -127,6 +127,7 @@ create table missing(
 	item_id int not null,
 	quantity int not null,
 	entry_date date default now(),
+	comments varchar(100) not null,
 	primary key (id),
 	foreign key (item_id) references item (id)
 );
