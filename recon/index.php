@@ -36,6 +36,7 @@ include '../navbar.php';
             if (request.readyState == 4) {
                 let tbody = document.getElementById('data');
                 tbody.innerHTML = request.responseText;
+                sortTable();
             }
         }
 
@@ -93,6 +94,19 @@ include '../navbar.php';
         let queryString = "?item=" + item + "&specs=" + specs + "&quantity=" + quantity;
         request.open("GET", "enterrecon.php" + queryString, true);
         request.send(null);
+    }
+
+    function sortTable(){
+        let tbody = document.getElementById('data');
+        let len = tbody.rows.length
+        for(let x = 0; x < len; x++){
+            if(tbody.rows[x].cells[0].innerHTML.startsWith('recon')){
+                var row = tbody.insertRow(-1);
+                var cell = row.insertCell(0);
+                cell.innerHTML = tbody.rows[x].cells[0].innerHTML;
+                cell.colspan = 4;
+            }
+        }
     }
 </script>
 
