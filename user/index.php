@@ -1,5 +1,6 @@
 <?php
 require_once '../db.php';
+require_once '../checkSession.php';
 include '../navbar.php';
 ?>
 <html>
@@ -49,6 +50,14 @@ include '../navbar.php';
 			$_SERVER["REQUEST_METHOD"] == "";
 		}
 	}
+
+	$uname = $_SESSION['user'];
+
+	$sql = 'select * from teacher where id = ' . $uname . ';';
+	$result = $conn->query($sql);
+	while ($row = $result->fetch_assoc()) {
+		$uname = $row['teacher_name'];
+	}
 	?>
 
 	<script>
@@ -76,12 +85,12 @@ include '../navbar.php';
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Username</b></label>
 								<td>
-									<input class="form-control input-sm" type="text" placeholder="Enter Username" name="user" autofocus required></input>
+									<input class="form-control input-sm" type="text" value="<?php echo $uname?>" name="user" readonly disabled required></input>
 							<tr>
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Old Password</b></label>
 								<td>
-									<input class="form-control input-sm" type="password" placeholder="Enter Old Password" name="oldpass" required></input>
+									<input class="form-control input-sm" type="password" placeholder="Enter Old Password" name="oldpass" autofocus required></input>
 							<tr>
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>New Password</b></label>
