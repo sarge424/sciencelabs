@@ -48,15 +48,38 @@
                     if (child.length > 0) {
                         let item, quantity, specs, link, cost;
 
-                        item = child[0].firstChild.value;
-                        quantity = child[1].firstChild.value;
-                        specs = child[2].firstChild.value;
-                        link = child[3].firstChild.value;
-                        cost = child[4].firstChild.value;
-                        child[5].firstChild.click();
+                        item = child[0].firstChild;
+                        if (item.value == "") {
+                            item.style.borderColor = "#ff3333";
+                        }
+                        item = item.value
 
-                        if (item.length > 0 && quantity.length > 0) {
-                            connectAjax(item, quantity, specs, link, cost, x);
+                        quantity = child[1].firstChild;
+                        if (quantity.value == "") {
+                            quantity.style.borderColor = "#ff3333";
+                        }
+                        quantity = quantity.value;
+
+                        specs = child[2].firstChild;
+                        if (specs.value == "") {
+                            specs.style.borderColor = "#ff3333";
+                        }
+                        specs = specs.value;
+
+                        link = child[3].firstChild;
+                        if (link.value == "") {
+                            link.style.borderColor = "#ff3333";
+                        }
+                        link = link.value;
+
+                        cost = child[4].firstChild.value;
+
+                        if (item == "" || quantity == "" || specs == "" || link == "") {} else {
+                            child[5].firstChild.click();
+
+                            if (item.length > 0 && quantity.length > 0) {
+                                connectAjax(item, quantity, specs, link, cost, x);
+                            }
                         }
                     }
                 } catch (e) {}

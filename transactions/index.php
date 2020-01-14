@@ -54,7 +54,6 @@
                 </div>
                 <table class="table">
                     <thead class="thead thead-dark">
-                        <th>ID
                         <th>Teacher
                         <th>Item
                         <th>Quantity Ordered
