@@ -40,7 +40,7 @@ if (!empty($result) && !empty($itemname)) {
 	$lastid = 0;
 	while ($row = $result->fetch_assoc()) {
 		if (startsWith(strtolower($row['item_name']), strtolower($itemname))) {
-			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setitemvalues(' . $row['id'] . ',\'' . $row['item_name'] . '\');"><b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '</div>';
+			$html = $html . '<div class="btn btn-block btn-light text-left" onclick="setitemvalues(' . $row['id'] . ',\'' . $row['item_name'] . '\');addNewItem();"><b>' . $row['item_name'] . '  (' . $row['quantity'] . ')</b>   ' . $row['specs'] . '</div>';
 			$rows += 1;
 			$lastid = $row['id'];
 		} else {
