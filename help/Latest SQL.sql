@@ -33,6 +33,7 @@ create table item(
 	lab_location varchar(10),
 	specs varchar(100) default '',
 	quantity int default 0,
+	price decimal(10,2) not null default 0,
 	lab varchar(1) not null default "p",
 	recon date,
 	primary key(id)
@@ -128,6 +129,7 @@ create table missing(
 	quantity int not null,
 	entry_date date default now(),
 	comments varchar(100) not null,
+	paid varchar(1) default "N",
 	primary key (id),
 	foreign key (item_id) references item (id)
 );

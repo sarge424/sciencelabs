@@ -38,6 +38,7 @@
 		$item_stock = $row['quantity'];
 		$item_loc = $row['lab_location'];
 		$item_specs = $row['specs'];
+		$item_price = $row['price'];
 	}
 	$conn->close();
 	?>
@@ -52,10 +53,9 @@
 		<div class="col-sm-4"></div>
 
 		<div class="col-sm-4">
-			<h1 class="text-center">Edit Item</h1>
+			<h3 class="text-center">Edit Item</h3>
 			<form id="editForm" action="edititem.php" method="POST">
 				<input type="hidden" class="form-control" name="itemid" value="<?php echo $item_id; ?>" required>
-
 				<table class="table">
 					<tr>
 						<div class="form-group">
@@ -72,13 +72,18 @@
 					<tr>
 						<div class="form-group">
 							<td><label for="loc" class="form-control input-sm text-primary"><b>Shelf No.</b><label>
-							<td><input type="number" class="form-control" name="itemloc" value="<?php echo $item_loc; ?>" required>
+							<td><input class="form-control" name="itemloc" value="<?php echo $item_loc; ?>" required>
 						</div>
 
 					<tr>
 						<div class="form-group">
 							<td><label for="specs" class="form-control input-sm text-primary"><b>Specifications</b><label>
 							<td><textarea class="form-control" name="itemspecs" form="editForm"><?php echo $item_specs ?></textarea>
+						</div>
+					<tr>
+						<div class="form-group">
+							<td><label for="price" class="form-control input-sm text-primary"><b>Item Price</b><label>
+							<td><textarea class="form-control" name="itemprice" form="editForm"><?php echo $item_price ?></textarea>
 						</div>
 				</table>
 
