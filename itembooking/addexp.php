@@ -168,6 +168,12 @@
             request.open("GET", "createexp.php" + queryString, true);
             request.send(null);
         }
+
+        function addNewItem () {
+            if(document.getElementById('itemid').value !== '') {
+                addRow();
+            }
+        }
     </script>
 
     <?php include '../navbar.php'; ?>
@@ -208,9 +214,9 @@
                 </div>
                 <br>
                 <div class="pull-right form-inline">
+                    <label for="itemname" class="form-control text-primary"><b>Enter items to add to Exp.</b></label>&emsp;
                     <input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">&emsp;
                     <input type="text" id="itemid" name="itemid" hidden>
-                    <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
                 <div class="form-inline">
                     <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm">&emsp;
