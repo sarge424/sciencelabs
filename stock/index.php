@@ -90,7 +90,6 @@ require_once '../checksession.php';
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
-					<th onclick="sort('id')">DBID</th>
 					<th onclick="sort('item_name')">Name</th>
 					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf No.</th>
@@ -123,7 +122,6 @@ require_once '../checksession.php';
 						?>
 
 						<tr>
-							<td><?php echo $item_id ?></td>
 							<td><?php echo $item_name ?></td>
 							<td><?php echo $item_stock > 0 ? $item_stock : 'OUT OF STOCK'; ?></td>
 							<td><?php echo $item_loc ?></td>

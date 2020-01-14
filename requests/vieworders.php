@@ -26,8 +26,12 @@ include_once '../navbar.php';
         specs = specs.innerHTML.trim();
         let quantity = document.getElementById("quantity" + row);
         quantity = quantity.innerHTML.trim();
+        let link = document.getElementById("link" + row);
+        link = link.innerHTML.trim();
+        let cost = document.getElementById("cost" + row);
+        cost = cost.innerHTML.trim();
 
-        document.location.href = "editorder.php?item=" + item + "&specs=" + specs + "&quantity=" + quantity;
+        document.location.href = "editorder.php?item=" + item + "&specs=" + specs + "&quantity=" + quantity + "&link=" + link + "&cost=" + cost;
     }
 
     function del() {
@@ -72,7 +76,6 @@ include_once '../navbar.php';
         }
 
         let request;
-
         try {
             request = new XMLHttpRequest();
         } catch (e) {
@@ -99,8 +102,30 @@ include_once '../navbar.php';
         request.send(null);
     }
 
-    function createExcel(){
-        document.location.href = "genexcel.php";
+    function createExcel() {
+        let request;
+        try {
+            request = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return false;
+                }
+            }
+        }
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                window.open('../excel/<?php echo $_SESSION['labname'] . " " . date("Y m d"); ?>.xlsx');
+            }
+        }
+
+        request.open("GET", "genexcel.php", true);
+        request.send(null);
     }
 </script>
 

@@ -1,31 +1,15 @@
 ALL
 	shrink all tables
-	no DBIDs
 	rework todays bookings
 	LOST ITEMS page
 
 STOCK
-	new item has no use
-	instead of additem, click on the row
 	subtract with lost items
 	threshhold for certain items
 REQUEST
 	shrink main table
-	edit request needs space to edit link and cost
-	all stuff needs to b required
 EXCEL
 	create with specific template
-	possibly download excel right after gen and notify
 CHECKOUTS
 	charge students?(if yes, box to accept amount)
 	gen excel for ^ to send to accounts team
-BOOKINGS
-	alert if time and date is already booked
-ITEMBOOKING
-	if experiment dont exist, alert the user
-	dont allow experiment to contain more items than in stock
-	experiment required
-RECON
-	cant add more than whats there
-CHANGEPASS
-	dont need username - take it from the session
