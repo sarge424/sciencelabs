@@ -23,7 +23,7 @@ if ($quan_left > 0) {
         $id = $row['id'];
     }
 
-    $sql = "insert into missing (item_id, quantity, comments) values (" . $id . ", " . $quan_left . ", 'Lost before reconciliation');";
+    $sql = "insert into missing (item_id, quantity, comments) values (" . $id . ", " . $quan_left . ", 'Lost during reconciliation');";
     $conn->query($sql);
 }
 

@@ -138,7 +138,7 @@
                     </div>
 
                 </div>
-                <div style="height: 400px !important; overflow-y: auto !important;">
+                <div style="height: 300px !important; overflow-y: auto !important;">
                     <table class="table">
                         <thead class="thead thead-dark">
                             <th>Item

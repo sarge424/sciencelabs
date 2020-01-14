@@ -120,7 +120,7 @@ include_once '../navbar.php';
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
-                window.open('../excel/<?php echo $_SESSION['labname'] . " " . date("Y m d"); ?>.xlsx');
+                window.open('../excel/<?php echo $_SESSION['labname'] . " Request " . date("Y m d"); ?>.xlsx');
             }
         }
 
@@ -156,7 +156,7 @@ include_once '../navbar.php';
                 <div align="center">
                     <h3 id="heading">Your Pending Orders</h3>
                 </div>
-                <div style="height: 400px !important; overflow-y: auto !important;">
+                <div style="height: 300px !important; overflow-y: auto !important;">
                     <table class="table">
                         <thead class="thead thead-dark">
                             <th>Item

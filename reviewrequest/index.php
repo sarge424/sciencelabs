@@ -87,6 +87,9 @@
 <body>
     <div class="container-fluid">
         <br>
+        <div align="center">
+            <button class="btn btn-primary" onclick="document.location.href='../transactions/';">View Older Orders</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-1"></div>

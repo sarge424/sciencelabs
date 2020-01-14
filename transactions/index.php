@@ -1,15 +1,15 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<script src="../js/jquery-3.4.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <?php include '../navbar.php'; ?>
 <script>
-    setActive('Transactions');
+    setActive('Pending Orders');
 </script>
 
 <script>
@@ -30,7 +30,7 @@
             }
         }
 
-        request.onreadystatechange = function () {
+        request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 let tbody = document.getElementById("ajaxDiv");
                 tbody.innerHTML = request.responseText;
@@ -45,6 +45,9 @@
 <body>
     <div class="container-fluid">
         <br>
+        <div align="center">
+            <button class="btn btn-primary" onclick="document.location.href='../reviewrequest/';">Check Current Orders</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-1"></div>
