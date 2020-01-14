@@ -159,7 +159,7 @@
                             }
                         }
                         alert("Experiment Added");
-                        document.location.href = "../itembooking";
+                        document.location.href = "../itembooking/index.php?bookingid=<?php echo $_GET['bookingid']; ?>";
                     }
                 }
             }
