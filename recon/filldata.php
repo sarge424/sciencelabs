@@ -24,8 +24,10 @@ while ($row = $result->fetch_assoc()) {
             "<tr>" .
             "<td class='item' id='item" . $var . "'>" . $row['item_name'] .
             "<td class='specs' id='specs" . $var . "'>" . $row['specs'] .
-            "<td>" . $row['quantity'] .
-            "<td><input class='quantity form-control input-sm' type='number'/>";
+            "<td class='originalQuantity'>" . $row['quantity'] .
+            "<td><input class='quantity form-control input-sm' type='number' max='".$row['quantity']."'/>";
+    }else{
+        echo '<tr><td colspan="4" class="text-center">reconciliation is available only once in 90 days. There are still '.(90-$diff).' days remaining for '.$row['item_name'].'.';
     }
     $var++;
 }

@@ -94,7 +94,7 @@ require_once '../checksession.php';
 					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf No.</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
-					<th><button class="btn btn-success float-right" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
+					<th><button class="btn btn-success float-right d-none" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
 			</thead>
 			<tbody>

@@ -2,7 +2,7 @@ ALL
 	shrink all tables
 	rework todays bookings
 	LOST ITEMS page
-
+        Remove DBID's from itembookng
 STOCK
 	subtract with lost items
 	threshhold for certain items
