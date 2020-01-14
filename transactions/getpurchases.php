@@ -9,7 +9,6 @@ while ($row = $result->fetch_assoc()) {
     $sql = "select teacher_name from teacher where id=" . $row['teacher_id'] . ";";
     $teacher = $conn->query($sql);
     echo "<tr>
-            <td>" . $row['id'] . "
             <td>" . $teacher->fetch_assoc()['teacher_name'] . "
             <td>" . $row['item_name'] . " 
             <td>" . $row['quantity_ordered'] . "
