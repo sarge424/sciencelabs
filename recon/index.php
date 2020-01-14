@@ -47,8 +47,18 @@ include '../navbar.php';
         let item = document.getElementsByClassName("item");
         let specs = document.getElementsByClassName("specs");
         let quantity = document.getElementsByClassName("quantity");
+        let ogQuant = document.getElementsByClassName("originalQuantity");
 
         let x = 0;
+        while (x < item.length) {
+            if (quantity[x].value != "" && quantity[x].value > ogQuant[x].innerHTML) {
+                alert('Can\'t add more items to existing stock!');
+                return;
+            }
+            x++;
+        }
+
+        x = 0;
         while (x < item.length) {
             if (quantity[x].value != "") {
                 enterRecon(item[x].innerHTML, specs[x].innerHTML, quantity[x].value);
