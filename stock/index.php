@@ -46,6 +46,7 @@ require_once '../checksession.php';
 	<script src="../js/jquery-3.4.1.min.js"></script>
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/sciencelabs/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -86,11 +87,16 @@ require_once '../checksession.php';
 	<br>
 
 	<div class="container">
+		<div class="alert alert-danger text-center">
+			<strong>Warning!</strong> Item(s) are lower than their required stock(s).
+			<button class="btn btn-danger btn-sm mx-0">Generate Report</button>
+		</div>
 		<h1 class="text-center">View Stock</h1>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
 					<th onclick="sort('item_name')">Name</th>
+					<th onclick="sort('min_quantity')">Min. Quantity</th>
 					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf No.</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
@@ -116,13 +122,18 @@ require_once '../checksession.php';
 						$item_id = $row['id'];
 						$item_name = $row['item_name'];
 						$item_stock = $row['quantity'];
+						$item_min = $row['min_quantity'];
 						$item_loc = $row['lab_location'];
 						$item_specs = $row['specs'];
+						$icon = '';
+						if($item_stock < $item_min)
+							$icon = '<i class="fa fa-exclamation-triangle text-danger"></i>';
 
 						?>
 
 						<tr>
-							<td><?php echo $item_name ?></td>
+							<td><?php echo $icon.' '.$item_name ?></td>
+							<td><?php echo $item_min; ?></td>
 							<td><?php echo $item_stock > 0 ? $item_stock : 'OUT OF STOCK'; ?></td>
 							<td><?php echo $item_loc ?></td>
 							<td><?php echo $item_specs ?>
