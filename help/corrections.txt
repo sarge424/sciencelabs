@@ -1,5 +1,3 @@
 ALL
 	rework todays bookings
     Remove DBID's from itembookng
-STOCK
-	threshhold for certain items

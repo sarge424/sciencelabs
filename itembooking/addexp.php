@@ -37,15 +37,15 @@
             new_tr.id = 'tr' + count;
             new_tr.classList.toggle('d-none');
 
-            let del = new_tr.lastChild.firstChild;
+            let del = new_tr.lastChild.previousSibling.firstChild.nextSibling;
             del.id = 'del' + count;
 
-            let itemid = new_tr.firstChild.nextSibling.firstChild.nextSibling;
+            let itemid = new_tr.lastChild.previousSibling.firstChild.nextSibling.nextSibling.nextSibling;
             itemid.id = 'id' + count;
             itemid.innerHTML = document.getElementById('itemid').value;
             document.getElementById('itemid').value = '';
 
-            let itemnm = new_tr.firstChild.nextSibling.nextSibling.firstChild.nextSibling;
+            let itemnm = new_tr.firstChild.nextSibling.firstChild.nextSibling;
             itemnm.id = 'name' + count;
             itemnm.innerHTML = document.getElementById('inm').value;
             document.getElementById('inm').value = '';
@@ -153,7 +153,7 @@
                         alert('Try changing the name. This experiment already exists!');
                         document.getElementById('exn').value = '';
                     } else {
-                        for (let x = 1; x < count; x++) {
+                        for (let x = 0; x < count; x++) {
                             if (document.getElementById('tr' + x) !== null) {
                                 submitAjax(document.getElementById('id' + x).innerHTML, document.getElementById('quantity' + x).value, document.getElementById('exn').value);
                             }
@@ -192,25 +192,28 @@
                 <div style="height: 400px !important; overflow-y: auto !important;">
                     <table class="table">
                         <thead class="thead thead-dark">
-                            <th>ID
                             <th>Item
                             <th>Quantity
                             <th>
                         <tbody id="tbody2">
                             <tr id="tr0" class='d-none'>
                                 <td>
-                                    <div id="id0" class="form-control input-sm" type="number" readonly></div>
-                                <td>
                                     <div id="name0" class="form-control input-sm" readonly></div>
-                                <td><input id="quantity0" class="form-control input-sm" type="number">
-                                <td><button class="btn btn-danger" id="del0">Delete</button>
+                                </td>
+                                <td>
+                                    <input id="quantity0" class="form-control input-sm" type="number">
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="del0">Delete</button>
+                                    <div id="id0" class="form-control input-sm" type="number" hidden></div>
+                                </td>
+
                     </table>
                 </div>
                 <br>
                 <div class="pull-right form-inline">
                     <input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" class="form-control input-sm">&emsp;
                     <input type="text" id="itemid" name="itemid" hidden>
-                    <button class="btn btn-success" onclick="if(document.getElementById('itemid').value !== ''){addRow()}">&plus; Add Item</button>
                 </div>
                 <div class="form-inline">
                     <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm">&emsp;
