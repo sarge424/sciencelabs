@@ -129,7 +129,7 @@ create table missing(
 	quantity int not null,
 	entry_date date default now(),
 	comments varchar(100) not null,
-	paid varchar(1) default "N",
+	accounted varchar(1) default "N",
 	primary key (id),
 	foreign key (item_id) references item (id)
 );
