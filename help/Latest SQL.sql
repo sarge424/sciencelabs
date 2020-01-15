@@ -32,6 +32,7 @@ create table item(
 	item_name varchar(50) not null,
 	lab_location varchar(10),
 	specs varchar(100) default '',
+	min_quantity int default 0,
 	quantity int default 0,
 	price decimal(10,2) not null default 0,
 	lab varchar(1) not null default "p",

@@ -36,6 +36,7 @@
 		$row = $result->fetch_assoc();
 		$item_name = $row['item_name'];
 		$item_stock = $row['quantity'];
+		$item_min = $row['min_quantity'];
 		$item_loc = $row['lab_location'];
 		$item_specs = $row['specs'];
 		$item_price = $row['price'];
@@ -67,6 +68,12 @@
 						<div class="form-group">
 							<td><label for="stock" class="form-control input-sm text-primary"><b>Item Quantity</b><label>
 							<td><input type="number" class="form-control" name="itemstock" value="<?php echo $item_stock; ?>" readonly required>
+						</div>
+
+					<tr>
+						<div class="form-group">
+							<td><label for="min" class="form-control input-sm text-primary"><b>Minimum Quantity</b><label>
+							<td><input type="number" class="form-control" name="itemmin" value="<?php echo $item_min; ?>" required>
 						</div>
 
 					<tr>
