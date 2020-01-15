@@ -96,15 +96,6 @@ if ($lab == 'b') {
 					</li>';
 			}
 			?>
-			<?php
-			if ($_SESSION['level'] < 2) {
-				echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/missing/">
-							<i class="fa fa-shopping-basket"></i>Missing</a>
-					</li>';
-			}
-			?>
-			
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/bookings/">
 					<i class="fa fa-calendar-check-o"></i>Bookings</a>
@@ -137,6 +128,10 @@ if ($lab == 'b') {
 					<li class="nav-item">
 						<a class="nav-link" href="/sciencelabs/reviewrequest">
 							<i class="fa fa-list-alt"></i>Pending Orders</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/missing/">
+							<i class="fa fa-shopping-basket"></i>Missing Items</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../requests/getexcel.php">
