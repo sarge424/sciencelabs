@@ -1,11 +1,5 @@
 ALL
 	rework todays bookings
-	LOST ITEMS page
     Remove DBID's from itembookng
 STOCK
-	subtract with lost items
 	threshhold for certain items
-CHECKOUTS
-	charge students?(if yes, box to accept amount)
-	gen excel for ^ to send to accounts team
-	lost not working properly

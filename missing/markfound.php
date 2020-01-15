@@ -18,4 +18,7 @@ $conn->query($sql);
 
 $sql = "delete from missing where id=" . $missing_id . ";";
 $conn->query($sql);
+
+$sql = "update student_checkout set lost='N', returned_date=now(),  ;";
+$conn->query($sql);
 $conn->close();

@@ -72,7 +72,7 @@
             }
         }
 
-        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity;
+        let queryString = "?checkout_id=" + row;
         request.open("GET", "returnitem.php" + queryString, true);
         request.send(null);
     }
@@ -108,7 +108,7 @@
             }
         }
 
-        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity;
+        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row;
         request.open("GET", "lostitem.php" + queryString, true);
         request.send(null);
     }

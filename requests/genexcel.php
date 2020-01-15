@@ -54,6 +54,3 @@ foreach (range('A', 'E') as $col) {
 
 $writer = new Xlsx($spreadsheet);
 $writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
-
-header("Location: ../requests/");
-exit;
