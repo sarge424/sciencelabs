@@ -96,10 +96,15 @@ if ($lab == 'b') {
 					</li>';
 			}
 			?>
-			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/transactions/">
-					<i class="fa fa-shopping-basket"></i>Transactions</a>
-			</li>
+			<?php
+			if ($_SESSION['level'] < 2) {
+				echo '<li class="nav-item">
+						<a class="nav-link" href="/sciencelabs/missing/">
+							<i class="fa fa-shopping-basket"></i>Missing</a>
+					</li>';
+			}
+			?>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="/sciencelabs/bookings/">
 					<i class="fa fa-calendar-check-o"></i>Bookings</a>

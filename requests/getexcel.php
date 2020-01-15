@@ -45,7 +45,7 @@ require_once '../checksession.php';
 				?>
 
 					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">
-						<td><i class="fa fa-cloud-download"></i><?php echo '  Purchase Request: ' . $excel; ?></td>
+						<td><i class="fa fa-cloud-download"></i><?php echo $excel; ?></td>
 					</tr>
 
 				<?php

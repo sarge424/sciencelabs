@@ -11,19 +11,18 @@ $sheet = $spreadsheet->getActiveSheet();
 $sheet->setCellValue('A1', 'Item Name');
 $sheet->setCellValue('B1', 'Specifications');
 $sheet->setCellValue('C1', 'Quantity');
-$sheet->setCellValue('D1', 'Link');
-$sheet->setCellValue('E1', 'Approx. Cost');
+$sheet->setCellValue('D1', 'Student');
+$sheet->setCellValue('E1', 'Cost per Unit');
 $sheet->setCellValue('F1', 'Amount');
 
 $sheet->getStyle("A1:F1")->getFont()->setBold(true);
 
-$sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
+$sql = "select item_id, quantity, comments from missing where comments not in ('Lost during reconciliation');";
 $result = $conn->query($sql);
-
-$conn->close();
-
 $row = "A";
 $col = "2";
+
+//STOPPED HERE
 
 if ($result->num_rows != 0) {
     while ($info = $result->fetch_row()) {
@@ -53,7 +52,8 @@ foreach (range('A', 'E') as $col) {
 }
 
 $writer = new Xlsx($spreadsheet);
-$writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
+$writer->save("../excel/" . $_SESSION['labname'] . " Lost " . date("Y m d") . '.xlsx');
+$conn->close();
 
 header("Location: ../requests/");
 exit;
