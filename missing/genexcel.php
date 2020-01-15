@@ -52,7 +52,7 @@ foreach (range('A', 'E') as $col) {
 }
 
 $writer = new Xlsx($spreadsheet);
-$writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
+$writer->save("../excel/" . $_SESSION['labname'] . " Lost " . date("Y m d") . '.xlsx');
 $conn->close();
 
 header("Location: ../requests/");

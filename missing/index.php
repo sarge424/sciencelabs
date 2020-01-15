@@ -32,6 +32,7 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item marked as found.");
+                document.location.reload();
             }
         }
 
@@ -91,7 +92,7 @@
                             require_once '../db.php';
                             require_once '../checksession.php';
 
-                            $sql = "select * from missing where paid='N' and comments not in ('Lost during reconciliation');";
+                            $sql = "select * from missing where accounted='N' and comments not in ('Lost during reconciliation');";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
