@@ -54,24 +54,16 @@ include_once '../navbar.php';
         document.location.href = "requestpurchase.php";
     }
 
-    function showButton() {
-        document.getElementById("btn-hidden").classList.toggle("d-none");
-    }
-
     function adminButtonClick() {
-        let button = document.getElementById("btn-hidden");
-        let num = 1;
-        if (<?php echo $_SESSION['level']; ?> < 2) {
-            if (button.innerHTML == "View All Orders") {
-                document.getElementById("heading").innerHTML = "All Pending Orders";
-                document.getElementById("btn-hidden").innerHTML = "View Your Orders";
-                num = 0;
-            } else {
-                document.getElementById("heading").innerHTML = "Your Pending Orders";
-                document.getElementById("btn-hidden").innerHTML = "View All Orders";
-                num = 1;
-            }
+        button = document.getElementById("switch");
+
+        if (button.innerHTML == "View All Orders") {
+            document.getElementById("heading").innerHTML = "All Pending Orders";
+            button.innerHTML = "View Your Orders";
+            num = 0;
         } else {
+            document.getElementById("heading").innerHTML = "Your Pending Orders";
+            button.innerHTML = "View All Orders";
             num = 1;
         }
 
@@ -170,19 +162,16 @@ include_once '../navbar.php';
                 </div>
                 <br>
                 <div class="pull-right">
-                    <button class="btn btn-success float-right d-none" id="btn-hidden" style="margin: 5px" onclick="adminButtonClick()">View All Orders</button>
-                    <button class="btn btn-primary float-right <?php echo ($_SESSION['level'] != 2) ? "" : "d-none"; ?>" style="margin: 5px" id="genxl" onclick="createExcel()">Generate Excel</button>
+                    <?php
+                    if ($_SESSION['level'] < 2) {
+                        echo '<button class="btn btn-success float-right" id="switch" style="margin: 5px" onclick="adminButtonClick()">View All Orders</button>
+                            <button class="btn btn-primary float-right" style="margin: 5px" id="genxl" onclick="createExcel()">Generate Excel</button>';
+                    }
+                    ?>
                 </div>
                 <script>
                     adminButtonClick();
                 </script>
-                <?php
-                $level = $_SESSION['level'];
-
-                if ($level < 2) {
-                    echo '<script>showButton();</script>';
-                }
-                ?>
             </div>
         </div>
     </div>
