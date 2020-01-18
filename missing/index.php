@@ -7,7 +7,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <?php include '../navbar.php'; ?>
     <script>
-        setActive("Missing");
+        setActive("Missing Items");
     </script>
 </head>
 

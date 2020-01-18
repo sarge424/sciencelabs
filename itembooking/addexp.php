@@ -51,7 +51,7 @@
             document.getElementById('inm').value = '';
             document.getElementById('itemname').innerHTML = 'Start typing to see items.';
 
-            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.id = 'quantity' + count;
+            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.id = 'quantity' + count;
 
             let x = count;
             del.onclick = function() {
