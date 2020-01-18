@@ -85,7 +85,7 @@ if ($lab == 'b') {
 					<i class="fa fa-bar-chart"></i>Stock</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/sciencelabs/requests/">
+				<a class="nav-link" href="/sciencelabs/requests/vieworders.php">
 					<i class="fa fa-comments"></i>Requests</a>
 			</li>
 			<?php
