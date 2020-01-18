@@ -15,14 +15,14 @@ require_once '../checksession.php';
 
 	<?php include '../navbar.php'; ?>
 	<script>
-		setActive('Stock');
+		setActive('Download Excel');
 	</script>
 
 	<br>
 	<br>
 
 	<div class="container">
-		<h2 class="text-center">Request Spreadsheets</h3>
+		<h3 class="text-center">Request Spreadsheets</h3>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
