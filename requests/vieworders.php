@@ -8,6 +8,7 @@
 </head>
 
 <?php
+require_once '../db.php';
 require_once '../checksession.php';
 include_once '../navbar.php';
 ?>
@@ -18,6 +19,14 @@ include_once '../navbar.php';
 
 <script>
     let item;
+    let xlbtn = document.getElementById("genxl");
+    <?php
+    $sql = "select count(*) from purchase_request where lab='" . $_SESSION['lab'] . "';";
+    $result = $conn->query($sql);
+    if ($result->num_rows == 0) {
+        echo 'xlbtn.disabled = true;';
+    }
+    ?>
 
     function editRow(row) {
         let item = document.getElementById("item" + row);
