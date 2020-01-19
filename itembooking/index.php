@@ -26,6 +26,17 @@
 		let queryString = "?expname=" + expname + "&bookingid=" + bookingid;
 		document.location.href = "editexp.php" + queryString;
 	}
+
+	function initialise() {
+		<?php
+		require_once '../db.php';
+		require_once '../checksession.php';
+
+		$book_id = $_GET['bookingid'];
+		$sql = "select exp_id from item_booking where labbooking_id=" . $book_id . ";";
+
+		?>
+	}
 </script>
 
 <body>
@@ -68,6 +79,9 @@
 									<button class="btn btn-success btn-block" type="submit">Checkout</button>
 						</table>
 					</div>
+					<script>
+						initialise();
+					</script>
 				</form>
 			</div>
 			<div class="col-sm-6 bg-white">

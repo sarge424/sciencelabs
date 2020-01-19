@@ -8,29 +8,24 @@
 </head>
 
 <script>
-    let count = 1;
-
-    function cloneRow(item, quantity) {
-        let tbody = document.getElementById("tbody");
-        let tr0 = document.getElementById("row0");
-        let new_tr = tr0.cloneNode(true);
-
-        new_tr.id = "tr" + count;
-
-        new_tr.firstChild.nextSibling.innerHTML = item;
-        new_tr.lastChild.previousSibling.innerHTML = quantity;
-
-        new_tr.classList.toggle("d-none");
-        tbody.appendChild(new_tr);
-        count++;
-    }
+	let count = 1;
+	function cloneRow(item, quantity){
+		let tbody = document.getElementById("tbody");
+		let tr0 = document.getElementById("row0");
+		let new_tr = tr0.cloneNode(true);
+		
+		new_tr.id = "tr"+count;
+		
+		
+		count++;
+	}
 </script>
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <h3 id="teacher">Not Booked</h3>
-        </div>
+		<div class="row">
+			<h3 id="teacher">Not Booked</h3>
+		</div>
         <div class="row">
             <h3 id="experiment">No Exp</h3>
             <table class="table" id="items">
@@ -39,9 +34,9 @@
                     <th>Quantity
                 </thead>
                 <tbody id="tbody">
-                    <tr id="row0" class="d-none">
+                    <tr id="row0">
                         <td>No items booked</td>
-                        <td></td>
+						<td></td>
                     </tr>
                 </tbody>
             </table>
@@ -64,8 +59,8 @@ $quantity = 0;
 
 $sql = 'select id, date_format(booked_date, "%Y %m %d") as booked_date, teacher_id from lab_booking where date_format(booked_date, "%Y %m %d")="' . $date . '" and booked_time="' . $time . '" and lab="' . $_SESSION['lab'] . '";';
 $result = $conn->query($sql);
-if ($result->num_rows == 1) {
-    $row = $result->fetch_assoc();
+if($result->num_rows == 1){
+	$row = $result->fetch_assoc();
     $booking_id = $row['id'];
     $teacher_id = $row['teacher_id'];
 
@@ -73,43 +68,37 @@ if ($result->num_rows == 1) {
     $teacher_name = $conn->query($sql)->fetch_assoc()['teacher_name'];
 ?>
 
-    <script>
-        document.getElementById('teacher').innerHTML = "<?php echo $teacher_name; ?>";
-    </script>
+<script>
+    document.getElementById('teacher').innerHTML = "<?php echo $teacher_name; ?>";
+</script>
 
-    <?php
+<?php
     $sql = "select exp_id, quantity from item_booking where labbooking_id=" . $booking_id . ";";
     $result = $conn->query($sql);
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
+    if($result->num_rows == 1){
+		$row = $result->fetch_assoc();
         $exp_id = $row['exp_id'];
         $quantity = $row['quantity'];
         $sql = "select item_id, quantity from experiment_item where exp_id=" . $exp_id . ";";
         $result = $conn->query($sql);
-        while ($item = $result->fetch_assoc()) {
+        while($item = $result->fetch_assoc()){
             $sql = "select item_name from item where id=" . $item['item_id'] . ";";
             $item_name = $conn->query($sql)->fetch_assoc()['item_name'];
-            $quan = $quantity * $item['quantity'];
-    ?>
-            <script>
-                cloneRow("<?php echo $item_name; ?>", <?php echo $quan; ?>);
-            </script>
-        <?php
+			$quan = $quantity * $item['quantity'];
+?>
+	<script>
+		cloneRow("<?php echo $item_name; ?>", <?php echo $quan; ?>);
+	</script>
+<?php
         }
         $sql = "select exp_name from experiment where id=" . $exp_id . ";";
         $exp_name = $conn->query($sql)->fetch_assoc()['exp_name'];
-        ?>
-        <script>
-            document.getElementById("experiment").innerHTML = "<?php echo $exp_name; ?>";
-        </script>
-    <?php
-    }
-} else {
-    ?>
+?>
     <script>
-        document.getElementById("row0").classList.toggle("d-none");
+        document.getElementById("experiment").innerHTML = "<?php echo $exp_name; ?>";
     </script>
 <?php
+    }
 }
 ?>
 
