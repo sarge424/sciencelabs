@@ -51,7 +51,11 @@ require_once '../checksession.php';
 
 <body>
 
-	<?php include '../navbar.php'; ?>
+	<?php
+		include '../navbar.php';
+		$sql = 'select min_quantity, quantity from item where min_quantity > quantity;';
+		$alert = ($conn->query($sql)->num_rows == 0 || $lev == 2)? 'd-none':'';
+	?>
 	<script>
 		setActive('Stock');
 	</script>
@@ -87,9 +91,9 @@ require_once '../checksession.php';
 	<br>
 
 	<div class="container">
-		<div class="alert alert-danger text-center">
+		<div class="alert alert-danger text-center <?php echo $alert;?>">
 			<strong>Warning!</strong> Item(s) are lower than their required stock(s).
-			<button class="btn btn-danger btn-sm mx-0">Generate Report</button>
+			<button class="btn btn-danger btn-sm mx-0" onclick="document.location.href = 'genreport.php';">Generate Report</button>
 		</div>
 		<h1 class="text-center">View Stock</h1>
 		<table class="table table-hover">
@@ -98,7 +102,7 @@ require_once '../checksession.php';
 					<th onclick="sort('item_name')">Name</th>
 					<th onclick="sort('min_quantity')">Min. Quantity</th>
 					<th onclick="sort('quantity')">Stock</th>
-					<th onclick="sort('lab_location')">Shelf No.</th>
+					<th onclick="sort('lab_location')">Shelf</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
 					<th><button class="btn btn-success float-right d-none" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
