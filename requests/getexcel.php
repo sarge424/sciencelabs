@@ -15,7 +15,7 @@ require_once '../checksession.php';
 
 	<?php include '../navbar.php'; ?>
 	<script>
-		setActive('Stock');
+		setActive('Download Excel');
 	</script>
 
 	<br>
