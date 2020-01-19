@@ -33,9 +33,24 @@
 		require_once '../checksession.php';
 
 		$book_id = $_GET['bookingid'];
-		$sql = "select exp_id from item_booking where labbooking_id=" . $book_id . ";";
-
+		$sql = "select exp_id, quantity from item_booking where labbooking_id=" . $book_id . ";";
+		$exp_id = $conn->query($sql)->fetch_assoc()['exp_id'];
+		if ($exp_id == "") {
+			$exp_id = 0;
+		}
+		$quantity = $conn->query($sql)->fetch_assoc()['quantity'];
+		$sql = "select exp_name from experiment where id=" . $exp_id . ";";
+		$exp_name = $conn->query($sql)->fetch_assoc()['exp_name'];
 		?>
+		document.getElementById("expnm").value = "<?php echo $exp_name; ?>";
+		<?php
+		if ($quantity != "") {
+		?>
+			document.getElementById("quan").value = <?php echo $quantity; ?>;
+		<?php
+		}
+		?>
+
 	}
 </script>
 
@@ -73,15 +88,15 @@
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>No. of Students</b></label>
 								<td>
-									<input class="form-control" type="number" name="quantity" min="1" required>
+									<input class="form-control" id="quan" type="number" name="quantity" min="1" required>
 							<tr>
 								<td colspan="2">
 									<button class="btn btn-success btn-block" type="submit">Checkout</button>
 						</table>
+						<script>
+							initialise();
+						</script>
 					</div>
-					<script>
-						initialise();
-					</script>
 				</form>
 			</div>
 			<div class="col-sm-6 bg-white">
