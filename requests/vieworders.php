@@ -8,7 +8,6 @@
 </head>
 
 <?php
-require_once '../db.php';
 require_once '../checksession.php';
 include_once '../navbar.php';
 ?>
@@ -19,14 +18,6 @@ include_once '../navbar.php';
 
 <script>
     let item;
-    let xlbtn = document.getElementById("genxl");
-    <?php
-    $sql = "select count(*) from purchase_request where lab='" . $_SESSION['lab'] . "';";
-    $result = $conn->query($sql);
-    if ($result->num_rows == 0) {
-        echo 'xlbtn.disabled = true;';
-    }
-    ?>
 
     function editRow(row) {
         let item = document.getElementById("item" + row);
@@ -171,12 +162,8 @@ include_once '../navbar.php';
                 </div>
                 <br>
                 <div class="pull-right">
-                    <?php
-                    if ($_SESSION['level'] < 2) {
-                        echo '<button class="btn btn-success float-right" id="switch" style="margin: 5px" onclick="adminButtonClick()">View All Orders</button>
-                            <button class="btn btn-primary float-right" style="margin: 5px" id="genxl" onclick="createExcel()">Generate Excel</button>';
-                    }
-                    ?>
+                    <button class="btn btn-success float-right" id="switch" style="margin: 5px" onclick="adminButtonClick()" <?php echo ($_SESSION['level'] < 2)?'':'hidden' ?>>View All Orders</button>
+                    <button class="btn btn-primary float-right" style="margin: 5px" id="genxl" onclick="createExcel()" <?php echo ($_SESSION['level'] < 2)?'':'hidden' ?>>Generate Excel</button>
                 </div>
                 <script>
                     adminButtonClick();

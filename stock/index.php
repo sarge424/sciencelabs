@@ -89,16 +89,16 @@ require_once '../checksession.php';
 	<div class="container">
 		<div class="alert alert-danger text-center">
 			<strong>Warning!</strong> Item(s) are lower than their required stock(s).
-			<button class="btn btn-danger btn-sm mx-0" onclick="document.location.href='genreport.php';">Generate Report</button>
+			<button class="btn btn-danger btn-sm mx-0">Generate Report</button>
 		</div>
-		<h3 class="text-center">View Stock</h3>
+		<h1 class="text-center">View Stock</h1>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
 					<th onclick="sort('item_name')">Name</th>
 					<th onclick="sort('min_quantity')">Min. Quantity</th>
 					<th onclick="sort('quantity')">Stock</th>
-					<th onclick="sort('lab_location')">Shelf</th>
+					<th onclick="sort('lab_location')">Shelf No.</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
 					<th><button class="btn btn-success float-right d-none" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
