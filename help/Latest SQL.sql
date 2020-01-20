@@ -87,6 +87,19 @@ create table dept_transaction(
 	foreign key (item_id) references item(id)
 );
 
+create table lab_borrow(
+	id int not null auto_increment,
+	from_lab varchar(1) not null,
+	item_id int not null,
+	quantity int not null,
+	to_lab varchar(30) not null,
+	transfer_date datetime not null default now(),
+	comments varchar(100),
+	item_status varchar(10) not null default 'PENDING',
+	primary key(id),
+	foreign key (item_id) references item(id)
+);
+
 create table lab_booking(
 	id int not null auto_increment,
 	booked_date date,

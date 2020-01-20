@@ -21,9 +21,10 @@
 </head>
 
 <script>
-    function borrow() {
+    function borrow() {}
+
         let tolab = document.getElementById("borrowedby").value;
-        let item = document.getElementById("id").value;
+        let item = document.getElementById("id").innerHTML;
         let quantity = document.getElementById("quantity").value;
 
         let request;
@@ -52,7 +53,8 @@
             }
         }
 
-        let queryString = "?id=" + item + "&quantity=" + quantity + "&tolab=" + lab;
+
+        let queryString = "?id=" + item + "&quantity=" + quantity + "&tolab=" + tolab;
         request.open("GET", "borrow.php" + queryString, true);
         request.send(null);
     }
@@ -93,7 +95,7 @@
                                 <input class="form-control input-sm" type="text" placeholder="e.g.-'Convex Lens'" id="item" onkeyup="getDBStuff()" required>
                                 <br>
                                 <div id="itemname" class="text-secondary">Start typing to see items. Please CLICK on item name.</div>
-                                <div id="id" hidden></div>
+                                <div id="id" value="-1" hidden></div>
                         <tr>
                             <td>
                                 <label class="form-control input-sm text-primary" align="center"><b>Quantity</b></label>
