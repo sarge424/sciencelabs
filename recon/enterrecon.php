@@ -27,7 +27,7 @@ if ($quan_left > 0) {
     $conn->query($sql);
 }
 
-$sql = "update item set quantity=" . $quantity . ", recon=now() where item_name='" . $item . "' and specs='" . $specs . "';";
+$sql = "update item set quantity=" . $quantity . ", recon=now(), lost_quantity=" . $quan_left . " where item_name='" . $item . "' and specs='" . $specs . "';";
 $conn->query($sql);
 
 $conn->close();

@@ -17,7 +17,12 @@ $sheet->setCellValue('F1', 'Amount');
 
 $sheet->getStyle("A1:F1")->getFont()->setBold(true);
 
-$sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
+if($_SESSION['level'] == 1){
+    $sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0;";
+} else {
+    $sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
+}
+
 $result = $conn->query($sql);
 
 $conn->close();
@@ -53,4 +58,9 @@ foreach (range('A', 'E') as $col) {
 }
 
 $writer = new Xlsx($spreadsheet);
-$writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
+
+if($_SESSION['level'] == 1){
+    $writer->save("../excel/HOD Request " . date("Y m d") . '.xlsx');
+} else {
+    $writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
+}

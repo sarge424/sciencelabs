@@ -15,7 +15,7 @@ require_once '../checksession.php';
 
 	<?php include '../navbar.php'; ?>
 	<script>
-		setActive('Stock');
+		setActive('Download Excel');
 	</script>
 
 	<br>
@@ -40,8 +40,20 @@ require_once '../checksession.php';
 				$files = array_diff(scandir($path), array('.', '..'));
 				$files = array_reverse($files);
 
-				foreach ($files as $excel) {
-					if(startsWith($excel, $_SESSION['labname'])) {
+				if($_SESSION['level'] == 1){
+					foreach ($files as $excel) {
+						if(startsWith($excel, $_SESSION['labname'])) {
+				?>
+
+					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">
+						<td><i class="fa fa-cloud-download"></i><?php echo $excel; ?></td>
+					</tr>
+
+				<?php
+						}
+					}
+				} else {
+					foreach ($files as $excel) {
 				?>
 
 					<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');">

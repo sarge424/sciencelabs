@@ -33,6 +33,7 @@ create table item(
 	lab_location varchar(10),
 	specs varchar(100) default '',
 	min_quantity int default 0,
+	lost_quantity int default 0,
 	quantity int default 0,
 	price decimal(10,2) not null default 0,
 	lab varchar(1) not null default "p",
@@ -119,6 +120,7 @@ create table item_booking(
 	labbooking_id int not null,
 	exp_id int not null,
 	quantity int not null default 1,
+	returned varchar(1) default "N",
 	primary key (id),
 	foreign key (exp_id) references experiment (id),
 	foreign key (labbooking_id) references lab_booking (id)
@@ -137,30 +139,30 @@ create table missing(
 
 insert into teacher(id, teacher_name, teacher_pass, levels, email) values (1, 'abhinav', '$2y$10$Inr2U7NdVEQHAkf4WL3Biu3LrM0FKxz28xZE0nWM1JoqOOYokEJVe', 0, "abhinav@ishahomeschool.org");
 insert into teacher(id, teacher_name, teacher_pass, levels) values (2, 'arjun', '$2y$10$Inr2U7NdVEQHAkf4WL3Biu3LrM0FKxz28xZE0nWM1JoqOOYokEJVe', 0);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (4, 'd', '1161', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (5, 'e', '9987', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (6, 'f', '1572', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (7, 'g', '3950', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (8, 'h', '9500', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (9, 'i', '2950', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (10, 'j', '5014', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (11, 'k', '4056', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (12, 'l', '4716', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (13, 'm', '6312', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (14, 'n', '9726', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (15, 'o', '2123', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (16, 'p', '9781', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (17, 'q', '1061', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (18, 'r', '5093', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (19, 's', '2174', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (20, 't', '7392', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (21, 'u', '1961', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (22, 'v', '6302', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (23, 'w', '1174', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (24, 'x', '2852', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (25, 'y', '3290', 2);
-insert into teacher(id, teacher_name, teacher_pass, levels) values (26, 'z', '713', 2);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (3, 'c', '6512', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (4, 'd', '1161', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (5, 'e', '9987', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (6, 'f', '1572', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (7, 'g', '3950', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (8, 'h', '9500', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (9, 'i', '2950', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (10, 'j', '5014', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (11, 'k', '4056', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (12, 'l', '4716', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (13, 'm', '6312', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (14, 'n', '9726', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (15, 'o', '2123', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (16, 'p', '9781', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (17, 'q', '1061', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (18, 'r', '5093', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (19, 's', '2174', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (20, 't', '7392', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (21, 'u', '1961', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (22, 'v', '6302', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (23, 'w', '1174', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (24, 'x', '2852', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (25, 'y', '3290', 3);
+insert into teacher(id, teacher_name, teacher_pass, levels) values (26, 'z', '713', 3);
 
 insert into class(class_name, class_teacher) values ('8A', 3);
 insert into class(class_name, class_teacher) values ('8B', 16);

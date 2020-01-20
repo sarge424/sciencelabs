@@ -2,7 +2,7 @@
 require_once '../db.php';
 require_once '../checksession.php';
 
-if ($_SESSION['level'] < 2 && isset($_SESSION['level'])) {
+if ($_SESSION['level'] < 3 && isset($_SESSION['level'])) {
 	$item_id = $_GET['item_id'];
 	$sql = 'delete from `item` where `id` = ' . $item_id . ';';
 	$conn->query($sql);

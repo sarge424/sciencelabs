@@ -23,7 +23,7 @@
 	require_once '../db.php';
 	require_once '../checksession.php';
 
-	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
+	if ($_SESSION['level'] == 3 || !isset($_SESSION['level'])) {
 		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}
 
@@ -78,7 +78,7 @@
 
 					<tr>
 						<div class="form-group">
-							<td><label for="loc" class="form-control input-sm text-primary"><b>Shelf No.</b><label>
+							<td><label for="loc" class="form-control input-sm text-primary"><b>Shelf</b><label>
 							<td><input class="form-control" name="itemloc" value="<?php echo $item_loc; ?>" required>
 						</div>
 

@@ -48,7 +48,7 @@
                 if (request.responseText != "") {
                     alert(request.responseText);
                 }
-                document.location.href = "../labtransactions/";
+                document.location.href = "../labtransfer/";
             }
         }
 

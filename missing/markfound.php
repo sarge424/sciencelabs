@@ -13,7 +13,7 @@ while ($row = $result->fetch_assoc()) {
     $quantity = $row['quantity'];
 }
 
-$sql = "update item set quantity=quantity+" . $quantity . " where id=" . $item_id . ";";
+$sql = "update item set lost_quantity=lost_quantity+" . $quantity . " where id=" . $item_id . ";";
 $conn->query($sql);
 
 $sql = "delete from missing where id=" . $missing_id . ";";

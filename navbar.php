@@ -17,6 +17,9 @@ if ($lev == 0) {
 	$level = 'Admin ';
 	$icon = '<i class="fa fa-hand-spock-o" aria-hidden="true"></i>';
 } else if ($lev == 1) {
+	$level = 'HOD ';
+	$icon = '<i class="fa fa-graduation-cap" aria-hidden="true"></i>';
+} else if ($lev == 2) {
 	$level = 'Lab Master ';
 	$icon = '<i class="fa fa-graduation-cap" aria-hidden="true"></i>';
 } else {
@@ -89,7 +92,7 @@ if ($lab == 'b') {
 					<i class="fa fa-comments"></i>Requests</a>
 			</li>
 			<?php
-			if ($_SESSION['level'] < 2) {
+			if ($_SESSION['level'] < 3) {
 				echo '<li class="nav-item">
 						<a class="nav-link" href="/sciencelabs/checkout/">
 							<i class="fa fa-shopping-cart"></i>Checkouts</a>
@@ -101,7 +104,7 @@ if ($lab == 'b') {
 					<i class="fa fa-calendar-check-o"></i>Bookings</a>
 			</li>
 			<?php
-			if ($_SESSION['level'] < 2) {
+			if ($_SESSION['level'] < 3) {
 				echo '<li class="nav-item">
 						<a class="nav-link" href="/sciencelabs/recon">
 							<i class="fa fa-minus-square"></i>Reconciliation</a>
@@ -120,9 +123,9 @@ if ($lab == 'b') {
 
 		<ul class="navbar-nav ">
 			<?php
-			if ($_SESSION['level'] < 2) {
+			if ($_SESSION['level'] < 3) {
 				echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/labtransactions">
+						<a class="nav-link" href="/sciencelabs/labtransfer">
 							<i class="fa fa-exchange"></i>Lab Transfers</a>
 					</li>
 					<li class="nav-item">

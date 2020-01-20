@@ -7,7 +7,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <?php include '../navbar.php'; ?>
     <script>
-        setActive("Missing");
+        setActive("Missing Items");
     </script>
 </head>
 
@@ -71,6 +71,9 @@
 <body>
     <div class="container-fluid">
         <br>
+        <div align="center">
+            <button class="btn btn-primary" onclick="document.location.href = '../stock/'">View Items</button>
+        </div>
         <br>
         <div class="row">
             <div class="col-sm-3"></div>
