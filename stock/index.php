@@ -85,6 +85,33 @@ require_once '../checksession.php';
 		function sort(orderby) {
 			document.location.href = '<?php echo $_SERVER['PHP_SELF']; ?>?orderby=' + orderby;
 		}
+
+		function genReport() {
+			let request;
+
+			try {
+				request = new XMLHttpRequest();
+			} catch (e) {
+				try {
+					request = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch (e) {
+					try {
+						request = new ActiveXObject("Microsoft.XMLHTTP");
+					} catch (e) {
+						return false;
+					}
+				}
+			}
+
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					window.open(request.responseText);
+				}
+			}
+
+			request.open("GET", "genreport.php", true);
+			request.send(null);
+		}
 	</script>
 
 	<div class="container">
@@ -95,7 +122,7 @@ require_once '../checksession.php';
 		<br>
 		<div class="alert alert-danger text-center <?php echo $alert; ?>">
 			<strong>Warning!</strong> Item(s) are lower than their required stock(s).
-			<button class="btn btn-danger btn-sm mx-0" onclick="document.location.href = 'genreport.php';">Generate Report</button>
+			<button class="btn btn-danger btn-sm mx-0" onclick="genReport()">Generate Report</button>
 		</div>
 		<h3 class="text-center">View Stock</h3>
 		<table class="table table-hover">
@@ -106,6 +133,7 @@ require_once '../checksession.php';
 					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
+					<th onclick="sort('lost_quantity')">Lost Quantity</th>
 					<?php echo ($_SESSION['level'] == 1) ? '<th>Lab</th>' : '' ?>
 					<th><button class="btn btn-success float-right d-none" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
@@ -136,6 +164,7 @@ require_once '../checksession.php';
 						$item_min = $row['min_quantity'];
 						$item_loc = $row['lab_location'];
 						$item_specs = $row['specs'];
+						$item_lost = $row['lost_quantity'];
 						$lab = strtoupper($row['lab']);
 						$icon = '';
 						if ($item_stock < $item_min)
@@ -149,6 +178,7 @@ require_once '../checksession.php';
 							<td><?php echo $item_stock > 0 ? $item_stock : 'OUT OF STOCK'; ?></td>
 							<td><?php echo $item_loc ?></td>
 							<td><?php echo $item_specs ?></td>
+							<td><?php echo $item_lost; ?></td>
 							<?php echo ($_SESSION['level'] == 1) ? '<td>' . $lab . '</td>' : '' ?>
 							<td><button class="btn btn-danger btn-small float-right" onclick="delItem(<?php echo $item_id ?>)" <?php echo ($lev >= 1) ? 'disabled' : ''; ?>>&times;</button>
 								<p class="float-right px-1"> </p>

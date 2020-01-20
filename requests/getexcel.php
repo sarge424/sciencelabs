@@ -40,7 +40,7 @@ require_once '../checksession.php';
 				$files = array_diff(scandir($path), array('.', '..'));
 				$files = array_reverse($files);
 
-				if($_SESSION['level'] == 1){
+				if($_SESSION['level'] != 1){
 					foreach ($files as $excel) {
 						if(startsWith($excel, $_SESSION['labname'])) {
 				?>

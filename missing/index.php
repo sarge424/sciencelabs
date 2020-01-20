@@ -60,10 +60,39 @@
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
-                window.open("../excel/<?php echo $_SESSION['labname'] . " Lost " . date("Y m d"); ?>.xlsx");
+                window.open(request.responseText);
             }
         }
         request.open("GET", "genexcel.php", true);
+        request.send(null);
+    }
+
+    function paid(id) {
+        let request;
+        try {
+            request = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    alert("Oops! Something went wrong.");
+                    return false;
+                }
+            }
+        }
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                alert("Item paid.");
+                document.location.reload();
+            }
+        }
+
+        let queryString = "?missing_id=" + id;
+        request.open("GET", "markpaid.php" + queryString, true);
         request.send(null);
     }
 </script>
@@ -89,13 +118,14 @@
                             <th>Entry Date</th>
                             <th>Comments</th>
                             <th>Found?</th>
+                            <th>Paid?</th>
                         </thead>
                         <tbody>
                             <?php
                             require_once '../db.php';
                             require_once '../checksession.php';
 
-                            $sql = "select * from missing where accounted='N' and comments not in ('Lost during reconciliation');";
+                            $sql = "select * from missing where accounted='N';";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -111,6 +141,7 @@
                                         <td><?php echo $date; ?></td>
                                         <td><?php echo $comments; ?></td>
                                         <td><button class="btn btn-sm btn-warning" onclick="found(<?php echo $row['id']; ?>)">Found</button></td>
+                                        <td><button class="btn btn-sm btn-danger" onclick="paid(<?php echo $row['id']; ?>)">Paid</button></td>
                                     </tr>
                             <?php
                                 }
@@ -120,7 +151,7 @@
                     </table>
                 </div>
                 <br>
-                <button class="btn btn-success float-right" onclick="createexcel()">Generate Excel</button>
+                <button class="btn btn-success float-right" onclick="createexcel()" <?php echo ($_SESSION['level'] == 1) ? '' : 'hidden' ?>>Generate Excel</button>
             </div>
         </div>
     </div>

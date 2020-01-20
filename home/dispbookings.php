@@ -34,10 +34,12 @@
     <div class="container-fluid">
         <div class="row">
             <h3 id="teacher">Not Booked</h3>
-            <button class="btn btn-warning float-right" id="done">Done</button>
         </div>
         <div class="row">
             <h3 id="experiment">No Exp</h3>
+        </div>
+        <div class="row">
+
             <table class="table" id="items">
                 <thead class="thead thead-dark">
                     <th>Item
@@ -106,7 +108,7 @@ if ($result->num_rows == 1) {
         ?>
         <script>
             document.getElementById("experiment").innerHTML = "<?php echo $exp_name; ?>";
-            document.getElementById("done").onclick = function(){
+            document.getElementById("done").onclick = function() {
                 document.location.href = '../reviewexp/index.php?labbooking_id=<?php echo $booking_id; ?>';
             };
         </script>
