@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <?php include '../navbar.php' ?>
+    <script>setActive("Home");</script>
+</head>
+
+<script>
+    function returnAll(){
+        
+    }
+</script>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div align="center">
+                    <h3>Review Items</h3>
+                </div>
+                <table class="table">
+                    <thead class="thead thead-dark">
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th><button class="btn btn-warning" onclick="returnAll()">Return Items</button></th>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

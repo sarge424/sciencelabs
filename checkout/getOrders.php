@@ -2,7 +2,11 @@
 require_once '../db.php';
 require_once '../checksession.php';
 
-$sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned="N";';
+if($_SESSION['level'] == 1){
+    $sql = 'select * from student_checkout where returned="N";';
+} else {
+    $sql = 'select * from student_checkout where lab="' . $_SESSION['lab'] . '" and returned="N";';
+}
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

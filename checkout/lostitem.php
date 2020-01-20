@@ -17,6 +17,6 @@ $student = $conn->query($sql)->fetch_assoc()['student_name'];
 $sql = "insert into missing (item_id, quantity, comments) values (" . $item . ", " . $quantity . ", 'Lost by " . $student . "');";
 $conn->query($sql);
 
-$sql = "update item set quantity=quantity-" . $quantity . " where id=" . $item . ";";
+$sql = "update item set lost_quantity=" . $quantity . " where id=" . $item . ";";
 $conn->query($sql);
 $conn->close();

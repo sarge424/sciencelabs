@@ -23,7 +23,7 @@
 	require_once '../db.php';
 	require_once '../checksession.php';
 
-	if ($_SESSION['level'] == 2 || !isset($_SESSION['level'])) {
+	if ($_SESSION['level'] == 3 || !isset($_SESSION['level'])) {
 		echo '<script>alert("You do not have access to perform this action.");document.location.href = "../stock/";</script>';
 	}
 

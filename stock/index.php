@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../db.php';
 require_once '../checksession.php';
 ?>
@@ -52,9 +52,9 @@ require_once '../checksession.php';
 <body>
 
 	<?php
-		include '../navbar.php';
-		$sql = 'select min_quantity, quantity from item where min_quantity > quantity;';
-		$alert = ($conn->query($sql)->num_rows == 0 || $lev == 2)? 'd-none':'';
+	include '../navbar.php';
+	$sql = 'select min_quantity, quantity from item where min_quantity > quantity;';
+	$alert = ($conn->query($sql)->num_rows == 0 || $lev == 2) ? 'd-none' : '';
 	?>
 	<script>
 		setActive('Stock');
@@ -87,15 +87,17 @@ require_once '../checksession.php';
 		}
 	</script>
 
-	<br>
-	<br>
-
 	<div class="container">
-		<div class="alert alert-danger text-center <?php echo $alert;?>">
+		<br>
+		<div align="center">
+			<button class="btn btn-primary" onclick="document.location.href = '../missing/'">Missing Items</button>
+		</div>
+		<br>
+		<div class="alert alert-danger text-center <?php echo $alert; ?>">
 			<strong>Warning!</strong> Item(s) are lower than their required stock(s).
 			<button class="btn btn-danger btn-sm mx-0" onclick="document.location.href = 'genreport.php';">Generate Report</button>
 		</div>
-		<h1 class="text-center">View Stock</h1>
+		<h3 class="text-center">View Stock</h3>
 		<table class="table table-hover">
 			<thead class="thead thead-dark">
 				<tr>
@@ -104,6 +106,7 @@ require_once '../checksession.php';
 					<th onclick="sort('quantity')">Stock</th>
 					<th onclick="sort('lab_location')">Shelf</th>
 					<th onclick="sort('specs')" colspan="1">Specifications</th>
+					<?php echo ($_SESSION['level'] == 1) ? '<th>Lab</th>' : '' ?>
 					<th><button class="btn btn-success float-right d-none" onclick="document.location.href = 'addnewitem.php'" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>New Item</button></th>
 				</tr>
 			</thead>
@@ -117,7 +120,11 @@ require_once '../checksession.php';
 					$order_by = $_GET['orderby'];
 				}
 
-				$sql = 'select * from item where lab="' . $_SESSION['lab'] . '" ORDER BY ' . $order_by . ';';
+				if ($_SESSION['level'] == 1) {
+					$sql = 'select * from item ORDER BY ' . $order_by . ';';
+				} else {
+					$sql = 'select * from item where lab="' . $_SESSION['lab'] . '" ORDER BY ' . $order_by . ';';
+				}
 
 				$result = $conn->query($sql);
 
@@ -129,18 +136,20 @@ require_once '../checksession.php';
 						$item_min = $row['min_quantity'];
 						$item_loc = $row['lab_location'];
 						$item_specs = $row['specs'];
+						$lab = strtoupper($row['lab']);
 						$icon = '';
-						if($item_stock < $item_min)
+						if ($item_stock < $item_min)
 							$icon = '<i class="fa fa-exclamation-triangle text-danger"></i>';
 
-						?>
+				?>
 
 						<tr>
-							<td><?php echo $icon.' '.$item_name ?></td>
+							<td><?php echo $icon . ' ' . $item_name ?></td>
 							<td><?php echo $item_min; ?></td>
 							<td><?php echo $item_stock > 0 ? $item_stock : 'OUT OF STOCK'; ?></td>
 							<td><?php echo $item_loc ?></td>
-							<td><?php echo $item_specs ?>
+							<td><?php echo $item_specs ?></td>
+							<?php echo ($_SESSION['level'] == 1) ? '<td>' . $lab . '</td>' : '' ?>
 							<td><button class="btn btn-danger btn-small float-right" onclick="delItem(<?php echo $item_id ?>)" <?php echo ($lev >= 1) ? 'disabled' : ''; ?>>&times;</button>
 								<p class="float-right px-1"> </p>
 								<button class="btn btn-warning btn-small float-right" onclick="editItem(<?php echo $item_id ?>)" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>Edit</button>

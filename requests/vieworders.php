@@ -153,6 +153,7 @@ include_once '../navbar.php';
                         <thead class="thead thead-dark">
                             <th>Item
                             <th>Specifications
+                            <?php echo ($_SESSION['level'] == 1)?'<th>Lab</th>':'' ?>
                             <th>Quantity
                             <th>Link
                             <th colspan="3">Cost
@@ -162,8 +163,8 @@ include_once '../navbar.php';
                 </div>
                 <br>
                 <div class="pull-right">
-                    <button class="btn btn-success float-right" id="switch" style="margin: 5px" onclick="adminButtonClick()" <?php echo ($_SESSION['level'] < 2)?'':'hidden' ?>>View All Orders</button>
-                    <button class="btn btn-primary float-right" style="margin: 5px" id="genxl" onclick="createExcel()" <?php echo ($_SESSION['level'] < 2)?'':'hidden' ?>>Generate Excel</button>
+                    <button class="btn btn-success float-right" id="switch" style="margin: 5px" onclick="adminButtonClick()" <?php echo ($_SESSION['level'] < 3) ? '' : 'hidden' ?>>View All Orders</button>
+                    <button class="btn btn-primary float-right" style="margin: 5px" id="genxl" onclick="createExcel()" <?php echo ($_SESSION['level'] < 3) ? '' : 'hidden' ?>>Generate Excel</button>
                 </div>
                 <script>
                     adminButtonClick();
