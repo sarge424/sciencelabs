@@ -112,7 +112,7 @@ include_once '../navbar.php';
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
-                window.open('../excel/<?php echo $_SESSION['labname'] . " Request " . date("Y m d"); ?>.xlsx');
+                window.open(request.responseText);
             }
         }
 
