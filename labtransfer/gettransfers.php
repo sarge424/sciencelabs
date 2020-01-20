@@ -2,7 +2,11 @@
 require_once '../db.php';
 require_once '../checksession.php';
 
-$sql = "select * from dept_transaction where from_lab='" . $_SESSION['lab'] . "';";
+if($_SESSION['level'] == 1){
+    $sql = "select * from dept_transaction;";
+} else {
+    $sql = "select * from dept_transaction where from_lab='" . $_SESSION['lab'] . "';";
+}
 $result = $conn->query($sql);
 
 $data = "";
