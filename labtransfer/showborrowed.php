@@ -68,23 +68,16 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item returned");
-                document.location.href = "../checkout/reviewcheckout.php";
+                document.location.href = "../labtransfer/showborrowed.php";
             }
         }
 
         let queryString = "?checkout_id=" + row;
-        request.open("GET", "returnitem.php" + queryString, true);
+        request.open("GET", "returnborrow.php" + queryString, true);
         request.send(null);
     }
 
     function lost(row) {
-        let tr = document.getElementById("row" + row);
-        tr = tr.firstChild;
-        let student_id = tr.id;
-        tr = tr.nextSibling;
-        let item_id = tr.id;
-        tr = tr.nextSibling;
-        let quantity = tr.innerHTML;
 
         let request;
         try {
@@ -104,12 +97,12 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item recorded as lost.");
-                document.location.href = "../checkout/reviewcheckout.php";
+                document.location.href = "../labtransfer/showborrowed.php";
             }
         }
 
-        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row;
-        request.open("GET", "lostitem.php" + queryString, true);
+        let queryString = "?checkout_id=" + row;
+        request.open("GET", "lostborrow.php" + queryString, true);
         request.send(null);
     }
 </script>

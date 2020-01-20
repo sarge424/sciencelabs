@@ -94,6 +94,7 @@ create table lab_borrow(
 	quantity int not null,
 	to_lab varchar(30) not null,
 	transfer_date datetime not null default now(),
+	return_date datetime,
 	comments varchar(100),
 	item_status varchar(10) not null default 'PENDING',
 	primary key(id),
