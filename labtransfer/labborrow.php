@@ -21,7 +21,12 @@
 </head>
 
 <script>
-    function borrow() {}
+    function setItem(item, id) {
+        document.getElementById('item').value = item;
+        document.getElementById('id').innerHTML = id;
+    }
+
+    function borrow() {
 
         let tolab = document.getElementById("borrowedby").value;
         let item = document.getElementById("id").innerHTML;
@@ -57,11 +62,6 @@
         let queryString = "?id=" + item + "&quantity=" + quantity + "&tolab=" + tolab;
         request.open("GET", "borrow.php" + queryString, true);
         request.send(null);
-    }
-
-    function setItem(item, id) {
-        document.getElementById('item').value = item;
-        document.getElementById('id').innerHTML = id;
     }
 </script>
 
