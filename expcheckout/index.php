@@ -9,7 +9,7 @@
 
 <?php include '../navbar.php'; ?>
 <script>
-    setActive('Lab Transfers');
+    setActive('Bookings');
 </script>
 
 <script>
@@ -37,7 +37,7 @@
             }
         }
 
-        request.open("GET", "getborrowedlist.php", true);
+        request.open("GET", "getdata.php", true);
         request.send(null);
     }
 
@@ -68,66 +68,41 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item returned");
-                document.location.href = "../labtransfer/showborrowed.php";
+                document.location.reload();
             }
         }
 
         let queryString = "?checkout_id=" + row;
-        request.open("GET", "returnborrow.php" + queryString, true);
+        request.open("GET", "returnexp.php" + queryString, true);
         request.send(null);
     }
 
     function lost(row) {
-
-        let request;
-        try {
-            request = new XMLHttpRequest();
-        } catch (e) {
-            try {
-                request = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {
-                    return false;
-                }
-            }
+        var redirect = confirm('Please use the student checkout tab to mark items as lost and charge the respective student. Would you like to be redirected?');
+        if(redirect){
+            document.location.href = 'reportmissing.php';
         }
-
-        request.onreadystatechange = function() {
-            if (request.readyState == 4) {
-                alert("Item recorded as lost.");
-                document.location.href = "../labtransfer/showborrowed.php";
-            }
-        }
-
-        let queryString = "?checkout_id=" + row;
-        request.open("GET", "lostborrow.php" + queryString, true);
-        request.send(null);
     }
 </script>
 
 <body>
     <div class="container-fluid">
         <br>
-        <div class="text-center">
-            <button class="btn btn-primary" onclick="document.location.href='../labtransfer/labborrow.php';">Borrow More</button>
-        </div>
-        <br>
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <div align="center">
-                    <h3>Pending Student Returns</h3>
+                    <h3>Pending Experiment Returns</h3>
                 </div>
                 <div align="center">
                     <table class="table">
                         <thead class="thead thead-dark">
-                            <th>Item
+                            <th>Teacher
+                            <th>Experiment
                             <th>Quantity
-                            <th>Checkout Date
-                            <th>Borrowed By
-                            <th colspan="2">Status
+                            <th>Class
+                            <th>Date
+                            <th class="text-center" colspan="2">Mark as
                         </thead>
                         <tbody id="tbody">
                             <script>
