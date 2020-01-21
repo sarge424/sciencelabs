@@ -103,6 +103,7 @@
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
+                alert(request.responseText);
                 alert("Item recorded as lost.");
                 document.location.href = "../checkout/reviewcheckout.php";
             }

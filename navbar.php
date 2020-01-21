@@ -133,10 +133,6 @@ if ($lab == 'b') {
 							<i class="fa fa-list-alt"></i>Pending Orders</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/missing/">
-							<i class="fa fa-shopping-basket"></i>Missing Items</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="../requests/getexcel.php">
 							<i class="fa fa-file-excel-o"></i>Download Excel</a>
 					</li>';

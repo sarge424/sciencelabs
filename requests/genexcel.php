@@ -13,12 +13,17 @@ $sheet->setCellValue('B1', 'Specifications');
 $sheet->setCellValue('C1', 'Quantity');
 $sheet->setCellValue('D1', 'Link');
 $sheet->setCellValue('E1', 'Approx. Cost');
-$sheet->setCellValue('F1', 'Amount');
+if ($_SESSION['level'] == 1) {
+    $sheet->setCellValue('F1', 'Lab');
+    $sheet->setCellValue('G1', 'Amount');
+} else {
+    $sheet->setCellValue('F1', 'Amount');
+}
 
 $sheet->getStyle("A1:F1")->getFont()->setBold(true);
 
-if($_SESSION['level'] == 1){
-    $sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0;";
+if ($_SESSION['level'] == 1) {
+    $sql = "select item_name, specs, quantity_ordered, link, cost, lab from purchase_request where arrived=0;";
 } else {
     $sql = "select item_name, specs, quantity_ordered, link, cost from purchase_request where arrived=0 and lab='" . $_SESSION['lab'] . "';";
 }
@@ -42,6 +47,10 @@ if ($result->num_rows != 0) {
         $row = chr(ord($row) + 1);
         $sheet->setCellValue($row . $col, $info[4]);
         $row = chr(ord($row) + 1);
+        if ($_SESSION['level'] == 1) {
+            $sheet->setCellValue($row . $col, $info[5]);
+            $row = chr(ord($row) + 1);
+        }
         $sheet->setCellValue($row . $col, "=C" . $col . "*E" . $col);
 
         $row = "A";
@@ -49,18 +58,26 @@ if ($result->num_rows != 0) {
     }
 }
 
-$sheet->setCellValue("E" . $col, "Total Amount");
-$sheet->getStyle("E" . $col)->getFont()->setBold(true);
-$sheet->setCellValue("F" . $col, "=sum(F2:F" . ($col - 1) . ")");
+if ($_SESSION['level'] == 1) {
+    $sheet->setCellValue("F" . $col, "Total Amount");
+    $sheet->getStyle("F" . $col)->getFont()->setBold(true);
+    $sheet->setCellValue("G" . $col, "=sum(G2:G" . ($col - 1) . ")");
+} else {
+    $sheet->setCellValue("E" . $col, "Total Amount");
+    $sheet->getStyle("E" . $col)->getFont()->setBold(true);
+    $sheet->setCellValue("F" . $col, "=sum(F2:F" . ($col - 1) . ")");
+}
 
 foreach (range('A', 'E') as $col) {
     $sheet->getColumnDimension($col)->setAutoSize(true);
 }
 
 $writer = new Xlsx($spreadsheet);
-
-if($_SESSION['level'] == 1){
-    $writer->save("../excel/HOD Request " . date("Y m d") . '.xlsx');
+$save_name;
+if ($_SESSION['level'] == 1) {
+    $save_name = "../excel/HOD Request " . date("Y m d") . '.xlsx';
 } else {
-    $writer->save("../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx');
+    $save_name = "../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx';
 }
+$writer->save($save_name);
+echo $save_name;
