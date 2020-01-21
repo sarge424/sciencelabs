@@ -68,7 +68,7 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item returned");
-                document.location.href = "../labtransfer/showborrowed.php";
+                document.location.reload();
             }
         }
 
@@ -97,7 +97,7 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 alert("Item recorded as lost.");
-                document.location.href = "../labtransfer/showborrowed.php";
+                document.location.reload();
             }
         }
 
@@ -111,7 +111,7 @@
     <div class="container-fluid">
         <br>
         <div class="text-center">
-            <button class="btn btn-primary" onclick="document.location.href='../labtransfer/labborrow.php';">Borrow More</button>
+            <button class="btn btn-primary" onclick="document.location.href='../labborrow/';">Borrow More</button>
         </div>
         <br>
         <div class="row">

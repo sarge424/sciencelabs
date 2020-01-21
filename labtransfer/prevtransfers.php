@@ -47,7 +47,7 @@
     <div class="container-fluid">
         <br>
         <div class="text-center">
-            <button class="btn btn-primary" onclick="document.location.href='../labtransactions/';">Transfer More</button>
+            <button class="btn btn-primary" onclick="document.location.href='../labtransfer/';">Transfer More</button>
         </div>
         <br>
         <div class="row">
