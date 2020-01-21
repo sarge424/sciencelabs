@@ -51,7 +51,7 @@
             document.getElementById('inm').value = '';
             document.getElementById('itemname').innerHTML = 'Start typing to see items.';
 
-            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.id = 'quantity' + count;
+            new_tr.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.id = 'quantity' + count;
 
             let x = count;
             del.onclick = function() {
@@ -104,6 +104,7 @@
         }
 
         function submitAjax(id, q, nm) {
+            console.log(document.getElementById('quantity' + 1));
             let request;
 
             try {
@@ -153,7 +154,7 @@
                         alert('Try changing the name. This experiment already exists!');
                         document.getElementById('exn').value = '';
                     } else {
-                        for (let x = 0; x < count; x++) {
+                        for (let x = 1; x < count; x++) {
                             if (document.getElementById('tr' + x) !== null) {
                                 submitAjax(document.getElementById('id' + x).innerHTML, document.getElementById('quantity' + x).value, document.getElementById('exn').value);
                             }
