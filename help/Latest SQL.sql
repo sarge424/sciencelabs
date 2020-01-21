@@ -149,8 +149,7 @@ create table missing(
 	accounted varchar(1) default "N",
 	checkout_id int,
 	primary key (id),
-	foreign key (item_id) references item (id),
-	foreign key (checkout_id) references checkout (id)
+	foreign key (item_id) references item (id)
 );
 
 insert into teacher(id, teacher_name, teacher_pass, levels, email) values (1, 'abhinav', '$2y$10$Inr2U7NdVEQHAkf4WL3Biu3LrM0FKxz28xZE0nWM1JoqOOYokEJVe', 0, "abhinav@ishahomeschool.org");

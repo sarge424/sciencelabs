@@ -50,7 +50,43 @@
 		<?php
 		}
 		?>
+	}
 
+	function view(exp_id) {
+
+	}
+
+	function create(exp_id) {
+		document.location.href = "uploaddoc.php?exp_id=" + exp_id + "&booking_id=" + <?php echo $_GET['bookingid'] ?>;
+	}
+
+	function edit(exp_id) {
+		let request;
+		try {
+			request = new XMLHttpRequest();
+		} catch (e) {
+			try {
+				request = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					request = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					alert("Oops! Something went wrong.");
+					return false;
+				}
+			}
+		}
+
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				alert(request.responseText);
+				window.open(request.responseText);
+				create(exp_id);
+			}
+		}
+		let queryString = "?exp_id=" + exp_id;
+		request.open("GET", "getfilename.php" + queryString, true);
+		request.send(null);
 	}
 </script>
 
@@ -109,7 +145,9 @@
 							<tr>
 								<th>Experiment</th>
 								<th>Items</th>
-								<th> </th>
+								<th>Report</th>
+								<th>Edit Report</th>
+								<th>Edit Experiment</th>
 							</tr><br>
 						</thead>
 						<tbody>
@@ -126,9 +164,31 @@
 								return $ret;
 							}
 
+							function checkfile($name)
+							{
+								$path = '../reports/';
+								$files = array_diff(scandir($path), array('.', '..'));
+								$files = array_reverse($files);
+
+								$flag = false;
+								foreach ($files as $doc) {
+									if (startswith($doc, $name)) {
+										$flag = true;
+									}
+								}
+
+								return $flag;
+							}
+
+							function startsWith($haystack, $needle)
+							{
+								$length = strlen($needle);
+								return (substr($haystack, 0, $length) === $needle);
+							}
+
 							global $conn;
 
-							$sql = 'select exp_name from experiment where 1;';
+							$sql = 'select id, exp_name from experiment;';
 
 							$result = $conn->query($sql);
 
@@ -137,12 +197,18 @@
 									$sql = 'select a.exp_name, a.id, b.exp_id, i.id, i.item_name as item_name from experiment a, experiment_item b, item i where a.exp_name = "' . $row['exp_name'] . '" AND a.id=b.exp_id AND b.item_id = i.id;';
 									$itemswithb = stringres($sql, 'item_name');
 									$items = substr($itemswithb, 3, strlen($itemswithb) - 4);
+									$message = "Create";
+									if (checkfile($row['exp_name'])) {
+										$message = "View";
+									}
 							?>
 
 									<tr>
-										<td><?php echo $row['exp_name']; ?>
-										<td><?php echo $items; ?>
-										<td><button class="btn btn-warning" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button>
+										<td><?php echo $row['exp_name']; ?></td>
+										<td><?php echo $items; ?></td>
+										<td><button class="btn btn-success" id="report<?php echo $row['id']; ?>" onclick="<?php echo strtolower($message) . "(" . $row['id'] . ")"; ?>"><?php echo $message; ?></button></td>
+										<td><button class="btn btn-warning" id="editreport<?php echo $row['id']; ?>" onclick="edit(<?php echo $row['id']; ?>)">Edit</button></td>
+										<td><button class="btn btn-danger" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button></td>
 									</tr>
 
 							<?php

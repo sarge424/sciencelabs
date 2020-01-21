@@ -13,11 +13,12 @@
     function cloneRow(item, quantity) {
         let tbody = document.getElementById("tbody");
         let tr0 = document.getElementById("row0");
-        let new_tr = tr0.cloneNode(true);
 
         if (count == 1) {
             tr0.classList.toggle("d-none");
         }
+
+        let new_tr = tr0.cloneNode(true);
 
         new_tr.id = "tr" + count;
         new_tr.firstChild.nextSibling.innerHTML = item;
