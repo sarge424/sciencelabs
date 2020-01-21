@@ -78,39 +78,10 @@
     }
 
     function lost(row) {
-        let tr = document.getElementById("row" + row);
-        tr = tr.firstChild;
-        let student_id = tr.id;
-        tr = tr.nextSibling;
-        let item_id = tr.id;
-        tr = tr.nextSibling;
-        let quantity = tr.innerHTML;
-
-        let request;
-        try {
-            request = new XMLHttpRequest();
-        } catch (e) {
-            try {
-                request = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {
-                    return false;
-                }
-            }
+        var redirect = confirm('Please use the student checkout tab to mark items as lost and charge the respective student. Would you like to be redirected?');
+        if(redirect){
+            document.location.href = 'reportmissing.php';
         }
-
-        request.onreadystatechange = function() {
-            if (request.readyState == 4) {
-                alert("Item recorded as lost.");
-                document.location.reload();
-            }
-        }
-
-        let queryString = "?checkout_id=" + row;
-        request.open("GET", "lostexp.php" + queryString, true);
-        request.send(null);
     }
 </script>
 
