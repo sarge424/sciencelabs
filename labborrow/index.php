@@ -54,7 +54,7 @@
                 if (request.responseText != "") {
                     alert(request.responseText);
                 }
-                document.location.href = "../labtransfer/labborrow.php";
+                document.location.reload();
             }
         }
 
@@ -144,7 +144,7 @@
             var itemnm = document.getElementById('item').value;
 
             var queryString = "?itemnm=" + itemnm;
-            request.open("GET", "getname.php" + queryString, true);
+            request.open("GET", "../labtransfer/getname.php" + queryString, true);
             request.send(null);
         }
     </script>
