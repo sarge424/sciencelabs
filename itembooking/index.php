@@ -109,7 +109,8 @@
 							<tr>
 								<th>Experiment</th>
 								<th>Items</th>
-								<th> </th>
+								<th>Report</th>
+								<th></th>
 							</tr><br>
 						</thead>
 						<tbody>
@@ -126,6 +127,28 @@
 								return $ret;
 							}
 
+							function checkfile($path, $name)
+							{
+								$path = '../reports/';
+								$files = array_diff(scandir($path), array('.', '..'));
+								$files = array_reverse($files);
+
+								$flag = false;
+								foreach ($files as $doc) {
+									if (startswith($doc, $name)) {
+										$flag = true;
+									}
+								}
+
+								return $flag;
+							}
+
+							function startsWith($haystack, $needle)
+							{
+								$length = strlen($needle);
+								return (substr($haystack, 0, $length) === $needle);
+							}
+
 							global $conn;
 
 							$sql = 'select exp_name from experiment where 1;';
@@ -140,9 +163,10 @@
 							?>
 
 									<tr>
-										<td><?php echo $row['exp_name']; ?>
-										<td><?php echo $items; ?>
-										<td><button class="btn btn-warning" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button>
+										<td><?php echo $row['exp_name']; ?></td>
+										<td><?php echo $items; ?></td>
+										<td><button class="btn btn-success"></button></td>
+										<td><button class="btn btn-warning" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button></td>
 									</tr>
 
 							<?php
