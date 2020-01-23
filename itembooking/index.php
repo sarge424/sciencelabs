@@ -71,7 +71,13 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
-				window.open(request.responseText);
+				if (request.responseText == "Not Approved") {
+					alert(request.responseText);
+				} else if (request.responseText == "No Document in Server!") {
+					alert(request.responseText);
+				} else {
+					window.open(request.responseText);
+				}
 			}
 		}
 		let queryString = "?exp_id=" + exp_id;
@@ -102,8 +108,14 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
-				window.open(request.responseText);
-				create(exp_id);
+				if (request.responseText == "Not Approved") {
+					alert(request.responseText);
+				} else if (request.responseText == "No Document in Server!") {
+					alert(request.responseText);
+				} else {
+					window.open(request.responseText);
+					create(exp_id);
+				}
 			}
 		}
 		let queryString = "?exp_id=" + exp_id;
