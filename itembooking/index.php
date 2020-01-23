@@ -53,7 +53,30 @@
 	}
 
 	function view(exp_id) {
+		let request;
+		try {
+			request = new XMLHttpRequest();
+		} catch (e) {
+			try {
+				request = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					request = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					alert("Oops! Something went wrong.");
+					return false;
+				}
+			}
+		}
 
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				window.open(request.responseText);
+			}
+		}
+		let queryString = "?exp_id=" + exp_id;
+		request.open("GET", "getfilename.php" + queryString, true);
+		request.send(null);
 	}
 
 	function create(exp_id) {
@@ -79,7 +102,6 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
-				alert(request.responseText);
 				window.open(request.responseText);
 				create(exp_id);
 			}

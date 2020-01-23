@@ -9,6 +9,9 @@ $flag = false;
 $sql = "select exp_name from experiment where id=" . $_POST['exp_id'] . ";";
 $rename = $conn->query($sql)->fetch_assoc()['exp_name'];
 
+if($_SESSION['level'] != 1){
+    $rename = $rename . " (To be Reviewed)";
+}
 if (substr($file, -5) == ".docx") {
     $rename = $rename . ".docx";
     $flag = true;

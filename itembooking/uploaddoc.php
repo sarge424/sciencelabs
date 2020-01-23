@@ -28,7 +28,7 @@ require_once '../checkSession.php';
                 <div align="center">
                     <form action="upload.php" method="post" enctype="multipart/form-data">
                         Select Word Document to upload:
-                        <input type="file" name="uploadfile" id="uploadfile">
+                        <input type="file" name="uploadfile" id="uploadfile" accept=".doc, .docx">
                         <input name="exp_id" value="<?php echo $_GET['exp_id'] ?>" hidden>
                         <input name="booking_id" value="<?php echo $_GET['booking_id'] ?>" hidden>
                         <input class="btn btn-warning" type="submit" value="Upload Document" name="submit">
