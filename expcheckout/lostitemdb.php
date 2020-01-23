@@ -29,7 +29,6 @@ if ($uniqueitem < $_POST['quantity']) {
 
 	$sql = 'select * from student where id=' . $_POST['rollno'] . ';';
 	$student = $conn->query($sql)->fetch_assoc()['student_name'];
-	$item = $_POST['itemname'];
 
 	$sql = "insert into missing (item_id, quantity, comments) values (" . $_POST['itemid'] . ", " . $_POST['quantity'] . ", 'Lost by " . $student . "');";
 	echo $sql;
@@ -39,7 +38,7 @@ if ($uniqueitem < $_POST['quantity']) {
 	$conn->query($sql);
 
 	echo '<script>
-		alert("Recorded ' . $_POST['quantity'] . ' ' . $item . ' lost by ' . $student . '");
+		alert("Recorded ' . $_POST['quantity'] . 'items lost by ' . $student . '");
 		
 	</script>';
 }
