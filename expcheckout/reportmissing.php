@@ -48,17 +48,34 @@
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Roll No.</b></label>
 								<td>
-									<input class="form-control input-sm" type="number" placeholder="Enter Roll no." id="rno" name="rollno" onkeyup="getDBStuff()" min="1" autofocus required></input>
-									<br>
-									<div id="studentname" class="text-secondary">Start typing to see names.</div>
+									<select class="custom-select input-sm" id="rno" align="right" name="rollno" required>
+										<?php
+										$ch_id = $_GET['checkout_id'];
+										$sql = 'select distinct i.labbooking_id, l.class_id, s.id as rollno, s.student_name, s.class_id '.
+										'from item_booking i, lab_booking l, student s '.
+										'where i.labbooking_id = l.id AND l.class_id = s.class_id';
+										$result = $conn->query($sql);
+										while ($row = $result->fetch_assoc()) {
+											echo '<option value="'.$row['rollno'].'">' . $row['student_name'] . '</option>';
+										}
+										?>
+									</select>
 							<tr>
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Item Name</b></label>
 								<td>
-									<input type="text" placeholder="e.g.-'Convex Lens'" id="inm" name="itemname" onkeyup="getDBStuff()" required class="form-control input-sm">
-									<input type="text" id="itemid" name="itemid" hidden>
-									<br>
-									<div id="itemname" class="text-secondary">Start typing to see items.</div>
+									<select class="custom-select input-sm" id="itemid" align="right" name="itemid" required>
+										<?php
+										$ch_id = $_GET['checkout_id'];
+										$sql = 'select distinct b.exp_id, e.exp_id, e.item_id, i.id as itemid, i.item_name as itemname '.
+										'from item_booking b, experiment_item e, item i '.
+										'where b.exp_id=e.exp_id and e.item_id=i.id';
+										$result = $conn->query($sql);
+										while ($row = $result->fetch_assoc()) {
+											echo '<option value="'.$row['itemid'].'">' . $row['itemname'] . '</option>';
+										}
+										?>
+									</select>
 							<tr>
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Quantity</b></label>
@@ -81,44 +98,6 @@
 
 		function setroll (id) {
 			document.getElementById('rno').value = id;
-		}
-		
-		function getDBStuff() {
-			var request;
-
-			try {
-				request = new XMLHttpRequest();
-			} catch (e) {
-				try {
-					request = new ActiveXObject("Msxml2.XMLHTTP");
-				} catch (e) {
-					try {
-						request = new ActiveXObject("Microsoft.XMLHTTP");
-					} catch (e) {
-						alert("Oops! Something went wrong.");
-						return false;
-					}
-				}
-			}
-
-			request.onreadystatechange = function() {
-				if (request.readyState == 4) {
-					var studentDisplay = document.getElementById('studentname');
-					var itemDisplay = document.getElementById('itemname');
-					var itemId = document.getElementById('itemid');
-					let res = request.responseText.split("###");
-					studentDisplay.innerHTML = res[0];
-					itemDisplay.innerHTML = res[1];
-					itemId.value = res[2];
-				}
-			}
-
-			var rollno = document.getElementById('rno').value;
-			var itemnm = document.getElementById('inm').value;
-
-			var queryString = "?rollno=" + rollno + "&itemnm=" + itemnm;
-			request.open("GET", "../checkout/getname.php" + queryString, true);
-			request.send(null);
 		}
 	</script>
 </body>

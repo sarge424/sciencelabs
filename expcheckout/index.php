@@ -80,7 +80,7 @@
     function lost(row) {
         var redirect = confirm('Please use the student checkout tab to mark items as lost and charge the respective student. Would you like to be redirected?');
         if(redirect){
-            document.location.href = 'reportmissing.php';
+            document.location.href = 'reportmissing.php?checkout_id='+row;
         }
     }
 </script>
