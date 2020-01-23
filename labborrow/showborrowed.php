@@ -118,7 +118,7 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <div align="center">
-                    <h3>Pending Student Returns</h3>
+                    <h3>Items Lent Out</h3>
                 </div>
                 <div align="center">
                     <table class="table">
