@@ -93,9 +93,15 @@ if ($lab == 'b') {
 			</li>
 			<?php
 			if ($_SESSION['level'] < 3) {
-				echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/checkout/">
-							<i class="fa fa-shopping-cart"></i>Checkouts</a>
+				echo '<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-shopping-cart"></i>Checkouts
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../checkout"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Student Checkout</a>
+							<a class="dropdown-item" href="../expcheckout"><i class="fa fa-calculator" aria-hidden="true"></i> Checkout Experiment</a>
+							<a class="dropdown-item" href="../labborrow"><i class="fa fa-truck" aria-hidden="true"></i> Item Borrowing</a>
+						</div>
 					</li>';
 			}
 			?>
@@ -128,8 +134,6 @@ if ($lab == 'b') {
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="../requests/getexcel.php"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel</a>
-					<a class="dropdown-item" href="../expcheckout"><i class="fa fa-calculator" aria-hidden="true"></i> Checkout Experiment</a>
-					<a class="dropdown-item" href="../labborrow"><i class="fa fa-upload" aria-hidden="true"></i> Item Borrowing</a>
 					<a class="dropdown-item" href="../labtransfer"><i class="fa fa-exchange" aria-hidden="true"></i> Lab Transfers</a>
 					<a class="dropdown-item" href="../reviewrequest"><i class="fa fa-list-alt" aria-hidden="true"></i> Orders</a>
 					<div class="dropdown-divider"></div>
@@ -152,7 +156,7 @@ if ($lab == 'b') {
 		buttons = document.getElementsByClassName('nav-link');
 		for (let x = 0; x < buttons.length; x++) {
 			let name = buttons[x].innerHTML.substring(buttons[x].innerHTML.indexOf('</i>') + 4);
-			if (name === pagename)
+			if (name.startsWith(pagename))
 				buttons[x].parentElement.classList.toggle('active');
 		}
 	}
