@@ -122,27 +122,17 @@ if ($lab == 'b') {
 		</ul>
 
 		<ul class="navbar-nav ">
-			<?php
-			if ($_SESSION['level'] < 3) {
-				echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/labtransfer">
-							<i class="fa fa-exchange"></i>Lab Transfers</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/reviewrequest">
-							<i class="fa fa-list-alt"></i>Pending Orders</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../requests/getexcel.php">
-							<i class="fa fa-file-excel-o"></i>Download Excel</a>
-					</li>';
-			}
-			?>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<?php echo $icon . $level . $uname ?>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="../requests/getexcel.php"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel</a>
+					<a class="dropdown-item" href="../expcheckout"><i class="fa fa-calculator" aria-hidden="true"></i> Checkout Experiment</a>
+					<a class="dropdown-item" href="../labborrow"><i class="fa fa-upload" aria-hidden="true"></i> Item Borrowing</a>
+					<a class="dropdown-item" href="../labtransfer"><i class="fa fa-exchange" aria-hidden="true"></i> Lab Transfers</a>
+					<a class="dropdown-item" href="../reviewrequest"><i class="fa fa-list-alt" aria-hidden="true"></i> Orders</a>
+					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="../user/"><i class="fa fa-key" aria-hidden="true"></i> Change Password</a>
 					<a class="dropdown-item" onclick="logoff()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
 				</div>
