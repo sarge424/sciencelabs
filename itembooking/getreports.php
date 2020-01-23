@@ -45,7 +45,7 @@ require_once '../checksession.php';
 						foreach ($files as $excel) {
 					?>
 
-								<tr onclick="window.open('<?php echo $path . '/' . $excel ?>');document.location.href='editdoc.php';">
+								<tr onclick="document.location.href='editdoc.php?doc=<?php echo $path . '/' . $excel ?>';">
 									<td><i class="fa fa-cloud-download"></i>  <?php echo $excel; ?></td>
 								</tr>
 

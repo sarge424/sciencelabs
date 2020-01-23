@@ -1,6 +1,5 @@
 <?php
 require_once '../db.php';
-require_once '../checkSession.php';
 ?>
 <html>
 
@@ -14,6 +13,10 @@ require_once '../checkSession.php';
         setActive("Bookings");
     </script>
 </head>
+
+<script>
+    window.open("<?php echo $_GET['doc']; ?>");
+</script>
 
 <body>
     <div class="container-fluid">
