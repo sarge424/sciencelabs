@@ -198,9 +198,25 @@
 								return $ret;
 							}
 
-							function checkfile($name)
+							function checkreportsfile($name)
 							{
 								$path = '../reports/';
+								$files = array_diff(scandir($path), array('.', '..'));
+								$files = array_reverse($files);
+
+								$flag = false;
+								foreach ($files as $doc) {
+									if (startswith($doc, $name)) {
+										$flag = true;
+									}
+								}
+
+								return $flag;
+							}
+
+							function checkapprovedfile($name)
+							{
+								$path = '../approved-reports/';
 								$files = array_diff(scandir($path), array('.', '..'));
 								$files = array_reverse($files);
 
@@ -232,7 +248,7 @@
 									$itemswithb = stringres($sql, 'item_name');
 									$items = substr($itemswithb, 3, strlen($itemswithb) - 4);
 									$message = "Create";
-									if (checkfile($row['exp_name'])) {
+									if (checkreportsfile($row['exp_name']) || checkapprovedfile($row['exp_name'])) {
 										$message = "View";
 									}
 							?>

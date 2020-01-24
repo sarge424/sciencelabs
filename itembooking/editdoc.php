@@ -15,7 +15,7 @@ require_once '../db.php';
 </head>
 
 <script>
-    window.open("<?php echo $_GET['doc']; ?>");
+    window.open("../reports/<?php echo $_GET['doc']; ?>");
 </script>
 
 <body>
@@ -29,7 +29,7 @@ require_once '../db.php';
                 </div>
                 <br>
                 <div align="center">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form action="hodupload.php" method="post" enctype="multipart/form-data">
                         Select Word Document to upload:
                         <input type="file" name="uploadfile" id="uploadfile" accept=".doc, .docx">
                         <input class="btn btn-warning" type="submit" value="Upload Document" name="submit">
