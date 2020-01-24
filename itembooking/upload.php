@@ -38,9 +38,9 @@ while ($row = $result->fetch_assoc()) {
     $mail->AddAddress($email, $name);
     $mail->SetFrom($email_from, $name_from);
     $mail->Subject = "Approve Experiment Document for " . $rename;
-    $mail->Body = "To download the document click <html> <a href='10.0.3.117/sciencelabs/reports/" . $rename . "'>here</a>.<br><br>" .
-        "To approve the document click <a href='10.0.3.117/sciencelabs/reports/submit.php?doc=" . $rename . "'>here</a>.<br><br>" .
-        "To edit the document click <a href='10.0.3.117/sciencelabs/itembooking/editdoc.php?doc=" . $rename . "'>here</a>";
+    $mail->Body = 'To download the document click <html> <a href="10.0.3.119/sciencelabs/reports/' . $rename . '">here</a>.<br><br>' .
+        'To approve the document click <a href="10.0.3.119/sciencelabs/reports/submit.php?doc=' . $rename . '">here</a>.<br><br>' .
+        'To edit the document click <a href="10.0.3.119/sciencelabs/itembooking/editdoc.php?doc=' . $rename . '">here</a>';
     $mail->IsHTML(true);
 
     try {
