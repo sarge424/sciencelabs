@@ -150,7 +150,7 @@
 								<td>
 									<label class="form-control input-sm text-primary" align="center"><b>Experiment Name</b></label>
 								<td>
-									<input type="text" placeholder="e.g.-'Simple Pendulum'" id="expnm" name="expname" onkeyup="getDBStuff()" class="form-control input-sm">
+									<input type="text" placeholder="e.g.-'Simple Pendulum'" id="expnm" name="expname" onkeyup="getDBStuff()" class="form-control input-sm" required>
 									<input type="number" id="bookid" name="bookingid" value="<?php echo $_GET['bookingid']; ?>" hidden>
 									<br>
 									<div id="studentname" class="text-secondary">Start typing to see experiments.</div>

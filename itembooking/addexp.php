@@ -169,6 +169,15 @@
             request.open("GET", "createexp.php" + queryString, true);
             request.send(null);
         }
+
+        function checkspecial() {
+            let exp_name = document.getElementById('exn');
+            if (exp_name.value.includes("'")) {
+                exp_name.value = "";
+                exp_name.placeholder = "Quotations not allowed";
+                exp_name.blur();
+            }
+        }
     </script>
 
     <?php include '../navbar.php'; ?>
@@ -217,7 +226,7 @@
                     <input type="text" id="itemid" name="itemid" hidden>
                 </div>
                 <div class="form-inline">
-                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm">&emsp;
+                    <input type="text" placeholder="'Simple Pendulum'" id="exn" name="expname" class="form-control input-sm" onkeypress="checkspecial()">&emsp;
                     <button class="btn btn-primary btn-md" onclick="submitExp()">&#10004; Confirm Experiment</button>
                 </div>
                 <br>
