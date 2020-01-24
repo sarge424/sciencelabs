@@ -180,8 +180,6 @@
 								<th>Experiment</th>
 								<th>Items</th>
 								<th>Report</th>
-								<th>Edit Report</th>
-								<th>Edit Experiment</th>
 							</tr><br>
 						</thead>
 						<tbody>
@@ -257,8 +255,6 @@
 										<td><?php echo $row['exp_name']; ?></td>
 										<td><?php echo $items; ?></td>
 										<td><button class="btn btn-success" id="report<?php echo $row['id']; ?>" onclick="<?php echo strtolower($message) . "(" . $row['id'] . ")"; ?>"><?php echo $message; ?></button></td>
-										<td><button class="btn btn-warning" id="editreport<?php echo $row['id']; ?>" onclick="edit(<?php echo $row['id']; ?>)">Edit</button></td>
-										<td><button class="btn btn-danger" onclick="redirectedit('<?php echo $row['exp_name']; ?>', <?php echo $_GET['bookingid']; ?>)">Edit</button></td>
 									</tr>
 
 							<?php
