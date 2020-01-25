@@ -161,13 +161,10 @@
                     <button class="btn btn-primary btn-md float-right" onclick="order()" style="margin: 5px">&#10004; Place Order</button>
                     <button class="btn btn-success float-right" onclick="addRow()" style="margin: 5px">&plus; Add Order</button>
                 </div>
-
+                <script>
+                    addRow();
+                </script>
             </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-4">
-
-            </div>
-            <div class="col-sm-1"></div>
         </div>
     </div>
 </body>

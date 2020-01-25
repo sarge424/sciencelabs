@@ -41,6 +41,7 @@
     }
 
     function submit() {
+        let id = document.getElementsByClassName("tr");
         let teacher = document.getElementsByClassName("teacher");
         let item = document.getElementsByClassName("item");
         let quantity_ordered = document.getElementsByClassName("quano");
@@ -51,7 +52,7 @@
         let bill = document.getElementById("bill");
         let x = 0;
 
-        while (x < item.length) {
+        while (x < id.length) {
             if (check[x].checked && bill.value != "") {
                 let request;
 
@@ -75,7 +76,7 @@
                     }
                 }
 
-                let queryString = "?teacher=" + teacher[x].id + "&item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value;
+                let queryString = "?teacher=" + teacher[x].id + "&item=" + item[x].innerHTML + "&quantityo=" + quantity_ordered[x].innerHTML + "&quantityr=" + quantity_received[x].value + "&specs=" + specs[x].innerHTML + "&comments=" + comments[x].value + "&bill=" + bill.value + "&id=" + id[x].id;
                 request.open("GET", "review.php" + queryString, true);
                 request.send(null);
             }
@@ -123,7 +124,7 @@
                                 $sql = "select * from teacher where id=" . $row['teacher_id'] . ";";
                                 $teacher = $conn->query($sql);
                                 $teacher = $teacher->fetch_assoc();
-                                echo '<tr><td class="teacher" id="' . $teacher['id'] . '">' . $teacher['teacher_name'] .
+                                echo '<tr class="tr" id=' . $row['id'] . '><td class="teacher" id="' . $teacher['id'] . '">' . $teacher['teacher_name'] .
                                     '<td class="item">' . $row['item_name'] .
                                     '<td class="quano">' . $row['quantity_ordered'] .
                                     '<td><input class="quanr form-control input-sm" type="number" min=0 required />' .
