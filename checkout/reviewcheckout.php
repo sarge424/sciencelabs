@@ -65,14 +65,24 @@
             }
         }
 
+        var txt;
+        var lostq = prompt("Please enter quantity returned:", quantity);
+        if (lostq == null || lostq == "") {
+            return;
+        } else {
+            txt = Number(lostq);
+        }
+
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
+                if(request.responseText !== '')
+                    alert(request.responseText);
                 alert("Item returned");
                 document.location.href = "../checkout/reviewcheckout.php";
             }
         }
 
-        let queryString = "?checkout_id=" + row;
+        let queryString = "?checkout_id=" + row + "&ret_quantity=" + txt;
         request.open("GET", "returnitem.php" + queryString, true);
         request.send(null);
     }
@@ -103,13 +113,20 @@
 
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
-                alert(request.responseText);
                 alert("Item recorded as lost.");
                 document.location.href = "../checkout/reviewcheckout.php";
             }
         }
 
-        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row;
+        var txt;
+        var lostq = prompt("Please enter quantity lost:");
+        if (lostq == null || lostq == "") {
+            return;
+        } else {
+            txt = Number(lostq);
+        }
+
+        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row+ "&lost_q=" + txt;
         request.open("GET", "lostitem.php" + queryString, true);
         request.send(null);
     }
