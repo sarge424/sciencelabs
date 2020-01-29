@@ -122,6 +122,20 @@
 		request.open("GET", "getfilename.php" + queryString, true);
 		request.send(null);
 	}
+
+	<?php
+	include '../db.php';
+
+	$sql = 'select exp_id, quantity from item_booking where labbooking_id=' . $_GET['bookingid'] . ';';
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		$row = $result->fetch_assoc();
+		$sql = 'select exp_name from experiment where id=' . $row['exp_id'] . ';';
+		$name = $conn->query($sql)->fetch_assoc()['exp_name'];
+		echo 'document.getElementById("expnm").value = "' . $name . '";';
+		echo 'document.getElementById("quan").value = "' . $row['quantity'] . '";';
+	}
+	?>
 </script>
 
 <body>
@@ -246,8 +260,10 @@
 									$itemswithb = stringres($sql, 'item_name');
 									$items = substr($itemswithb, 3, strlen($itemswithb) - 4);
 									$message = "Create";
-									if (checkreportsfile($row['exp_name']) || checkapprovedfile($row['exp_name'])) {
+									if (checkapprovedfile($row['exp_name'])) {
 										$message = "View";
+									} else if (checkreportsfile($row['exp_name'])) {
+										$message = "Pending";
 									}
 							?>
 
