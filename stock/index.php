@@ -54,7 +54,7 @@ require_once '../checksession.php';
 	<?php
 	include '../navbar.php';
 	$sql = 'select min_quantity, quantity from item where min_quantity > quantity;';
-	$alert = ($conn->query($sql)->num_rows == 0 || $lev == 2) ? 'd-none' : '';
+	$alert = ($conn->query($sql)->num_rows == 0 || $lev == 3) ? 'd-none' : '';
 	?>
 	<script>
 		setActive('Stock');
