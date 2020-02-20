@@ -66,9 +66,9 @@ foreach (range('A', 'F') as $col) {
 $save_name;
 $writer = new Xlsx($spreadsheet);
 if ($_SESSION['level'] == 1) {
-    $save_name = "../excel/HOD Stock Alert " . date("Y m d") . ".xlsx";
+    $save_name = "../excel/" . date("Y m d") . " HOD Stock Alert.xlsx";
 } else {
-    $save_name = "../excel/" . $_SESSION['labname'] . " Stock Alert " . date("Y m d") . ".xlsx";
+    $save_name = "../excel/" . date("Y m d") . " " . $_SESSION['labname'] . " Stock Alert.xlsx";
 }
 $writer->save($save_name);
 echo $save_name;
