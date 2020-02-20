@@ -55,10 +55,11 @@ require_once '../checksession.php';
 	include '../navbar.php';
 	$sql = 'select min_quantity, quantity from item where min_quantity > quantity and lab="'.$_SESSION['lab'].'";';
 	$alert = ($conn->query($sql)->num_rows == 0 || $lev == 3) ? 'd-none' : '';
+	$darknav = ($lev == 1) ? 'setDarkMode();' : '';
 	?>
 	<script>
 		setActive('Stock');
-		setDarkMode();
+		<?php echo $darknav?>
 	</script>
 
 	<script>
