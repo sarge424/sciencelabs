@@ -180,8 +180,7 @@ require_once '../checksession.php';
 							<td><?php echo $item_specs ?></td>
 							<td><?php echo $item_lost; ?></td>
 							<?php echo ($_SESSION['level'] == 1) ? '<td>' . $lab . '</td>' : '' ?>
-							<td><button class="btn btn-danger btn-small float-right" onclick="delItem(<?php echo $item_id ?>)" <?php echo ($lev >= 1) ? 'disabled' : ''; ?>>&times;</button>
-								<p class="float-right px-1"> </p>
+							<td>
 								<button class="btn btn-warning btn-small float-right" onclick="editItem(<?php echo $item_id ?>)" <?php echo ($lev == 2) ? 'disabled' : ''; ?>>Edit</button>
 							</td>
 						</tr>
