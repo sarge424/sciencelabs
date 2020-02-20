@@ -75,9 +75,9 @@ foreach (range('A', 'E') as $col) {
 $writer = new Xlsx($spreadsheet);
 $save_name;
 if ($_SESSION['level'] == 1) {
-    $save_name = "../excel/HOD Request " . date("Y m d") . '.xlsx';
+    $save_name = "../excel/" . date("Y m d") . " HOD Request.xlsx";
 } else {
-    $save_name = "../excel/" . $_SESSION['labname'] . " Request " . date("Y m d") . '.xlsx';
+    $save_name = "../excel/" . date("Y m d") . " " . $_SESSION['labname'] . " Request.xlsx";
 }
 $writer->save($save_name);
 echo $save_name;

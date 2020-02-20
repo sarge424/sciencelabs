@@ -61,9 +61,6 @@ foreach (range('A', 'E') as $col) {
     $sheet->getColumnDimension($col)->setAutoSize(true);
 }
 
-$save_name = "../excel/HOD Lost " . date("Y m d") . '.xlsx';
-
 $writer = new Xlsx($spreadsheet);
-$writer->save("../excel/HOD Lost " . date("Y m d") . '.xlsx');
+$writer->save("../excel/" . date("Y m d") . " HOD Lost.xlsx");
 $conn->close();
-echo $save_name;
