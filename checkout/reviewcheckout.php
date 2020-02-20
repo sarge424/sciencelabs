@@ -10,7 +10,7 @@
 <?php include '../navbar.php'; ?>
 <script>
     setActive('Checkouts');
-    setDarkMode();
+    <?php echo ($_SESSION['level']==1)?'setDarkMode();':'';?>
 </script>
 
 <script>

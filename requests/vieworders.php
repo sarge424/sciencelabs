@@ -14,7 +14,7 @@ include_once '../navbar.php';
 
 <script>
     setActive('Requests');
-    setDarkMode();
+    <?php echo ($_SESSION['level']==1)?'setDarkMode();':'';?>
 </script>
 
 <script>
