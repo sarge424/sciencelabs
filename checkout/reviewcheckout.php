@@ -118,15 +118,7 @@
             }
         }
 
-        var txt;
-        var lostq = prompt("Please enter quantity lost:");
-        if (lostq == null || lostq == "") {
-            return;
-        } else {
-            txt = Number(lostq);
-        }
-
-        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row+ "&lost_q=" + txt;
+        let queryString = "?student=" + student_id + "&item=" + item_id + "&quantity=" + quantity + "&checkout_id=" + row;
         request.open("GET", "lostitem.php" + queryString, true);
         request.send(null);
     }
