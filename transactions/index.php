@@ -53,7 +53,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
                 <div align="center">
-                    <h3>Transactions</h3>
+                    <h3><i class="fa fa-truck" aria-hidden="true"></i> Older Shipments</h3>
                 </div>
                 <table class="table">
                     <thead class="thead thead-dark">
