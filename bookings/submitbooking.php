@@ -34,7 +34,9 @@ if (($user_month == $month && $user_date >= (int) date("d")) || $user_month == $
         $date = date_format($date, 'Y-m-d');
         $sql = "insert into lab_booking (booked_date, booked_time, teacher_id, class_id, lab) values ('" . $date . "', '" . $time . "', " . $user . ", " . $class . ", '" . $_SESSION['lab'] . "');";
         $conn->query($sql);
-        echo 'Lab successfully booked on ' . $date . ' between ' . $time;
+        echo 'Lab successfully booked on ' . $date . ' between ' . $time . ' ';
+        $sql = "select max(id) from lab_booking";
+        echo $conn->query($sql)->fetch_assoc()['max(id)'];
     }
 } else {
     echo 'Date or Month not valid!';

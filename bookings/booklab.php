@@ -35,8 +35,9 @@ require_once '../checksession.php';
 			if (request.readyState == 4) {
 				alert(request.responseText);
 				let check = request.responseText.split(" ");
-				if(check[0] == "Lab"){
-					document.location.reload();
+				let booking_id = check[check.length - 1];
+				if (check[0] == "Lab") {
+					document.location.href = "../itembooking/index.php?bookingid=" + booking_id;
 				}
 			}
 		}
