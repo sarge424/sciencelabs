@@ -55,11 +55,11 @@ if ($lab == 'b') {
 	}
 </script>
 
-<nav class="navbar sticky-top navbar-icon-top navbar-expand-lg navbar-dark bg-<?php echo $lab; ?>">
+<nav id="navbar_main" class="navbar sticky-top navbar-icon-top navbar-expand-lg navbar-dark bg-<?php echo $lab; ?>">
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<li class="nav-item navbar-brand dropdown">
 			<div class="dropdown">
-				<button class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle="dropdown"><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
+				<button id="lab_dropdown" class="btn btn-dark navbar-brand dropdown-toggle" style="background:rgba(41, 43, 44, 0.5);border:none;" type="button" data-toggle=""><?php echo $img . ' ' . $_SESSION['labname']; ?>Lab
 					<span class="caret"></span></button>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" onclick="document.location.href='../changelab.php?labname=p';">
@@ -159,5 +159,13 @@ if ($lab == 'b') {
 			if (name.startsWith(pagename))
 				buttons[x].parentElement.classList.toggle('active');
 		}
+	}
+	function setDarkMode() {
+		document.getElementById('navbar_main').classList.toggle('bg-<?php echo $lab; ?>');
+		document.getElementById('navbar_main').classList.toggle('bg-dark');
+
+		document.getElementById('lab_dropdown').classList.toggle('dropdown-toggle');
+		document.getElementById('lab_dropdown').data_toggle = '';
+		document.getElementById('lab_dropdown').innerHTML = 'All Labs';
 	}
 </script>

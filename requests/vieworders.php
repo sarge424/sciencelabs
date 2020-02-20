@@ -14,6 +14,7 @@ include_once '../navbar.php';
 
 <script>
     setActive('Requests');
+    setDarkMode();
 </script>
 
 <script>

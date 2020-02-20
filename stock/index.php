@@ -58,6 +58,7 @@ require_once '../checksession.php';
 	?>
 	<script>
 		setActive('Stock');
+		setDarkMode();
 	</script>
 
 	<script>
