@@ -12,6 +12,16 @@
     let date = '<?php echo date("Y m d"); ?>';
 
     function addDays(increment) {
+        document.getElementById("yes").classList.replace("btn-success", "btn-primary");
+        document.getElementById("tod").classList.replace("btn-success", "btn-primary");
+        document.getElementById("tom").classList.replace("btn-success", "btn-primary");
+        if(increment == -1){
+            document.getElementById("yes").classList.replace("btn-primary", "btn-success");
+        } else if(increment == 0){
+            document.getElementById("tod").classList.replace("btn-primary", "btn-success");
+        } else {
+            document.getElementById("tom").classList.replace("btn-primary", "btn-success");
+        }
         let iframe1 = document.getElementById("iframe1");
         let iframe2 = document.getElementById("iframe2");
         let iframe3 = document.getElementById("iframe3");
@@ -37,15 +47,15 @@
         <br>
         <div class="row">
             <div class="col-sm-4 text-center">
-                <p class="btn btn-primary" onclick="addDays(-1)">Yesterday</p>
+                <p class="btn btn-primary" id="yes" onclick="addDays(-1)">Yesterday</p>
             </div>
 
             <div class="col-sm-4 text-center">
-                <p class="btn btn-primary" onclick="addDays(0)">Today</p>
+                <p class="btn btn-primary" id="tod" onclick="addDays(0)">Today</p>
             </div>
 
             <div class="col-sm-4 text-center">
-                <p class="btn btn-primary" onclick="addDays(1)">Tomorrow</p>
+                <p class="btn btn-primary" id="tom" onclick="addDays(1)">Tomorrow</p>
             </div>
         </div>
         <br>
