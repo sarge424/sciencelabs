@@ -53,7 +53,7 @@ require_once '../checksession.php';
 
 	<?php
 	include '../navbar.php';
-	$sql = 'select min_quantity, quantity from item where min_quantity > quantity;';
+	$sql = 'select min_quantity, quantity from item where min_quantity > quantity and lab="'.$_SESSION['lab'].'";';
 	$alert = ($conn->query($sql)->num_rows == 0 || $lev == 3) ? 'd-none' : '';
 	?>
 	<script>
