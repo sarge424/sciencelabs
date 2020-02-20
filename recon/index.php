@@ -36,7 +36,7 @@ include '../navbar.php';
             if (request.readyState == 4) {
                 let tbody = document.getElementById('data');
                 tbody.innerHTML = request.responseText;
-                sortTable();
+                //sortTable();
             }
         }
 
@@ -103,7 +103,7 @@ include '../navbar.php';
             if(tbody.rows[x].cells[0].innerHTML.startsWith('recon')){
                 var row = tbody.insertRow(-1);
                 var cell = row.insertCell(0);
-                cell.innerHTML = tbody.rows[x].cells[0].innerHTML;
+                cell.innerHTML = tbody.rows[x].cells[0].innerHTML + 'added lololol';
                 cell.colspan = 4;
             }
         }

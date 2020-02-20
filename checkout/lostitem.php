@@ -5,10 +5,8 @@ require_once '../checksession.php';
 $student_id = $_GET['student'];
 $item = $_GET['item'];
 $quantity = $_GET['quantity'];
-$lost_quantity = $_GET['lost_q'];
+$lost_quantity = $quantity;
 $checkout_id = $_GET['checkout_id'];
-
-$lost_quantity = ($lost_quantity > $quantity)? $quantity:$lost_quantity;
 
 if($lost_quantity >= $quantity)
     $sql = "update student_checkout set lost='Y', returned='N', returned_date=now() where id=" . $checkout_id . ";";
