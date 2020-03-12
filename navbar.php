@@ -117,14 +117,6 @@ if ($lab == 'b') {
 					</li>';
 			}
 			?>
-			<?php
-			if ($_SESSION['level'] == 0) {
-				echo '<li class="nav-item">
-						<a class="nav-link" href="/sciencelabs/dataentry">
-							<i class="fa fa-database"></i>Data Entry</a>
-					</li>';
-			}
-			?>
 		</ul>
 
 		<ul class="navbar-nav ">
